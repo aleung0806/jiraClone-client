@@ -31,23 +31,30 @@
 "issues" : [
     {
         "id": 1,
-        "name": "clean room"
+        "name": "clean room",
+        "projectId": 1
     },
     {
         "id": 2,
-        "name": "do dishes"
+        "name": "do dishes",
+        "projectId": 1
+
     },
     {
         "id": 3,
-        "name": "fix weedwacker"
+        "name": "fix weedwacker",
+        "projectId": 2
     },
     {
         "id": 4,
-        "name": "pay bills"
+        "name": "pay bills",
+        "projectId": 1
+
     },
     {
         "id": 5,
-        "name": "fix truck exhaust rattle"
+        "name": "fix truck exhaust rattle",
+        "projectId": 2
     }
 ]
 
