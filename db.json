@@ -1,0 +1,57 @@
+{"users": [
+    { 
+        "id": 1,
+        "username": "blelby",
+        "password": "123password"
+    },
+    { 
+        "id": 2,
+        "username": "dablinchie",
+        "password": "123password"
+    },
+    { 
+        "id": 3,
+        "username": "monkey",
+        "password": "123password"
+    }
+],
+"projects": [
+    {
+        "id": 1,
+        "name": "household chores",
+        "issues": [1, 2, 4]
+    },
+    {
+        "id": 2,
+        "name": "garage projects",
+        "issues": [3, 5]
+    }
+],
+
+"issues" : [
+    {
+        "id": 1,
+        "name": "clean room"
+    },
+    {
+        "id": 2,
+        "name": "do dishes"
+    },
+    {
+        "id": 3,
+        "name": "fix weedwacker"
+    },
+    {
+        "id": 4,
+        "name": "pay bills"
+    },
+    {
+        "id": 5,
+        "name": "fix truck exhaust rattle"
+    }
+]
+
+}
+
+
+
