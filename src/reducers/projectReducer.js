@@ -3,7 +3,7 @@ import { getAll } from '../services/projectService'
 
 const projectSlice = createSlice({
   name: 'projects',
-  initialState: [],
+  initialState: null,
   reducers: {
     setProjects: (state, action) => {
       return action.payload

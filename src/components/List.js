@@ -2,11 +2,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import Issue from './Issue'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { setIssues } from '../reducers/issueReducer'
-import './Column.css'
+import './List.css'
+import { Paper } from '@mui/material'
 
 
-const Column = ({name}) => {
-  const issues = useSelector(state => state.issues)
+const List = ({ list }) => {
+  const { name, issues } = list 
   const dispatch = useDispatch()
 
   function handleOnDragEnd(result) {
@@ -20,7 +21,8 @@ const Column = ({name}) => {
   }
 
   return (
-    <div>
+    <div className="list">
+    <Paper elevation={3} >
       <h1>{name}</h1>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="issues">
@@ -34,9 +36,11 @@ const Column = ({name}) => {
             </ul>
           )}
         </Droppable>
+
       </DragDropContext>
+    </Paper>
     </div>
   )
 }
 
-export default Column
+export default List

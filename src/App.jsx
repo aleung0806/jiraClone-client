@@ -1,25 +1,30 @@
 import { useEffect } from 'react'
-import Column from './components/Column'
+import Column from './components/List'
 import Filters from './components/Filters'
+import Projects from './components/Projects'
+import NavBar from './components/NavBar'
+
 import { initIssues } from './reducers/issueReducer'
 import { initProjects } from './reducers/projectReducer'
 import { initFilter } from './reducers/filterReducer'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { Button } from '@mui/material'
+
+
 
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(initIssues())
     dispatch(initProjects())
   }, [])
 
   return (
     <div>
-      <Filters />
-      <Column name='Brainstorm'/>
-      <Column name='Finished'/>
+      <NavBar/>
+      <Projects />
 
     </div>
   )
