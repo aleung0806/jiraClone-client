@@ -7,4 +7,3 @@ export const getAll = async () => {
   console.log(response.data)
   return response.data
 }
-

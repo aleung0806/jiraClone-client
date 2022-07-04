@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Issues from './components/Issues'
+import Column from './components/Column'
 import Filters from './components/Filters'
 import { initIssues } from './reducers/issueReducer'
 import { initProjects } from './reducers/projectReducer'
@@ -18,7 +18,9 @@ function App() {
   return (
     <div>
       <Filters />
-      <Issues />
+      <Column name='Brainstorm'/>
+      <Column name='Finished'/>
+
     </div>
   )
 }

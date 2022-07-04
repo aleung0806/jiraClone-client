@@ -1,9 +1,20 @@
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const Issue = ({issue}) => {
+const Issue = ({issue, index}) => {
+  const name = issue.name
+  const id = issue.id
   return (
-    <div>
-      <p>{issue.name}</p>
-    </div>
+
+    <Draggable key={id} draggableId={name} index={index}>
+    {(provided) => (
+      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+        <p>
+          { name }
+        </p>
+      </li>
+    )}
+  </Draggable>
+
   )
 }
 
