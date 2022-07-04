@@ -30,8 +30,10 @@ export default function ProjectsMenuButton() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        color="secondary"
       >
       Projects
+      
       </Button>
       <Menu
         id="basic-menu"
@@ -42,7 +44,7 @@ export default function ProjectsMenuButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {projects.map(project => {
+        {projects !== null && projects.map(project => {
           return <MenuItem key={project.id} onClick={handleClose}>{project.name}</MenuItem>
         })}
 

@@ -10,13 +10,16 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 import ProjectsMenuButton from './ProjectsMenuButton'
 
+import theme from '../theme'
+
 const NavBar = () => {
   return (
-  <AppBar position="static" color="inherit" >
-    <Toolbar variant="dense">
-      <ProjectsMenuButton color="secondary" />
-    </Toolbar>
-  </AppBar>
+    <AppBar position="static" color="primary" >
+      <Toolbar variant="dense">
+        <ProjectsMenuButton />
+      </Toolbar>
+    </AppBar>
+
   )
 }
 
