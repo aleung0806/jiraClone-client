@@ -2,29 +2,28 @@ import { useSelector, useDispatch } from 'react-redux'
 import Issue from './Issue'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { setIssues } from '../reducers/issueReducer'
-import './List.css'
-import { Paper } from '@mui/material'
+import { 
+  Typography, 
+  Paper, 
+  Stack, 
+  Box
+} from '@mui/material'
+
+import { styled } from '@mui/system';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 const List = ({ list }) => {
   const { name, issues } = list 
   const dispatch = useDispatch()
 
-  function handleOnDragEnd(result) {
-    if (!result.destination) return;
-
-    const items = Array.from(issues);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    dispatch(setIssues(items))
-  }
 
   return (
-    <div className="list">
-    <Paper elevation={3} >
-      <h1>{name}</h1>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
+     <Paper sx={{
+        padding: 1,
+        width: 300
+      }} >
+      <Typography>{name}</Typography>
         <Droppable droppableId="issues">
           {(provided) => (
             <ul className="issues" {...provided.droppableProps} ref={provided.innerRef}>
@@ -36,11 +35,9 @@ const List = ({ list }) => {
             </ul>
           )}
         </Droppable>
-
-      </DragDropContext>
-    </Paper>
-    </div>
+     </Paper>
   )
 }
 
 export default List
+ 

@@ -18,7 +18,6 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
-
         <App />
       </ThemeProvider>
     </Provider>

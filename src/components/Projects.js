@@ -7,7 +7,7 @@ const Projects = () => {
 
   return (
     <ul>
-      {projects !== null && projects.map(project => {
+      {projects !== null &&  projects.map(project => {
         return <Project key={project.id} project={project} />
       })} 
     </ul>
