@@ -34,7 +34,7 @@ const DragItem = styled.div`
   flex-direction: column;
 `;
 
-const ListItem = ({ item, index }) => {
+const Issue = ({ item, index }) => {
 
   return (
     <Draggable draggableId={`${item.id}`} index={index}>
@@ -61,4 +61,4 @@ const ListItem = ({ item, index }) => {
   );
 };
 
-export default ListItem;
+export default Issue;

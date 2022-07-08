@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
-import DraggableElement from "./DraggableElement";
+import List from "./List";
 import { useDispatch, useSelector } from 'react-redux'
-import { setLists } from '../../reducers/projectReducer'
+import { setLists } from '../reducers/projectReducer'
 
 const DragDropContextContainer = styled.div`
   padding: 20px;
@@ -21,19 +21,15 @@ const removeFromList = (list, index) => {
   const removed = issuesCopy[index]
   issuesCopy.splice(index, 1)
   return [removed, {...list, issues: issuesCopy}]
-};
+}
 
 const addToList = (list, index, element) => {
   let issuesCopy =[...list.issues]
   issuesCopy.splice(index, 0, element)
   return {...list, issues: issuesCopy}
-};
+}
 
-const lists = ["todo", "inProgress", "done"];
-
-
-
-function DragList() {
+function Project({project}) {
   const projects = useSelector(state => state.projects)
   const dispatch = useDispatch()
   
@@ -57,16 +53,12 @@ function DragList() {
     const [removedIssue, newSourceList] = removeFromList(sourceList, sourceIndex)
     listsCopy = listsCopy.map(list => list.id === sourceListId ? newSourceList : list)
 
-    console.log('listsCopy1', listsCopy)
-
     const destinationList = listsCopy.find(list => list.id === destinationListId)
     const newDestinationList = addToList(destinationList, destinationIndex, removedIssue)
     listsCopy = listsCopy.map(list => list.id === destinationListId ? newDestinationList : list)
 
-    console.log('listsCopy2', listsCopy)
-
     dispatch(setLists(listsCopy))
-  };
+  }
 
   return (
 
@@ -75,7 +67,7 @@ function DragList() {
         <ListGrid>
           {lists !== null && lists.map((list) => {
             return (
-            <DraggableElement
+            <List
               list={list}
               key={list.id}
             />
@@ -86,4 +78,4 @@ function DragList() {
   );
 }
 
-export default DragList;
+export default Project;

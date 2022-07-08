@@ -1,5 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
-import ListItem from "./ListItem";
+import Issue from "./Issue";
 import React from "react";
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ const DroppableStyles = styled.div`
   background: #d4d4d4;
 `;
 
-const DraggableElement = ({list}) => {
+const List = ({list}) => {
   console.log('issues', list.issues)
   return (
   <DroppableStyles>
@@ -26,7 +26,7 @@ const DraggableElement = ({list}) => {
           {list.issues.map((item, index) => {
             console.log('item', item)
             console.log('index',index)
-            return <ListItem key={item.id} item={item} index={index} />
+            return <Issue key={item.id} item={item} index={index} />
           })}
           {provided.placeholder}
         </div>)
@@ -36,4 +36,4 @@ const DraggableElement = ({list}) => {
   )
           };
 
-export default DraggableElement;
+export default List;
