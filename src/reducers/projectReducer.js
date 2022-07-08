@@ -5,28 +5,33 @@ const projectSlice = createSlice({
   name: 'projects',
   initialState: null,
   reducers: {
-    setProjects: (state, action) => {
+    setProjects: (state, action) => { 
       return action.payload
     },
     setLists: (state, action) => {
-      console.log('state', current(state))
-      console.log('action...', action.payload)
-
-      const lists = action.payload.lists
-      const projectId = action.payload.id
+      const { lists, projectId } = action.payload
       const oldState = current(state)
       const result = oldState.map(project => {
-        console.log(project)
         return project.id === projectId ? {...project, lists: lists} : project
       })
-      console.log('result', result)
       return result
+    },
+
+    createIssue: (state, action) => {
+      const { issue, listId, projectId } = action.payload
+      let stateCopy = [...current(state)]
+      const projectIndex = stateCopy.findIndex(project => project.id === projectId)
+      const listIndex = stateCopy[projectIndex].lists.findIndex(list => list.id === listId)
+      stateCopy[projectIndex].lists[listIndex].issues.push(issue)
+      return stateCopy
+
+
     }
 
   }
 })
 
-export const { setProjects, setLists } = projectSlice.actions
+export const { setProjects, setLists, createIssue } = projectSlice.actions
 
 export const initProjects = () => async (dispatch) => {
   const projects = await getAll()

@@ -11,7 +11,6 @@ const ProjectPage = () => {
       : null
   })
 
-
   return (
     <div>
       {project !== null && <Project project={project}/>}

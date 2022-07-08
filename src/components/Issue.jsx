@@ -23,7 +23,7 @@ const CardFooter = styled.div`
   align-items: center;
 `;
 
-const DragItem = styled.div`
+export const DragItem = styled.div`
   padding: 10px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -35,6 +35,8 @@ const DragItem = styled.div`
 `;
 
 const Issue = ({ item, index }) => {
+  console.log('item', item)
+  console.log('index', index)
 
   return (
     <Draggable draggableId={`${item.id}`} index={index}>

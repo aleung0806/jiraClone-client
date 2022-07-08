@@ -5,6 +5,8 @@ import List from "./List";
 import { useDispatch, useSelector } from 'react-redux'
 import { setLists } from '../reducers/projectReducer'
 import { useParams } from 'react-router-dom'
+import { IconButton } from '@mui/material'
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 const ProjectContainer = styled.div`
   padding: 20px;
@@ -64,7 +66,7 @@ function Project({project}) {
     const newDestinationList = addToList(destinationList, destinationIndex, removedIssue)
     listsCopy = listsCopy.map(list => list.id === destinationListId ? newDestinationList : list)
 
-    dispatch(setLists({lists: listsCopy, id: projectId}))
+    dispatch(setLists({lists: listsCopy, projectId: projectId}))
   }
 
   return (

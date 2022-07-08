@@ -10,7 +10,12 @@ import { useSelector } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom'
 
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import styled from 'styled-components'
 
+const ArrowContainer = styled.span`
+  align-items: center;
+`;
 
 export default function ProjectsMenuButton() {
   const navigate = useNavigate()
@@ -18,12 +23,16 @@ export default function ProjectsMenuButton() {
   const open = Boolean(anchorEl);
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
-  };
-  const handleClose = (id) => {
-    console.log('id', id)
+  }
+
+  const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleSelect = (id) => {
     navigate(`./projects/${id}`)
-  };
+
+  }
 
   const projects = useSelector(state => state.projects)
 
@@ -31,13 +40,16 @@ export default function ProjectsMenuButton() {
     <div>
       <Button
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        color="secondary"
+        color="primary"
       >
-      Projects
+      
+      <Typography color="white" >
+        Projects
+        <ArrowContainer>
+          <ArrowDropDownRoundedIcon/>
+        </ArrowContainer>
+      </Typography>
       
       </Button>
       <Menu
@@ -50,7 +62,7 @@ export default function ProjectsMenuButton() {
         }}
       >
         {projects !== null && projects.map(project => {
-          return <MenuItem key={project.id} onClick={() => handleClose(project.id)}>{project.name}</MenuItem>
+          return <MenuItem key={project.id} onClick={() => handleSelect(project.id)}>{project.name}</MenuItem>
         })}
 
       </Menu>
