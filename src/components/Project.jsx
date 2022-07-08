@@ -37,12 +37,10 @@ const addToList = (list, index, element) => {
   return {...list, issues: issuesCopy}
 }
 
-function Project() {
-  const projectId = useParams().id
-  const project = useSelector(state => {
-    return state.projects.find(project => project.id === projectId)
-  })
+function Project({project}) {
+
   const lists = project.lists
+  const projectId = project.id
 
 
   const dispatch = useDispatch()

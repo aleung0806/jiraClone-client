@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import Column from './components/List'
 import Filters from './components/Filters'
-import Projects from './components/Projects'
 import NavBar from './components/NavBar'
 
 
@@ -11,7 +10,7 @@ import { initFilter } from './reducers/filterReducer'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import Project from './components/Project'
+import ProjectPage from './components/ProjectPage'
 
 import './App.css'
 
@@ -34,6 +33,7 @@ import { ConstructionOutlined, ViewHeadline } from '@mui/icons-material'
 function App() {
   const dispatch = useDispatch()
   const projects = useSelector(state => state.projects)
+  const match = useMatch('./projects/:id')
 
   useEffect(() => {
     dispatch(initProjects())
@@ -44,8 +44,7 @@ function App() {
       <NavBar/>
 
       <Routes>
-        <Route path="/" element={<Project/>} />
-        <Route path="/projects/:id" element={projects !== null && <Project />} />
+          <Route path="/projects/:id" element={ <ProjectPage />} />
       </Routes>
     </Box>
 
