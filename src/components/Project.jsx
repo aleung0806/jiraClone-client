@@ -1,13 +1,21 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import List from "./List";
 import { useDispatch, useSelector } from 'react-redux'
 import { setLists } from '../reducers/projectReducer'
+import { useParams } from 'react-router-dom'
+
+const ProjectContainer = styled.div`
+  padding: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: darkgray;
+`;
 
 const DragDropContextContainer = styled.div`
-  padding: 20px;
   border-radius: 6px;
+  font-weight: normal;
 `;
 
 const ListGrid = styled.div`
@@ -29,14 +37,15 @@ const addToList = (list, index, element) => {
   return {...list, issues: issuesCopy}
 }
 
-function Project({project}) {
-  const projects = useSelector(state => state.projects)
+function Project() {
+  const projectId = useParams().id
+  const project = useSelector(state => {
+    return state.projects.find(project => project.id === projectId)
+  })
+  const lists = project.lists
+
+
   const dispatch = useDispatch()
-  
-  const lists = 
-    projects !== null
-    ? projects[0].lists
-    : null
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -57,11 +66,12 @@ function Project({project}) {
     const newDestinationList = addToList(destinationList, destinationIndex, removedIssue)
     listsCopy = listsCopy.map(list => list.id === destinationListId ? newDestinationList : list)
 
-    dispatch(setLists(listsCopy))
+    dispatch(setLists({lists: listsCopy, id: projectId}))
   }
 
   return (
-
+    <ProjectContainer>
+      <p>{project.name}</p>
     <DragDropContextContainer>
       <DragDropContext onDragEnd={onDragEnd}>
         <ListGrid>
@@ -75,6 +85,7 @@ function Project({project}) {
         </ListGrid>
       </DragDropContext>
     </DragDropContextContainer>
+    </ProjectContainer>
   );
 }
 

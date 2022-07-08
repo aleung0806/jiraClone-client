@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useState } from 'react'
 import {
   Button,
   Menu,
@@ -8,16 +8,21 @@ import {
 
 import { useSelector } from 'react-redux'
 
+import { useNavigate } from 'react-router-dom'
+
 
 
 export default function ProjectsMenuButton() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate()
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget)
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (id) => {
+    console.log('id', id)
+    setAnchorEl(null)
+    navigate(`./projects/${id}`)
   };
 
   const projects = useSelector(state => state.projects)
@@ -45,7 +50,7 @@ export default function ProjectsMenuButton() {
         }}
       >
         {projects !== null && projects.map(project => {
-          return <MenuItem key={project.id} onClick={handleClose}>{project.name}</MenuItem>
+          return <MenuItem key={project.id} onClick={() => handleClose(project.id)}>{project.name}</MenuItem>
         })}
 
       </Menu>

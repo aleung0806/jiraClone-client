@@ -10,11 +10,14 @@ const projectSlice = createSlice({
     },
     setLists: (state, action) => {
       console.log('state', current(state))
-      console.log('action', action.payload)
+      console.log('action...', action.payload)
+
+      const lists = action.payload.lists
+      const projectId = action.payload.id
       const oldState = current(state)
       const result = oldState.map(project => {
         console.log(project)
-        return project.id === '1' ? {...project, lists: action.payload} : project
+        return project.id === projectId ? {...project, lists: lists} : project
       })
       console.log('result', result)
       return result
