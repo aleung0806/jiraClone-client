@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
 import { useDispatch, useSelector } from 'react-redux'
-import { setProjects } from '../../reducers/projectReducer'
+import { setLists } from '../../reducers/projectReducer'
 
 const DragDropContextContainer = styled.div`
   padding: 20px;
-  border: 4px solid indianred;
   border-radius: 6px;
 `;
 
@@ -17,26 +16,22 @@ const ListGrid = styled.div`
   grid-gap: 8px;
 `;
 
-
 const removeFromList = (list, index) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(index, 1);
-  return [removed, result];
+  let issuesCopy = [...list.issues]
+  const removed = issuesCopy[index]
+  issuesCopy.splice(index, 1)
+  return [removed, {...list, issues: issuesCopy}]
 };
 
 const addToList = (list, index, element) => {
-  const result = Array.from(list);
-  result.splice(index, 0, element);
-  return result;
+  let issuesCopy =[...list.issues]
+  issuesCopy.splice(index, 0, element)
+  return {...list, issues: issuesCopy}
 };
 
 const lists = ["todo", "inProgress", "done"];
 
-const generateLists = () =>
-  lists.reduce(
-    (acc, listKey) => ({ ...acc, [listKey]: getItems(10, listKey) }),
-    {}
-  );
+
 
 function DragList() {
   const projects = useSelector(state => state.projects)
@@ -51,26 +46,26 @@ function DragList() {
     if (!result.destination) {
       return;
     }
-    const listCopy = { ...lists };
 
-    const sourceList = listCopy[result.source.droppableId];
-    const [removedElement, newSourceList] = removeFromList(
-      sourceList,
-      result.source.index
-    );
-    listCopy[result.source.droppableId] = newSourceList;
-    const destinationList = listCopy[result.destination.droppableId];
-    listCopy[result.destination.droppableId] = addToList(
-      destinationList,
-      result.destination.index,
-      removedElement
-    );
+    let listsCopy = [...lists]
+    const sourceListId = result.source.droppableId
+    const destinationListId =  result.destination.droppableId
+    const sourceIndex = result.source.index
+    const destinationIndex = result.destination.index
 
-    const projectsCopy = projects
+    const sourceList = listsCopy.find(list => list.id === sourceListId)
+    const [removedIssue, newSourceList] = removeFromList(sourceList, sourceIndex)
+    listsCopy = listsCopy.map(list => list.id === sourceListId ? newSourceList : list)
 
-    projectsCopy[0].lists = listCopy
-      
-    dispatch(setProjects(projectsCopy))
+    console.log('listsCopy1', listsCopy)
+
+    const destinationList = listsCopy.find(list => list.id === destinationListId)
+    const newDestinationList = addToList(destinationList, destinationIndex, removedIssue)
+    listsCopy = listsCopy.map(list => list.id === destinationListId ? newDestinationList : list)
+
+    console.log('listsCopy2', listsCopy)
+
+    dispatch(setLists(listsCopy))
   };
 
   return (
@@ -79,12 +74,10 @@ function DragList() {
       <DragDropContext onDragEnd={onDragEnd}>
         <ListGrid>
           {lists !== null && lists.map((list) => {
-            console.log('list', list)
             return (
             <DraggableElement
-              elements={list.issues}
+              list={list}
               key={list.id}
-              prefix={list.id}
             />
           )})}
         </ListGrid>

@@ -14,20 +14,23 @@ const DroppableStyles = styled.div`
   background: #d4d4d4;
 `;
 
-const DraggableElement = ({ prefix, elements }) => {
-  console.log('elements', elements)
+const DraggableElement = ({list}) => {
+  console.log('issues', list.issues)
   return (
   <DroppableStyles>
-    <ColumnHeader>{prefix}</ColumnHeader>
-    <Droppable droppableId={`${prefix}`}>
-      {(provided) => (
+    <ColumnHeader>{list.name}</ColumnHeader>
+    <Droppable droppableId={`${list.id}`}>
+      {(provided) => {
+        return (
         <div {...provided.droppableProps} ref={provided.innerRef}>
-          {elements.map((item, index) => (
-            <ListItem key={item.id} item={item} index={index} />
-          ))}
+          {list.issues.map((item, index) => {
+            console.log('item', item)
+            console.log('index',index)
+            return <ListItem key={item.id} item={item} index={index} />
+          })}
           {provided.placeholder}
-        </div>
-      )}
+        </div>)
+      }}
     </Droppable>
   </DroppableStyles>
   )
