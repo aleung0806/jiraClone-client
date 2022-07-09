@@ -19,13 +19,13 @@ const projectSlice = createSlice({
 
     createIssue: (state, action) => {
       const { issue, listId, projectId } = action.payload
-      let stateCopy = [...current(state)]
-      const projectIndex = stateCopy.findIndex(project => project.id === projectId)
-      const listIndex = stateCopy[projectIndex].lists.findIndex(list => list.id === listId)
-      stateCopy[projectIndex].lists[listIndex].issues.push(issue)
-      return stateCopy
 
-
+      const projectIndex = state.findIndex(project => project.id === projectId)
+      const listIndex = state[projectIndex].lists.findIndex(list => list.id === listId)
+      
+      const issuesCopy = [...state[projectIndex].lists[listIndex].issues]
+      issuesCopy.push(issue)
+      state[projectIndex].lists[listIndex].issues = issuesCopy
     }
 
   }

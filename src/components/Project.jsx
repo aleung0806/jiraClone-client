@@ -7,23 +7,39 @@ import { setLists } from '../reducers/projectReducer'
 import { useParams } from 'react-router-dom'
 import { IconButton } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 const ProjectContainer = styled.div`
   padding: 20px;
   text-transform: uppercase;
   font-weight: bold;
   background-color: darkgray;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
 `;
+
+const AddButtonStyle = styled.div`
+  float: left;
+`
 
 const DragDropContextContainer = styled.div`
   border-radius: 6px;
   font-weight: normal;
 `;
 
+const HeaderStyle = styled.div`
+
+
+`
+
 const ListGrid = styled.div`
+  
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 8px;
+  max-width: 1000px;
 `;
 
 const removeFromList = (list, index) => {
@@ -71,7 +87,8 @@ function Project({project}) {
 
   return (
     <ProjectContainer>
-      <p>{project.name}</p>
+     <p>{project.name}</p>
+    
     <DragDropContextContainer>
       <DragDropContext onDragEnd={onDragEnd}>
         <ListGrid>
@@ -82,9 +99,17 @@ function Project({project}) {
               key={list.id}
             />
           )})}
+
         </ListGrid>
+
       </DragDropContext>
     </DragDropContextContainer>
+
+    {/* <AddButtonStyle>
+        <IconButton>
+          <AddRoundedIcon fontSize="large"/>
+        </IconButton>
+        </AddButtonStyle> */}
     </ProjectContainer>
   );
 }

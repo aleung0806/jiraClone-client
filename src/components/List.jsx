@@ -1,17 +1,13 @@
-import { Droppable } from "react-beautiful-dnd";
-import Issue from "./Issue";
-import React from "react";
-import styled from "styled-components";
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
-import { IconButton, Input } from '@mui/material'
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import { createIssue } from '../reducers/projectReducer'
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { DragItem } from './Issue'
+import { Droppable } from "react-beautiful-dnd"
+
+import styled from "styled-components"
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+
+import Issue, { DragItem } from './Issue'
+import AddIssueButton from './AddIssueButton'
+import { IconButton } from '@mui/material';
 
 const ColumnHeader = styled.div`
   display: flex;
@@ -19,18 +15,10 @@ const ColumnHeader = styled.div`
   margin-bottom: 10px;
 `;
 
-const TrashButtonStyles = styled.div`
+const OptionsButtonStyles = styled.div`
   margin-left: auto;
   margin-right: 0;
 `
-
-
-
-const AddButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: auto;
-`;
 
 const DroppableStyles = styled.div`
   padding: 10px;
@@ -39,48 +27,33 @@ const DroppableStyles = styled.div`
 `;
 
 const List = ({list}) => {
+
   const dispatch = useDispatch()
   const { id } = useParams()
-
-  const createIssueHandler = (e) => {
-    dispatch(createIssue({issue: {id: "10", name: 'another task'}, listId: list.id, projectId: id}))
-  }
-
-  const deleteListHandler = () => {
-
-  }
-
-
 
   return (
   <DroppableStyles>
     <ColumnHeader>
       {list.name}
-      <TrashButtonStyles>
-        <IconButton color="secondary" onClick={deleteListHandler}>
-          <MoreHorizRoundedIcon />
+      <OptionsButtonStyles>
+        <IconButton color="secondary" onClick={()=>{}}>
+          <MoreHorizRoundedIcon/>
         </IconButton>
-      </TrashButtonStyles>
+       </OptionsButtonStyles>
     </ColumnHeader>
 
     <Droppable droppableId={`${list.id}`}>
       {(provided) => {
         return (
         <div {...provided.droppableProps} ref={provided.innerRef}>
-          {list.issues.map((item, index) => {
-            console.log('item--', item)
-            console.log('index',index)
-            return <Issue key={item.id} item={item} index={index} />
+          {list.issues.map((issue, index) => {
+            return <Issue key={issue.id} issue={issue} index={index} />
           })}
           {provided.placeholder}
         </div>)
       }}
     </Droppable>
-    <AddButtonWrap>
-      <IconButton color="secondary" onClick={createIssueHandler}>
-          <AddRoundedIcon fontSize="large"/>
-      </IconButton>
-    </AddButtonWrap>
+    <AddIssueButton listId={list.id} projectId={id}/>
   </DroppableStyles>
   )
           };
