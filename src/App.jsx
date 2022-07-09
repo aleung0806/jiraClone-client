@@ -27,7 +27,12 @@ import {
  } from 'react-router-dom'
 
 import { ConstructionOutlined, ViewHeadline } from '@mui/icons-material'
+import styled from 'styled-components'
 
+const AppStyle = styled.div`
+ height: 100vh;
+ background-color: #E6E6E6;
+`
 
 
 function App() {
@@ -40,13 +45,12 @@ function App() {
   }, [])
 
   return (
-    <Box height="100vh" backgroundColor='#E6E6E6' >
+    <AppStyle >
       <NavBar/>
-
       <Routes>
           <Route path="/projects/:id" element={ <ProjectPage />} />
       </Routes>
-    </Box>
+    </AppStyle>
 
   )
 }

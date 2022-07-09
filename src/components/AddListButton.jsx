@@ -16,7 +16,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 const AddButtonStyle = styled.span`
   display: inline-block;
   width: 300px;
-  padding: 10px;
+  padding: 5px;
   border-radius: 6px;
   background: #d4d4d4;
   vertical-align: top;
@@ -24,6 +24,7 @@ const AddButtonStyle = styled.span`
 `;
 
 const ListFormWrap = styled.div`
+ vertical-align: bottom;
 
 `;
 

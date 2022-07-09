@@ -13,8 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import styled from 'styled-components'
 
-const ArrowContainer = styled.span`
-  align-items: center;
+const MenuButtonStyles = styled.div`
 `;
 
 export default function ProjectsMenuButton() {
@@ -37,20 +36,16 @@ export default function ProjectsMenuButton() {
   const projects = useSelector(state => state.projects)
 
   return (
-    <div>
+    <MenuButtonStyles>
       <Button
         id="basic-button"
         onClick={handleClick}
         color="primary"
       >
-      
-      <Typography color="white" >
-        Projects
-        <ArrowContainer>
-          <ArrowDropDownRoundedIcon/>
-        </ArrowContainer>
-      </Typography>
-      
+        <Typography color="#d4d4d4" sx={{ textTransform: 'none' }}>
+          Projects
+        </Typography>
+        <ArrowDropDownRoundedIcon color="secondary"/>
       </Button>
       <Menu
         id="basic-menu"
@@ -64,8 +59,7 @@ export default function ProjectsMenuButton() {
         {projects !== null && projects.map(project => {
           return <MenuItem key={project.id} onClick={() => handleSelect(project.id)}>{project.name}</MenuItem>
         })}
-
       </Menu>
-    </div>
+    </MenuButtonStyles>
   );
 }

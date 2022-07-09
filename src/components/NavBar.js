@@ -6,19 +6,28 @@ import {
   Button
 } from '@mui/material'
 
-import MenuIcon from '@mui/icons-material/Menu'
 
 import ProjectsMenuButton from './ProjectsMenuButton'
+import SearchBar from './SearchBar'
+import styled from 'styled-components'
 
-import theme from '../theme'
+const NavBarStyles = styled.div`
+  background-color: #3f3f3f;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+
+
+`;
 
 const NavBar = () => {
   return (
-    <AppBar position="static" color="primary" >
-      <Toolbar variant="dense">
+    <NavBarStyles>
         <ProjectsMenuButton />
-      </Toolbar>
-    </AppBar>
+        <SearchBar />
+    </NavBarStyles>
 
   )
 }
