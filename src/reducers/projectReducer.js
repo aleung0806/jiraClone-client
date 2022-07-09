@@ -22,16 +22,29 @@ const projectSlice = createSlice({
 
       const projectIndex = state.findIndex(project => project.id === projectId)
       const listIndex = state[projectIndex].lists.findIndex(list => list.id === listId)
-      
+
       const issuesCopy = [...state[projectIndex].lists[listIndex].issues]
       issuesCopy.push(issue)
       state[projectIndex].lists[listIndex].issues = issuesCopy
+    },
+
+    createList: (state, action) => {
+      const { list, projectId } = action.payload
+      console.log(list)
+      console.log(projectId)
+
+
+      const projectIndex = state.findIndex(project => project.id === projectId)
+      const listsCopy = [...state[projectIndex].lists]
+      listsCopy.push(list)
+      state[projectIndex].lists = listsCopy
+
     }
 
   }
 })
 
-export const { setProjects, setLists, createIssue } = projectSlice.actions
+export const { setProjects, setLists, createIssue, createList } = projectSlice.actions
 
 export const initProjects = () => async (dispatch) => {
   const projects = await getAll()

@@ -8,39 +8,24 @@ import { useParams } from 'react-router-dom'
 import { IconButton } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import AddListButton from './AddListButton'
 
 const ProjectContainer = styled.div`
   padding: 20px;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: darkgray;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  background-color: #E6E6E6;
+
 
 `;
 
-const AddButtonStyle = styled.div`
-  float: left;
-`
 
-const DragDropContextContainer = styled.div`
-  border-radius: 6px;
-  font-weight: normal;
-`;
 
 const HeaderStyle = styled.div`
-
-
+  font-color: gray;
+  margin-bottom: 10px;
+  margin-top: 0px;
 `
-
-const ListGrid = styled.div`
-  
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 8px;
-  max-width: 1000px;
-`;
 
 const removeFromList = (list, index) => {
   let issuesCopy = [...list.issues]
@@ -87,11 +72,8 @@ function Project({project}) {
 
   return (
     <ProjectContainer>
-     <p>{project.name}</p>
-    
-    <DragDropContextContainer>
+     <HeaderStyle>{project.name}</HeaderStyle>
       <DragDropContext onDragEnd={onDragEnd}>
-        <ListGrid>
           {lists !== null && lists.map((list) => {
             return (
             <List
@@ -100,16 +82,9 @@ function Project({project}) {
             />
           )})}
 
-        </ListGrid>
 
       </DragDropContext>
-    </DragDropContextContainer>
-
-    {/* <AddButtonStyle>
-        <IconButton>
-          <AddRoundedIcon fontSize="large"/>
-        </IconButton>
-        </AddButtonStyle> */}
+      <AddListButton projectId={projectId}/>
     </ProjectContainer>
   );
 }

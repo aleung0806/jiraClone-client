@@ -4,12 +4,15 @@ import { Droppable } from "react-beautiful-dnd"
 
 import styled from "styled-components"
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+import { 
+  IconButton, 
+} from '@mui/material';
+
 
 import Issue, { DragItem } from './Issue'
 import AddIssueButton from './AddIssueButton'
-import { IconButton } from '@mui/material';
 
-const ColumnHeader = styled.div`
+const ListHeader = styled.div`
   display: flex;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -20,10 +23,14 @@ const OptionsButtonStyles = styled.div`
   margin-right: 0;
 `
 
-const DroppableStyles = styled.div`
+const DroppableStyles = styled.span`
+  display: inline-block;
+  width: 300px;
   padding: 10px;
   border-radius: 6px;
   background: #d4d4d4;
+  vertical-align: top;
+  margin: 5px;
 `;
 
 const List = ({list}) => {
@@ -33,14 +40,14 @@ const List = ({list}) => {
 
   return (
   <DroppableStyles>
-    <ColumnHeader>
+    <ListHeader>
       {list.name}
       <OptionsButtonStyles>
         <IconButton color="secondary" onClick={()=>{}}>
           <MoreHorizRoundedIcon/>
         </IconButton>
-       </OptionsButtonStyles>
-    </ColumnHeader>
+      </OptionsButtonStyles>
+    </ListHeader>
 
     <Droppable droppableId={`${list.id}`}>
       {(provided) => {

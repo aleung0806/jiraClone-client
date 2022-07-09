@@ -40,7 +40,7 @@ function App() {
   }, [])
 
   return (
-    <Box height="100vh" backgroundColor='lightgray' >
+    <Box height="100vh" backgroundColor='#E6E6E6' >
       <NavBar/>
 
       <Routes>

@@ -22,9 +22,7 @@ const IssueFormWrap = styled.div`
   display: grid;
   grid-gap: 20px;
   flex-direction: column;
-  // border-style: solid;
-  // border-color: lightgray;
-  
+ 
 `
 
 const OnClickAwayWrapper = ({formVisible, clickAwayHandler, children}) => {
@@ -68,6 +66,7 @@ const AddIssueButton = ({listId, projectId}) => {
       }))
     }
     setFormVisible(false)
+    setNewIssue('')
 
   }
 
@@ -90,12 +89,13 @@ const AddIssueButton = ({listId, projectId}) => {
       <OnClickAwayWrapper formVisible={formVisible} clickAwayHandler={clickAwayHandler}>
         <IssueFormWrap style={{display: formVisible ? '' : 'none'}} >
           <form onSubmit={createIssueHandler}>
-            <TextField   
+            <TextField 
+              autoFocus   
+              fullWidth
               id="newIssueField"
               value={newIssue}
-              placeholder="What needs to be done?"
-              onChange={changeHandler} 
-              variant="filled"
+              onChange={changeHandler}
+              variant="standard" 
             />
             </form>
         </IssueFormWrap>
