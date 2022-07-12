@@ -15,7 +15,7 @@ const NavBarStyles = styled.div`
   background-color: #3f3f3f;
   display: flex;
   flex-direction: row;
-  padding: 5px;
+  padding: 0px;
   justify-content: space-between;
   align-items: center;
 

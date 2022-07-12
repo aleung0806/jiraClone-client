@@ -3,7 +3,8 @@ import {
   Button,
   Menu,
   MenuItem,
-  Typography
+  Typography,
+  Divider
 } from '@mui/material'
 
 import { useSelector } from 'react-redux'
@@ -14,6 +15,7 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import styled from 'styled-components'
 
 const MenuButtonStyles = styled.div`
+
 `;
 
 export default function ProjectsMenuButton() {
@@ -41,6 +43,7 @@ export default function ProjectsMenuButton() {
         id="basic-button"
         onClick={handleClick}
         color="primary"
+        sx={{p: 0, pl: 2}}
       >
         <Typography color="#d4d4d4" sx={{ textTransform: 'none' }}>
           Projects
@@ -52,12 +55,15 @@ export default function ProjectsMenuButton() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
+
       >
         {projects !== null && projects.map(project => {
-          return <MenuItem key={project.id} onClick={() => handleSelect(project.id)}>{project.name}</MenuItem>
+          return (
+            <div key={project.id}>
+            <MenuItem  onClick={() => handleSelect(project.id)}>{project.name}</MenuItem>
+            <Divider key={project.id} />
+            </div>
+          )
         })}
       </Menu>
     </MenuButtonStyles>

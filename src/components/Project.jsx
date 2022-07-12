@@ -15,11 +15,7 @@ const ProjectContainer = styled.div`
   text-transform: uppercase;
   font-weight: bold;
   background-color: #E6E6E6;
-
-
 `;
-
-
 
 const HeaderStyle = styled.div`
   font-color: gray;
@@ -81,8 +77,6 @@ function Project({project}) {
               key={list.id}
             />
           )})}
-
-
       </DragDropContext>
       <AddListButton projectId={projectId}/>
     </ProjectContainer>

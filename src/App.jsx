@@ -9,7 +9,7 @@ import { initProjects } from './reducers/projectReducer'
 import { initFilter } from './reducers/filterReducer'
 
 import { useDispatch, useSelector } from 'react-redux'
-
+import ProjectsPage from './components/ProjectsPage'
 import ProjectPage from './components/ProjectPage'
 
 import './App.css'
@@ -48,6 +48,7 @@ function App() {
     <AppStyle >
       <NavBar/>
       <Routes>
+          <Route path="/" element={ <ProjectsPage />} />
           <Route path="/projects/:id" element={ <ProjectPage />} />
       </Routes>
     </AppStyle>

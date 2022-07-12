@@ -15,6 +15,8 @@ const SearchBarStyles = styled.span`
  margin-right: 20px;
  height: 30px;
  border-radius: 3px;
+ margin-top: 5px;
+ margin-bottom: 5px;
 `
 const SearchIconStyles = styled.div`
  margin-top: 5px;
