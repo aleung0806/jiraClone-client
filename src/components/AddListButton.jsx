@@ -18,7 +18,7 @@ const AddButtonStyle = styled.span`
   width: 300px;
   padding: 5px;
   border-radius: 6px;
-  background: #d4d4d4;
+  background: pink;
   vertical-align: top;
   margin: 5px; 
 `;

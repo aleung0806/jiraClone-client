@@ -14,11 +14,11 @@ const ProjectContainer = styled.div`
   padding: 20px;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: #E6E6E6;
+  background-color: orange;
 `;
 
 const HeaderStyle = styled.div`
-  font-color: gray;
+  font-color: pink;
   margin-bottom: 10px;
   margin-top: 0px;
 `
