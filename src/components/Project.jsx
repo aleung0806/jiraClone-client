@@ -5,22 +5,27 @@ import List from "./List";
 import { useDispatch, useSelector } from 'react-redux'
 import { setLists } from '../reducers/projectReducer'
 import { useParams } from 'react-router-dom'
-import { IconButton } from '@mui/material'
+import { IconButton, Grid, Box } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import AddListButton from './AddListButton'
+import AddListButton from './project/AddListButton'
 
 const ProjectStyle = styled.div`
+  margin-top: 50px;
+  margin-left: 60px;
   padding: 20px;
   text-transform: uppercase;
   font-weight: bold;
   background-color: #E6E6E6;
+  overflow-x: scroll;
+
 `;
 
 const HeaderStyle = styled.div`
-  font-color: gray;
+  color: gray;
   margin-bottom: 10px;
-  margin-top: 0px;
+  margin-top: 10px;
+  margin-left: 6px;
 `
 
 const removeFromList = (list, index) => {
@@ -67,13 +72,15 @@ function Project({project}) {
   }
 
   return (
+    <Box sx={{ display: 'flex' }}>
     <ProjectStyle>
-     <HeaderStyle>{project.title}</HeaderStyle>
+     <HeaderStyle>projects / {project.title}</HeaderStyle>
       <DragDropContext onDragEnd={onDragEnd}>
           {lists !== null && lists.map((list) => <List list={list} key={list.id}/>)}
       </DragDropContext>
       <AddListButton projectId={projectId}/>
     </ProjectStyle>
+    </Box>
   );
 }
 

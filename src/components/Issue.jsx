@@ -1,5 +1,11 @@
 import { Draggable } from "react-beautiful-dnd";
 import styled  from "styled-components"
+import IssueOptionsButton from './issue/IssueOptionsButton'
+import { useState } from 'react'
+import IssueModal from './issue/IssueModal'
+import BuildCircleIcon from '@mui/icons-material/BuildCircle'
+
+import { blue } from '@mui/material/colors'
 
 const Avatar = styled.img`
   height: 30px;
@@ -13,7 +19,13 @@ const Author = styled.div`
 `
 const IssueHeader = styled.div`
   font-weight: 500;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const IssueFooter = styled.div`
   width: 100%;
   display: flex;
@@ -36,8 +48,23 @@ export const DragIssue = styled.div`
 
 const Issue = ({ issue, index }) => {
 
+  const [openModal, setOpenModal] = useState(false)
+
+  const handleClick = () => {
+    setOpenModal(true)
+    console.log('clicked')
+  }
+
+  const handler = (val) => {
+    console.log('handling again', val)
+    setOpenModal(val)
+    console.log('state is', openModal)
+  }
+
   return (
-    <Draggable draggableId={`${issue.id}`} index={index}>
+    <div>
+    <div onClick={handleClick}>
+    <Draggable draggableId={`${issue.id}`} index={index} >
       {(provided, snapshot) => {
         return (
           <DragIssue
@@ -46,8 +73,12 @@ const Issue = ({ issue, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <IssueHeader>{issue.title}</IssueHeader>
+            <IssueHeader>
+              {issue.title}
+              <IssueOptionsButton/>
+            </IssueHeader>
             <IssueFooter>
+              <BuildCircleIcon style={{ color: blue[500] }}/>
               <span>{issue.content}</span>
               <Author>
               </Author>
@@ -56,6 +87,9 @@ const Issue = ({ issue, index }) => {
         );
       }}
     </Draggable>
+    </div>
+  <IssueModal openModal={openModal} setOpenModal={handler} issue={issue}/>
+  </div>
   );
 };
 

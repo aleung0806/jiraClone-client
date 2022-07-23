@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
-import NavBar from './components/navBar/NavBar'
+import NavBar from './components/NavBar'
 
 import { initProjects } from './reducers/projectReducer'
 
 import { useDispatch, useSelector } from 'react-redux'
 import HomePage from './components/HomePage'
 import ProjectPage from './components/ProjectPage'
+import SideMenu from './components/SideMenu'
 
 import './App.css'
 
@@ -39,13 +40,16 @@ function App() {
   }, [])
 
   return (
-    <AppStyle >
+    <Box >
       <NavBar/>
-      <Routes>
-          <Route path="/" element={ <HomePage />} />
-          <Route path="/projects/:id" element={ <ProjectPage />} />
-      </Routes>
-    </AppStyle>
+      <SideMenu/>
+      <Box sx={{ flexGrow: 1, p: 3 }}>
+        <Routes>
+            <Route path="/" element={ <HomePage />} />
+            <Route path="/projects/:id" element={ <ProjectPage />} />
+        </Routes>
+      </Box>
+    </Box>
 
   )
 }

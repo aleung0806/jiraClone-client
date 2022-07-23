@@ -18,8 +18,9 @@ const SearchBarStyles = styled.span`
  margin-bottom: 5px;
 `
 const SearchIconStyles = styled.div`
- margin-top: 5px;
+ margin-top: 10px;
  margin-left: 5px;
+
 `
 
 const SearchBar = () => {

@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux'
-import { setLists } from '../reducers/projectReducer'
 import { useParams } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/base'
-import { createList } from '../reducers/projectReducer'
+import { createList, setLists } from '../../reducers/projectReducer'
 import uniqid from 'uniqid'
 
 import { 
@@ -15,12 +14,13 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 const AddButtonStyle = styled.span`
   display: inline-block;
-  width: 300px;
+  width: 275px;
   padding: 5px;
   border-radius: 6px;
   background: #d4d4d4;
   vertical-align: top;
   margin: 5px; 
+  
 `;
 
 const ListFormWrap = styled.div`
