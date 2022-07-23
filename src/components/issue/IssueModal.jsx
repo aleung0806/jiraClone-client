@@ -1,3 +1,4 @@
+import { NoEncryption } from '@mui/icons-material';
 import {
   Typography,
   Modal,
@@ -13,7 +14,9 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
+  height: 400,
   bgcolor: 'background.paper',
+  borderRadius: 1,
   boxShadow: 24,
   p: 4,
 };
