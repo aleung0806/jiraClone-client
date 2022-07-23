@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/issues'
+const baseUrl = '/lists'
 
 export const getAll = async () => {
   const response = await axios.get(baseUrl)

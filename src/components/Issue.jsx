@@ -52,11 +52,10 @@ const Issue = ({ issue, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <IssueHeader>{issue.name}</IssueHeader>
+            <IssueHeader>{issue.title}</IssueHeader>
             <IssueFooter>
               <span>{issue.content}</span>
               <Author>
-                {issue.id}
               </Author>
             </IssueFooter>
           </DragIssue>

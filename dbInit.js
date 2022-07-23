@@ -75,7 +75,6 @@ const priorities = [
   'low'
 ]
 
-
 const description = `do this and then that and then this and then that. don't forget to do this`
 
 const randomElement = (array) => {
@@ -100,7 +99,8 @@ const randomDate = () => {
   return date
 }
 
-const issueSchema = {
+const issueMaker = () => {
+  return {
   id: uniqid(),
   title: randomTitle(),
   description: description,
@@ -113,7 +113,7 @@ const issueSchema = {
   creator: randomElement(users),
   assignee: randomElement(users)
 }
-
+}
 const numUsers = 5
 const numProjects = 3
 const numLists = 5
@@ -124,7 +124,7 @@ const makeIssues = () => {
   let randomNumIssues = Math.floor((Math.random() * numIssues))
   const issuesArray = []
   for (let i = 0; i < randomNumIssues; i++){
-    issuesArray.push(issueSchema)
+    issuesArray.push(issueMaker())
   }
   return issuesArray
 }
@@ -134,7 +134,7 @@ const makeLists = () => {
   for (let i = 0; i < numLists; i++){
     listsArray.push({
       id: uniqid(),
-      name: randomElement(lists),
+      title: randomElement(lists),
       issues: makeIssues()
     })
   }
@@ -146,7 +146,7 @@ const makeProjects = () => {
   for (let i = 0; i < numProjects; i++){
     projectsArray.push({
       id: uniqid(),
-      name: randomElement(projects),
+      title: randomElement(projects),
       lists: makeLists()
     })
   }

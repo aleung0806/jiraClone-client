@@ -3,7 +3,6 @@ import {
  } from '@mui/material'
 
  import SearchIcon from '@mui/icons-material/Search';
-
  import styled from 'styled-components'
 
 const SearchBarStyles = styled.span`

@@ -50,17 +50,6 @@ const List = ({list}) => {
   const { id } = useParams()
 
   return (
-  <DropWrapper>
-    <DroppableStyles>
-      <ListHeader>
-        {list.name}
-        <OptionsButtonStyles>
-          <IconButton color="secondary" onClick={()=>{}}>
-            <MoreHorizRoundedIcon/>
-          </IconButton>
-        </OptionsButtonStyles>
-      </ListHeader>
-
       <Droppable droppableId={`${list.id}`}>
         {(provided) => {
           return (
