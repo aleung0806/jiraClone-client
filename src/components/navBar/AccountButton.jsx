@@ -28,6 +28,7 @@ export default function AccountDropdown() {
   const handleSelect = (id) => {
     navigate(`./projects/${id}`)
   }
+  
   return (
     <MenuButtonStyles>
       <Button id="basic-button" onClick={handleClick} color="secondary">

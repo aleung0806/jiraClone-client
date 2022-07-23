@@ -14,12 +14,13 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 const AddButtonStyle = styled.span`
   display: inline-block;
-  width: 300px;
+  width: 275px;
   padding: 5px;
   border-radius: 6px;
   background: #d4d4d4;
   vertical-align: top;
   margin: 5px; 
+  
 `;
 
 const ListFormWrap = styled.div`

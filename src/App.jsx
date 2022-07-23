@@ -40,14 +40,16 @@ function App() {
   }, [])
 
   return (
-    <AppStyle >
+    <Box >
       <NavBar/>
       <SideMenu/>
-      <Routes>
-          <Route path="/" element={ <HomePage />} />
-          <Route path="/projects/:id" element={ <ProjectPage />} />
-      </Routes>
-    </AppStyle>
+      <Box sx={{ flexGrow: 1, p: 3 }}>
+        <Routes>
+            <Route path="/" element={ <HomePage />} />
+            <Route path="/projects/:id" element={ <ProjectPage />} />
+        </Routes>
+      </Box>
+    </Box>
 
   )
 }

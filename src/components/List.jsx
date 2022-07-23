@@ -26,7 +26,7 @@ const OptionsButtonStyles = styled.div`
 
 const DroppableStyles = styled.span`
   display: inline-block;
-  width: 300px;
+  width: 275px;
   padding: 10px;
   border-radius: 6px;
   background: #d4d4d4;

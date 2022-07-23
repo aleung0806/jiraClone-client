@@ -1,10 +1,12 @@
 import {
   AppBar,
   Toolbar,
+  Grid,
   IconButton,
   Typography,
   Button,
-  Avatar
+  Avatar,
+  Box
 } from '@mui/material'
 
 import AccountButton from './navBar/AccountButton'
@@ -15,6 +17,7 @@ import SearchBar from './navBar/SearchBar'
 import styled from 'styled-components'
 
 const NavBarStyles = styled.div`
+
   width: 100%;
   background-color: #3f3f3f;
   display: flex;
@@ -26,15 +29,22 @@ const NavBarStyles = styled.div`
 
 const NavBar = () => {
   return (
-    <NavBarStyles>
-      <div>
-        <ProjectsDropdown />
-        <PeopleDropdown />
-      </div>
-        <SearchBar />
-        <AccountButton/>
-
-    </NavBarStyles>
+    <AppBar  position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <Toolbar variant="dense">
+        <Grid>
+          <ProjectsDropdown />
+        </Grid>
+        <Grid>
+          <PeopleDropdown />
+        </Grid>
+        <Grid >
+          <SearchBar />
+        </Grid>
+        <Grid>
+          <AccountButton/>
+        </Grid>
+        </Toolbar>
+    </AppBar>
 
   )
 }

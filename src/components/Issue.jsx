@@ -1,6 +1,11 @@
 import { Draggable } from "react-beautiful-dnd";
 import styled  from "styled-components"
 import IssueOptionsButton from './issue/IssueOptionsButton'
+import { useState } from 'react'
+import IssueModal from './issue/IssueModal'
+import BuildCircleIcon from '@mui/icons-material/BuildCircle'
+
+import { blue } from '@mui/material/colors'
 
 const Avatar = styled.img`
   height: 30px;
@@ -43,8 +48,23 @@ export const DragIssue = styled.div`
 
 const Issue = ({ issue, index }) => {
 
+  const [openModal, setOpenModal] = useState(false)
+
+  const handleClick = () => {
+    setOpenModal(true)
+    console.log('clicked')
+  }
+
+  const handler = (val) => {
+    console.log('handling again', val)
+    setOpenModal(val)
+    console.log('state is', openModal)
+  }
+
   return (
-    <Draggable draggableId={`${issue.id}`} index={index}>
+    <div>
+    <div onClick={handleClick}>
+    <Draggable draggableId={`${issue.id}`} index={index} >
       {(provided, snapshot) => {
         return (
           <DragIssue
@@ -58,6 +78,7 @@ const Issue = ({ issue, index }) => {
               <IssueOptionsButton/>
             </IssueHeader>
             <IssueFooter>
+              <BuildCircleIcon style={{ color: blue[500] }}/>
               <span>{issue.content}</span>
               <Author>
               </Author>
@@ -66,6 +87,9 @@ const Issue = ({ issue, index }) => {
         );
       }}
     </Draggable>
+    </div>
+  <IssueModal openModal={openModal} setOpenModal={handler} issue={issue}/>
+  </div>
   );
 };
 
