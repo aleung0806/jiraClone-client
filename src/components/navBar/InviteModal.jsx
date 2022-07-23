@@ -1,22 +1,42 @@
 import {
   Typography,
+  TextField,
   Modal,
-  Box
+  Box,
+  Divider,
+  Button,
+  ButtonGroup,
+  autocompleteClasses
 } from '@mui/material'
+import { flexbox } from '@mui/system';
 
 
 import { useState } from 'react'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 4,
+const boxStyle = {
+  width: 300,
+  height: 315,
+  backgroundColor: 'white',
+  borderRadius: 2,
+  margin: 'auto',
+  marginTop: 7
 };
+
+const tfStyleOne = {
+  top: 30,
+  left: 50
+}
+
+const tfStyleTwo = {
+  top: 55,
+  left: 50
+}
+
+const buttonG = {
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: 11
+}
 
 const InviteModal = ({openModal, setOpenModal}) => {
   const handleOpen = () => setOpenModal(true);
@@ -27,8 +47,31 @@ const InviteModal = ({openModal, setOpenModal}) => {
       open={openModal}
       onClose={handleClose}
     >
-      <Box sx={style}>
-        <p>invite form here</p>
+      <Box  sx={boxStyle}>
+        <Typography
+        variant='h4'
+        color='primary'
+        align='center'
+        paddingTop={2}
+      >Invite a teamate</Typography>
+      <Divider/>
+      <TextField sx={tfStyleOne}
+          required
+          id="outlined-required"
+          label="Project"
+          defaultValue="Project Name"
+        />
+      <TextField sx={tfStyleTwo}
+          required
+          id="outlined-required"
+          label="Email"
+          defaultValue="example@email.com"
+        />
+        <ButtonGroup sx={buttonG}>
+          <Button variant="text">cancel</Button>
+          <Button variant="outlined">send</Button>
+        </ButtonGroup>
+        
       </Box>
     </Modal>
   )
