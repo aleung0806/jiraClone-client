@@ -19,6 +19,11 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+import {
+  Button,
+  Avatar
+} from '@mui/material'
+
 
 import { useSelector } from 'react-redux'
 
@@ -93,6 +98,15 @@ export default function MiniDrawer() {
         : handleDrawerOpen()
     
   }
+
+//~ Stylings ~//
+
+const proj = {
+  fontSize: 22,
+  fontWeight: 900,
+  textAlign: 'center',
+
+}
   
 
   return (
@@ -106,13 +120,13 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           <ListItem>
-            <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-              Projects
+            <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: 22, fontWeight: 900, textAlign: 'center'}}>
+              <h3>PROJECTS</h3>
             </ListItemText>
           </ListItem>
           {projects !== null && projects.map((project, index) => (
-            <ListItem key={project.id} >
-                <ListItemText primary={project.title} sx={{ opacity: open ? 1 : 0 }} />
+            <ListItem sx= {{textAlign: 'center'}} key={project.id} >
+                <ListItemText primary={project.title.toUpperCase()} sx={{ opacity: open ? 1 : 0 }} />
             </ListItem>
           ))}
         </List>
