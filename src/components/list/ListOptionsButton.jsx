@@ -3,49 +3,44 @@ import {
   Button,
   Menu,
   MenuItem,
+  Divider,
+  IconButton
 } from '@mui/material'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import styled from 'styled-components'
-
-import InviteModal from './InviteModal'
 
 const MenuButtonStyles = styled.span`
   
 `;
 
-export default function PeopleDropdown() {
+export default function ListOptionsButton() {
   const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null);
-  const [openModal, setOpenModal] = useState(false)
 
   const handleClick = (e) => {setAnchor(e.currentTarget)}
 
   const handleClose = () => {setAnchor(null)}
 
-
-  const handleInviteClick = () => {
-    setAnchor(null)
-    setOpenModal(true)
+  const handleSelect = (id) => {
+    navigate(`./projects/${id}`)
   }
+
 
   return (
     <MenuButtonStyles>
-
-      <Button id="basic-button" onClick={handleClick} color="secondary">
-        People
-        <ArrowDropDownRoundedIcon color="secondary"/>
-      </Button>
+        <IconButton color="secondary" onClick={handleClick}>
+          <MoreHorizRoundedIcon/>
+        </IconButton>
       <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose}>
-        <MenuItem  onClick={handleInviteClick}>invite a teammate</MenuItem>
-        <MenuItem  onClick={() => {}}>create team</MenuItem>
-      </Menu>
-      <InviteModal openModal={openModal} setOpenModal={setOpenModal}/>
-    </MenuButtonStyles>
+        <MenuItem  onClick={() => {}}>delete</MenuItem>
+        <MenuItem  onClick={() => {}}>options</MenuItem>
 
+      </Menu>
+    </MenuButtonStyles>
   );
 }

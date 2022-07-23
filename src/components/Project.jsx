@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import { IconButton } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import AddListButton from './AddListButton'
+import AddListButton from './project/AddListButton'
 
 const ProjectStyle = styled.div`
   padding: 20px;

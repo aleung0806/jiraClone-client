@@ -7,12 +7,11 @@ import {
   Avatar
 } from '@mui/material'
 
-import AccountButton from './AccountButton'
+import AccountButton from './navBar/AccountButton'
+import ProjectsDropdown from './navBar/ProjectsDropdown'
+import PeopleDropdown from './navBar/PeopleDropdown'
+import SearchBar from './navBar/SearchBar'
 
-import ProjectsDropdown from './ProjectsDropdown'
-import PeopleDropdown from './PeopleDropdown'
-
-import SearchBar from './SearchBar'
 import styled from 'styled-components'
 
 const NavBarStyles = styled.div`

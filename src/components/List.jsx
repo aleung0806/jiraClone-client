@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Droppable } from "react-beautiful-dnd"
+import ListOptionsButton from './list/ListOptionsButton'
+import AddIssueButton from './list/AddIssueButton'
 
 import styled from "styled-components"
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
@@ -10,7 +12,6 @@ import {
 
 
 import Issue, { DragItem } from './Issue'
-import AddIssueButton from './AddIssueButton'
 
 const ListHeader = styled.div`
   display: flex;
@@ -43,9 +44,7 @@ const List = ({list}) => {
     <ListHeader>
       {list.title}
       <OptionsButtonStyles>
-        <IconButton color="secondary" onClick={()=>{}}>
-          <MoreHorizRoundedIcon/>
-        </IconButton>
+        <ListOptionsButton/>
       </OptionsButtonStyles>
     </ListHeader>
 

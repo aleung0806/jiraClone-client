@@ -16,7 +16,7 @@ const MenuButtonStyles = styled.span`
   display: flex;
 `;
 
-export default function ProjectsDropdown() {
+export default function AccountDropdown() {
   const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null);

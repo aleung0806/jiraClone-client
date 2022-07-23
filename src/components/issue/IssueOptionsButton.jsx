@@ -4,7 +4,7 @@ import {
   Menu,
   MenuItem,
   Divider,
-  IconButton,
+  IconButton
 } from '@mui/material'
 
 import { useSelector } from 'react-redux'
@@ -17,7 +17,7 @@ const MenuButtonStyles = styled.span`
   
 `;
 
-export default function IssueOptionsButton() {
+export default function ListOptionsButton() {
   const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null);
@@ -33,12 +33,12 @@ export default function IssueOptionsButton() {
 
   return (
     <MenuButtonStyles>
-        <IconButton color="secondary" onClick={()=>{}}>
+        <IconButton color="secondary" onClick={handleClick}>
           <MoreHorizRoundedIcon/>
         </IconButton>
       <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose}>
-        <MenuItem  onClick={() => {}}>invite a teammate</MenuItem>
-        <MenuItem  onClick={() => {}}>create team</MenuItem>
+        <MenuItem  onClick={() => {}}>delete</MenuItem>
+        <MenuItem  onClick={() => {}}>options</MenuItem>
 
       </Menu>
     </MenuButtonStyles>

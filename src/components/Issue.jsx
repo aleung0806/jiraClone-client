@@ -1,6 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import styled  from "styled-components"
-import IssueOptionsButton from './IssueOptionsButton'
+import IssueOptionsButton from './issue/IssueOptionsButton'
 
 const Avatar = styled.img`
   height: 30px;
