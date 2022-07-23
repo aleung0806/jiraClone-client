@@ -6,6 +6,7 @@ import { initProjects } from './reducers/projectReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import HomePage from './components/HomePage'
 import ProjectPage from './components/ProjectPage'
+import SideMenu from './components/SideMenu'
 
 import './App.css'
 
@@ -41,6 +42,7 @@ function App() {
   return (
     <AppStyle >
       <NavBar/>
+      <SideMenu/>
       <Routes>
           <Route path="/" element={ <HomePage />} />
           <Route path="/projects/:id" element={ <ProjectPage />} />

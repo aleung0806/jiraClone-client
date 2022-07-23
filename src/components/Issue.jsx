@@ -1,5 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import styled  from "styled-components"
+import IssueOptionsButton from './IssueOptionsButton'
 
 const Avatar = styled.img`
   height: 30px;
@@ -13,7 +14,13 @@ const Author = styled.div`
 `
 const IssueHeader = styled.div`
   font-weight: 500;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const IssueFooter = styled.div`
   width: 100%;
   display: flex;
@@ -46,7 +53,10 @@ const Issue = ({ issue, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <IssueHeader>{issue.title}</IssueHeader>
+            <IssueHeader>
+              {issue.title}
+              <IssueOptionsButton/>
+            </IssueHeader>
             <IssueFooter>
               <span>{issue.content}</span>
               <Author>
