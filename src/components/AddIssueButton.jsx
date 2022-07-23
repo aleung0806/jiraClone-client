@@ -1,17 +1,15 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import uniqid from 'uniqid'
 import styled  from "styled-components"
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { 
   IconButton, 
   TextField,
  } from '@mui/material'
-
 import {  ClickAwayListener } from '@mui/base'
-import { useState } from 'react'
+
 import { createIssue } from '../reducers/projectReducer'
-import { useDispatch } from 'react-redux'
-
-import uniqid from 'uniqid'
-
 
 const IssueFormWrap = styled.div`
   padding: 10px;
@@ -22,7 +20,6 @@ const IssueFormWrap = styled.div`
   display: grid;
   grid-gap: 20px;
   flex-direction: column;
- 
 `
 
 const OnClickAwayWrapper = ({formVisible, clickAwayHandler, children}) => {

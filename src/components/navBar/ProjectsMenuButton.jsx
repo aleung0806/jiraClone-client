@@ -8,7 +8,6 @@ import {
 } from '@mui/material'
 
 import { useSelector } from 'react-redux'
-
 import { useNavigate } from 'react-router-dom'
 
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
@@ -60,7 +59,7 @@ export default function ProjectsMenuButton() {
         {projects !== null && projects.map(project => {
           return (
             <div key={project.id}>
-            <MenuItem  onClick={() => handleSelect(project.id)}>{project.name}</MenuItem>
+            <MenuItem  onClick={() => handleSelect(project.id)}>{project.title}</MenuItem>
             <Divider key={project.id} />
             </div>
           )

@@ -51,4 +51,8 @@ export const initProjects = () => async (dispatch) => {
   dispatch(setProjects(projects))
 }
 
+export const createProject = () => async (dispathc) => {
+
+}
+
 export default projectSlice.reducer

@@ -41,7 +41,7 @@ const List = ({list}) => {
   return (
   <DroppableStyles>
     <ListHeader>
-      {list.name}
+      {list.title}
       <OptionsButtonStyles>
         <IconButton color="secondary" onClick={()=>{}}>
           <MoreHorizRoundedIcon/>

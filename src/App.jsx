@@ -1,15 +1,10 @@
 import { useEffect } from 'react'
-import Column from './components/List'
-import Filters from './components/Filters'
-import NavBar from './components/NavBar'
+import NavBar from './components/navBar/NavBar'
 
-
-import { initIssues } from './reducers/issueReducer'
 import { initProjects } from './reducers/projectReducer'
-import { initFilter } from './reducers/filterReducer'
 
 import { useDispatch, useSelector } from 'react-redux'
-import ProjectsPage from './components/ProjectsPage'
+import HomePage from './components/HomePage'
 import ProjectPage from './components/ProjectPage'
 
 import './App.css'
@@ -18,6 +13,8 @@ import {
   Button, 
   Box 
 } from '@mui/material'
+import { ConstructionOutlined, ViewHeadline } from '@mui/icons-material'
+
 
 import { 
   Routes, 
@@ -26,15 +23,12 @@ import {
   useNavigate,
  } from 'react-router-dom'
 
-import { ConstructionOutlined, ViewHeadline } from '@mui/icons-material'
 import styled from 'styled-components'
 
 const AppStyle = styled.div`
  height: 100vh;
  background-color: #E6E6E6;
 `
-
-
 function App() {
   const dispatch = useDispatch()
   const projects = useSelector(state => state.projects)
@@ -48,7 +42,7 @@ function App() {
     <AppStyle >
       <NavBar/>
       <Routes>
-          <Route path="/" element={ <ProjectsPage />} />
+          <Route path="/" element={ <HomePage />} />
           <Route path="/projects/:id" element={ <ProjectPage />} />
       </Routes>
     </AppStyle>

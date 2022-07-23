@@ -5,17 +5,13 @@ const PageWrap = styled.div`
   margin: 10px;
 `
 
-const ProjectsPage = () => {
+const HomePage = () => {
   const projects = useSelector(state => state.projects)
 
   return (
     <PageWrap>
-      {projects !== null && projects.map(project => {
-        console.log(project)
-        return <p key={project.id}>{project.name}</p>
-      }
-      )}
+
     </PageWrap>
   )
 }
-export default ProjectsPage
+export default HomePage

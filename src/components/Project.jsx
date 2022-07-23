@@ -10,7 +10,7 @@ import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import AddListButton from './AddListButton'
 
-const ProjectContainer = styled.div`
+const ProjectStyle = styled.div`
   padding: 20px;
   text-transform: uppercase;
   font-weight: bold;
@@ -67,19 +67,13 @@ function Project({project}) {
   }
 
   return (
-    <ProjectContainer>
-     <HeaderStyle>{project.name}</HeaderStyle>
+    <ProjectStyle>
+     <HeaderStyle>{project.title}</HeaderStyle>
       <DragDropContext onDragEnd={onDragEnd}>
-          {lists !== null && lists.map((list) => {
-            return (
-            <List
-              list={list}
-              key={list.id}
-            />
-          )})}
+          {lists !== null && lists.map((list) => <List list={list} key={list.id}/>)}
       </DragDropContext>
       <AddListButton projectId={projectId}/>
-    </ProjectContainer>
+    </ProjectStyle>
   );
 }
 
