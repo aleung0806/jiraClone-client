@@ -77,6 +77,7 @@ export const deleteIssue = (id) => async (dispatch) => {
   dispatch(setProject(updatedProject))
 }
 
+
 export const deleteList = (id) => async (dispatch) => {
   const updatedProject = await listService.remove(id)
   console.log(updatedProject)

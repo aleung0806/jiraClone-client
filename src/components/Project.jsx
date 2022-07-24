@@ -12,16 +12,17 @@ import AddListButton from './project/AddListButton'
 import AddUserButton from './project/AddUserButton'
 import UserIcons from './project/UserIcons'
 
-const ProjectStyle = styled.div`
-  margin-top: 50px;
-  margin-left: 60px;
-  padding: 20px;
-  text-transform: uppercase;
-  font-weight: bold;
-  background-color: #E6E6E6;
-  overflow-x: scroll;
+import DeleteProjectButton from './project/DeleteProjectButton'
+import { Rowing } from "@mui/icons-material";
 
-`;
+const projectStyle = {
+
+  height: 500,
+  marginLeft: 7,
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
+  overflow: scroll,
+}
 
 const UserBarStyle = styled.div`
   margin-left: 20px;
@@ -81,9 +82,11 @@ function Project({project}) {
   }
 
   return (
+    <Box sx={projectStyle}>
     <Box sx={{ display: 'flex' }}>
-    <ProjectStyle>
-     <HeaderStyle>projects / {project.title}</HeaderStyle>
+      <HeaderStyle>projects / {project.title}</HeaderStyle>
+      <DeleteProjectButton project={project}/>
+     </Box>
      <Box>
       <UserBarStyle>
         <UserIcons/>
@@ -94,7 +97,6 @@ function Project({project}) {
           {lists !== null && lists.map((list) => <List list={list} key={list.id}/>)}
       </DragDropContext>
       <AddListButton projectId={projectId}/>
-    </ProjectStyle>
     </Box>
   );
 }

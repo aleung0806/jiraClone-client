@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom'
 
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import styled from 'styled-components'
+import AddProjectButton from './AddProjectButton'
 
 const MenuButtonStyles = styled.span`
 
@@ -50,6 +51,7 @@ export default function ProjectsDrowpdown() {
             </div>
           )
         })}
+        <AddProjectButton/>
       </Menu>
     </MenuButtonStyles>
   );
