@@ -12,13 +12,15 @@ import { useNavigate } from 'react-router-dom'
 
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import styled from 'styled-components'
-
+import { deleteIssue } from '../../reducers/projectReducer'
+import { useDispatch } from 'react-redux'
 import IssueModal from './IssueModal'
 const MenuButtonStyles = styled.span`
   
 `;
 
 const IssueOptionsButton = ({issue}) => {
+  const dispatch = useDispatch()
   const [openModal, setOpenModal] = useState(false)
 
   const navigate = useNavigate()
@@ -36,7 +38,8 @@ const IssueOptionsButton = ({issue}) => {
   }
 
   const handleClickDelete = () => {
-
+    
+    dispatch(deleteIssue(issue.id))
   }
 
 

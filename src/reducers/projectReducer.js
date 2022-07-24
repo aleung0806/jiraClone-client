@@ -71,14 +71,24 @@ export const createIssue = (issue) => async (dispatch) => {
   dispatch(setProject(updatedProject))
 }
 
-export const removeIssue = (issue) => async (dispatch) => {
-  const updatedProject = await issueService.remove(issue)
+export const deleteIssue = (id) => async (dispatch) => {
+  const updatedProject = await issueService.remove(id)
   console.log(updatedProject)
   dispatch(setProject(updatedProject))
 }
+
+export const deleteList = (id) => async (dispatch) => {
+  const updatedProject = await listService.remove(id)
+  console.log(updatedProject)
+  dispatch(setProject(updatedProject))
+}
+
 export const createList = (list) => async (dispatch) => {
   const updatedProject = await listService.create(list)
   console.log(updatedProject)
   dispatch(setProject(updatedProject))
 }
+
+
+
 export default projectSlice.reducer

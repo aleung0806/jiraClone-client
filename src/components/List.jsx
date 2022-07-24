@@ -44,7 +44,7 @@ const List = ({list}) => {
     <ListHeader>
       {list.title}
       <OptionsButtonStyles>
-        <ListOptionsButton/>
+        <ListOptionsButton list={list}/>
       </OptionsButtonStyles>
     </ListHeader>
 
