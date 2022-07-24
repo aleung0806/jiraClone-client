@@ -113,7 +113,7 @@ const proj = {
    
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawer}>
+          <IconButton onClick={handleDrawer} sx={{marginLeft: 500}}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>

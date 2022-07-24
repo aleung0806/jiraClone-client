@@ -9,6 +9,8 @@ import { IconButton, Grid, Box } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import AddListButton from './project/AddListButton'
+import AddUserButton from './project/AddUserButton'
+import UserIcons from './project/UserIcons'
 
 const ProjectStyle = styled.div`
   margin-top: 50px;
@@ -20,6 +22,13 @@ const ProjectStyle = styled.div`
   overflow-x: scroll;
 
 `;
+
+const UserBarStyle = styled.div`
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+`
 
 const HeaderStyle = styled.div`
   color: gray;
@@ -75,6 +84,12 @@ function Project({project}) {
     <Box sx={{ display: 'flex' }}>
     <ProjectStyle>
      <HeaderStyle>projects / {project.title}</HeaderStyle>
+     <Box>
+      <UserBarStyle>
+        <UserIcons/>
+        <AddUserButton/>
+      </UserBarStyle>
+     </Box>
       <DragDropContext onDragEnd={onDragEnd}>
           {lists !== null && lists.map((list) => <List list={list} key={list.id}/>)}
       </DragDropContext>

@@ -13,11 +13,14 @@ import { useNavigate } from 'react-router-dom'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import styled from 'styled-components'
 
+import IssueModal from './IssueModal'
 const MenuButtonStyles = styled.span`
   
 `;
 
-export default function ListOptionsButton() {
+const IssueOptionsButton = ({issue}) => {
+  const [openModal, setOpenModal] = useState(false)
+
   const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null);
@@ -26,8 +29,14 @@ export default function ListOptionsButton() {
 
   const handleClose = () => {setAnchor(null)}
 
-  const handleSelect = (id) => {
-    navigate(`./projects/${id}`)
+  const handleClickOptions  = () => {
+    setOpenModal(true)
+    setAnchor(null)
+    console.log(openModal)
+  }
+
+  const handleClickDelete = () => {
+
   }
 
 
@@ -37,10 +46,14 @@ export default function ListOptionsButton() {
           <MoreHorizRoundedIcon/>
         </IconButton>
       <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose}>
-        <MenuItem  onClick={() => {}}>delete</MenuItem>
-        <MenuItem  onClick={() => {}}>options</MenuItem>
+      <MenuItem  onClick={handleClickOptions}>options</MenuItem>
+
+        <MenuItem  onClick={handleClickDelete}>delete</MenuItem>
 
       </Menu>
+        <IssueModal open={openModal} setOpen={setOpenModal} issue={issue}/>
     </MenuButtonStyles>
   );
 }
+
+export default IssueOptionsButton

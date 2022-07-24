@@ -21,24 +21,24 @@ const style = {
   p: 4,
 };
 
-const IssueModal = ({openModal, setOpenModal, issue}) => {
+const IssueModal = ({open, setOpen, issue}) => {
   const handleOpen = () => {
-    setOpenModal(false)
   }
   const handleClose = () => {
     console.log('handling...')
-    setOpenModal(false);
+    setOpen(false)
   }
 
   return (
     <Modal
-      open={openModal}
+      open={open}
       onClose={handleClose}
     >
       <Box sx={style}>
         <p>{issue.title}</p>
       </Box>
     </Modal>
+ 
   )
 }
 

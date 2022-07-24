@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router'
+import { Navigate } from 'react-router'
 import Project from './Project'
 
 const PageWrap = styled.div`
@@ -8,11 +8,10 @@ const PageWrap = styled.div`
 `
 
 const HomePage = () => {
-  const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
   return (
     <div>
-      {projects !== null && <Project project={projects[0]}/>}
+      {projects !== null && <Navigate to={`projects/${projects[0].id}`} replace={true} />}
     </div>
   )
 }

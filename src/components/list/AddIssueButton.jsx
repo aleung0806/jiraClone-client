@@ -53,8 +53,7 @@ const AddIssueButton = ({listId, projectId}) => {
     console.log('creating issue...')
     if (newIssue !== ''){
       const issue = {
-        id: uniqid(),
-        name: newIssue,
+        title: newIssue,
       }
       dispatch(createIssue({
         issue,

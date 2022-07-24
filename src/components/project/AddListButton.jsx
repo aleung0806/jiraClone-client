@@ -60,9 +60,7 @@ const AddListButton = ({projectId}) => {
     console.log('creating list...')
     if (newList !== ''){
       const list = {
-        id: uniqid(),
-        name: newList,
-        issues: []
+        title: newList
       }
       dispatch(createList({
         list,

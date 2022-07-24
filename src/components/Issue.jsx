@@ -51,8 +51,8 @@ const Issue = ({ issue, index }) => {
   const [openModal, setOpenModal] = useState(false)
 
   const handleClick = () => {
-    setOpenModal(true)
-    console.log('clicked')
+    // setOpenModal(true)
+    // console.log('clicked')
   }
 
   const handler = (val) => {
@@ -75,7 +75,7 @@ const Issue = ({ issue, index }) => {
           >
             <IssueHeader>
               {issue.title}
-              <IssueOptionsButton/>
+              <IssueOptionsButton issue={issue}/>
             </IssueHeader>
             <IssueFooter>
               <BuildCircleIcon style={{ color: blue[500] }}/>
@@ -88,7 +88,7 @@ const Issue = ({ issue, index }) => {
       }}
     </Draggable>
     </div>
-  <IssueModal openModal={openModal} setOpenModal={handler} issue={issue}/>
+  <IssueModal open={openModal} setOpen={setOpenModal} issue={issue}/>
   </div>
   );
 };
