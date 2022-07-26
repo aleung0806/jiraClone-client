@@ -69,7 +69,7 @@ const DeleteProjectModal = ({open, setOpen, project}) => {
       onClose={handleClose}
     >
       <Box sx={contentStyle} onClick={handleClose}>
-        <Box sx={{backgroundColor: 'red'}}>
+        <Box>
         <Alert sx={alertStyle} severity="warning">{`WARNING!!! All items will be deleted. Are you sure you want to delete project ${project.title.toUpperCase()}?`}</Alert>
         </Box>
         <ButtonGroup sx={buttonG}>

@@ -75,7 +75,7 @@ const DeleteListModal = ({open, setOpen, list}) => {
         </Box>
         <ButtonGroup sx={buttonG}>
           <Button variant="text">Cancel</Button>
-          <Button sx={{"&:hover":{backgroundColor: '#ff5436'}, fontWeight: '600'}}variant="outlined" onClick={handleClickDelete}>Delete</Button>
+          <Button sx={{"&:hover":{backgroundColor: '#ff5436'}, fontWeight: '600'}} variant="outlined" onClick={handleClickDelete}>Delete</Button>
         </ButtonGroup> 
       </Box>
     </Modal>
