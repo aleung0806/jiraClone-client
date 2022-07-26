@@ -4,7 +4,9 @@ import {
   Modal,
   Box,
   Button,
-  Grid
+  ButtonGroup,
+  Grid,
+  Alert
 } from '@mui/material'
 import { flexbox } from '@mui/system';
 import { useDispatch } from 'react-redux'
@@ -17,19 +19,37 @@ const contentStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 200,
+  width: 340,
+  height: 180,
   bgcolor: 'background.paper',
   borderRadius: 1,
   boxShadow: 24,
-  padding: 5,
- 
+  padding: 2,
+};
+
+const alertStyle = {
+  color: 'black',
+  backgroundColor: '#ff5436',
+  paddingTop: 0,
+};
+
+const warningStyle = {
+  textAlign: 'center', 
+  fontWeight: '600', 
+  paddingTop: '3px', 
+  backgroundColor: '#fcfac1'
 };
 
 const buttonStyle = {
   border: 'solid',
   borderColor: 'lightgray',
 }
+
+const buttonG = {
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: 4,
+};
 
 const DeleteProjectModal = ({open, setOpen, project}) => {
   const dispatch = useDispatch()
@@ -49,13 +69,13 @@ const DeleteProjectModal = ({open, setOpen, project}) => {
       onClose={handleClose}
     >
       <Box sx={contentStyle} onClick={handleClose}>
-        <Box >
-          <Typography>{`Are you sure you want to delete project ${project.title.toUpperCase()}?`}</Typography>
-          <Typography>All lists and issues will be lost.</Typography>
+        <Box sx={{backgroundColor: 'red'}}>
+        <Alert sx={alertStyle} severity="warning">{`WARNING!!! All items will be deleted. Are you sure you want to delete project ${project.title.toUpperCase()}?`}</Alert>
         </Box>
-        <Button sx={buttonStyle} onClick={handleClickDelete}>Delete</Button> 
-
-        <Button sx={buttonStyle} >Don't Delete</Button>
+        <ButtonGroup sx={buttonG}>
+          <Button variant="text">Cancel</Button>
+          <Button sx={{"&:hover":{backgroundColor: '#ff5436'}, fontWeight: '600'}}variant="outlined" onClick={handleClickDelete}>Delete</Button>
+        </ButtonGroup> 
 
       </Box>
     </Modal>
