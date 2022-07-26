@@ -34,6 +34,7 @@ function App() {
   const dispatch = useDispatch()
   const projects = useSelector(state => state.projects)
   const match = useMatch('./projects/:id')
+  const loggedInUser = useSelector(state => state.user.loggedInUser)
 
   useEffect(() => {
     dispatch(initProjects())
@@ -45,6 +46,7 @@ function App() {
       <SideMenu/>
       <Box sx={{ flexGrow: 1, p: 3 }}>
         <Routes>
+            <Route path="/" element={ <Login />} />
             <Route path="/" element={ <HomePage />} />
             <Route path="/projects/:id" element={ <ProjectPage />} />
         </Routes>

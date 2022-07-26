@@ -2,20 +2,27 @@ import { current, createSlice } from '@reduxjs/toolkit'
 
 import userService from '../services/userService'
 
-const sampleUsers = [
-  {
+const sampleUsers = {
+  users :  [
+    {
+      name: 'Albert Leung',
+      id: 'adsfad54fd'
+    },
+    {
+      name: 'Kyler Pettitt',
+      id: 'hfap93fhiu'
+    },
+    {
+      name: 'John Doe',
+      id: '5a49d8fa'
+    }
+  ], 
+  loggedInUser: {
     name: 'Albert Leung',
     id: 'adsfad54fd'
   },
-  {
-    name: 'Kyler Pettitt',
-    id: 'hfap93fhiu'
-  },
-  {
-    name: 'John Doe',
-    id: '5a49d8fa'
-  }
-]
+}
+
 
 const userSlice = createSlice({
   name: 'user',
@@ -28,6 +35,10 @@ const userSlice = createSlice({
       const newUser = action.payload
       const newState = current(state).map(user => user.id === newUser.id ? newUser : user)
       return newState
+    },
+    setLoggedInUser: (state, action) => {
+      const newLoggedInUser = action.payload
+      const newState = action.payload
     }
   }
 })
