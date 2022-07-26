@@ -69,7 +69,7 @@ const InviteModal = ({openModal, setOpenModal}) => {
         />
         <ButtonGroup sx={buttonG}>
           <Button variant="text">cancel</Button>
-          <Button variant="outlined">send</Button>
+          <Button sx={{"&:hover":{backgroundColor: '#a4ff90'}, fontWeight: '600'}} variant="outlined">send</Button>
         </ButtonGroup>
         
       </Box>
