@@ -33,7 +33,7 @@ export default function ListOptionsButton({list}) {
   return (
     <div>
         <IconButton color="secondary" onClick={handleClick}>
-          <DeleteIcon/>
+          <DeleteIcon sx={{"&:hover":{color: '#ff5436'}}}/>
         </IconButton>
         <DeleteListModal open={openModal} setOpen={setOpenModal} list={list}/>
     </div>

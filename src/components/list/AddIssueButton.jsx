@@ -80,7 +80,7 @@ const AddIssueButton = ({listId, projectId}) => {
   return (
     <div>
       <IconButton color="secondary" onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
-          <AddRoundedIcon /> 
+            <AddRoundedIcon sx={{"&:hover":{color: '#3f3f3f'}}} /> 
       </IconButton>
       <OnClickAwayWrapper formVisible={formVisible} clickAwayHandler={clickAwayHandler}>
         <IssueFormWrap style={{display: formVisible ? '' : 'none'}} >

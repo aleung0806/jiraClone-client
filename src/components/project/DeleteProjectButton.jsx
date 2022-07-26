@@ -32,8 +32,8 @@ export default function DeleteProjectButton({project}) {
 
   return (
     <div>
-        <IconButton color="secondary" onClick={handleClick}>
-          <DeleteIcon/>
+        <IconButton sx={{backgroundColor: 'red', marginTop: '50px'}}color="secondary" onClick={handleClick}>
+          <DeleteIcon sx={{color: 'yellow'}}/>
         </IconButton>
         <DeleteProjectModal open={openModal} setOpen={setOpenModal} project={project}/>
     </div>

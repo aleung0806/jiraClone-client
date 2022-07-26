@@ -18,6 +18,10 @@ const MenuButtonStyles = styled.span`
 
 `;
 
+const menuButton = {
+  "&:hover": {backgroundColor: '#d4d4d4'}
+}
+
 export default function ProjectsDrowpdown() {
   const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
@@ -46,7 +50,7 @@ export default function ProjectsDrowpdown() {
         {projects !== null && projects.map(project => {
           return (
             <div key={project.id}>
-              <MenuItem  onClick={() => handleSelect(project.id)}>{project.title}</MenuItem>
+              <MenuItem sx={menuButton} onClick={() => handleSelect(project.id)}>{project.title.toUpperCase()}</MenuItem>
               <Divider key={project.id} />
             </div>
           )

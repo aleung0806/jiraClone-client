@@ -46,13 +46,11 @@ const IssueOptionsButton = ({issue}) => {
   return (
     <MenuButtonStyles>
         <IconButton color="secondary" onClick={handleClick}>
-          <MoreHorizRoundedIcon/>
+          <MoreHorizRoundedIcon sx={{"&:hover":{color: '#3f3f3f'}}}/>
         </IconButton>
       <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose}>
-      <MenuItem  onClick={handleClickOptions}>options</MenuItem>
-
+        <MenuItem  onClick={handleClickOptions}>options</MenuItem>
         <MenuItem  onClick={handleClickDelete}>delete</MenuItem>
-
       </Menu>
         <IssueModal open={openModal} setOpen={setOpenModal} issue={issue}/>
     </MenuButtonStyles>
