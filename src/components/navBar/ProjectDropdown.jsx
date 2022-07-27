@@ -15,6 +15,8 @@ const dropdownButtonStyle = {
   'display': 'flex',
   'justifyContent': 'center',
   'alignItems': 'center',
+  'textTransform': 'none'
+
 }
 
 const menuChildrenStyle = {
@@ -43,7 +45,7 @@ const ProjectDropdown = () => {
       <Dropdown
         buttonContents={
             <Box sx={dropdownButtonStyle}>
-              projects
+              Projects
               <ArrowDropDownRoundedIcon/>
             </Box>
         }

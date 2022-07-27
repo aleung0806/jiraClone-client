@@ -9,6 +9,7 @@ import uniqid from 'uniqid'
 import { 
   IconButton, 
   TextField,
+  Box
  } from '@mui/material'
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
@@ -27,6 +28,17 @@ const ListFormWrap = styled.div`
  vertical-align: bottom;
 
 `;
+
+const buttonStyle = {
+  display: 'inline-block',
+  width: '275px',
+  padding: '5px',
+  borderRadius: '6px',
+  backgroundColor: 'secondary.light',
+  verticalAlign: 'top',
+  margin: '5px'
+
+}
 
 const OnClickAwayWrapper = ({formVisible, clickAwayHandler, children}) => {  
   if (formVisible){
@@ -85,8 +97,8 @@ const AddListButton = ({projectId}) => {
 
 
   return (
-    <AddButtonStyle>
-      <IconButton color="secondary" onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
+    <Box component='span'>
+      <IconButton sx={buttonStyle} onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
         <AddRoundedIcon fontSize="large" />
       </IconButton>
 
@@ -104,7 +116,7 @@ const AddListButton = ({projectId}) => {
             </form>
         </ListFormWrap>
       </OnClickAwayWrapper>
-    </AddButtonStyle>
+    </Box>
 
 
   )

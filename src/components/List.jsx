@@ -18,27 +18,37 @@ import {
 import { useTheme } from '@mui/material/styles';
 
 import Issue, { DragItem } from './Issue'
+import { color } from '@mui/system'
+import theme from '../theme'
 
-const ListHeader = styled.div`
-  display: flex;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-`;
+const headerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: '20px',
+  
 
-const OptionsButtonStyles = styled.div`
-  margin-left: auto;
-  margin-right: 0;
-`
+}
+
+const titleStyle = (theme) => {
+  return {
+  textTransform: 'uppercase',
+  fontWeight: 500,
+  fontSize: '12px',
+  color: 'text.secondary'
+  }
+}
+
 
 const listStyle = {
   display: 'inline-block',
   width: '275px',
+  height: '80vh',
   padding: '10px',
   borderRadius: '3px',
   verticalAlign: 'top',
   margin: '5px',
   borderWidth: 'thin',
-  backgroundColor: '#F4F5F7'
+  backgroundColor: 'secondary.light'
 }
 
 
@@ -47,15 +57,14 @@ const List = ({list}) => {
 
   const dispatch = useDispatch()
   const { id } = useParams()
+  const theme = useTheme()
 
   return (
   <Box sx={listStyle}>
-    <ListHeader>
-      {list.title}
-      <OptionsButtonStyles>
+    <Box sx={headerStyle}>
+      <Typography sx={titleStyle(theme)}>{list.title}</Typography>
         <DeleteListButton list={list}/>
-      </OptionsButtonStyles>
-    </ListHeader>
+    </Box>
 
     <Droppable droppableId={`${list.id}`}>
       {(provided) => {

@@ -6,6 +6,9 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { 
   IconButton, 
   TextField,
+  Button,
+  Typography,
+  Box
  } from '@mui/material'
 import {  ClickAwayListener } from '@mui/base'
 
@@ -21,6 +24,24 @@ const IssueFormWrap = styled.div`
   grid-gap: 20px;
   flex-direction: column;
 `
+
+
+const buttonStyle = {
+  color: 'secondary.light',
+  "&:hover": {
+    color: 'text.secondary',
+    "& .buttonText": {
+      color: 'text.secondary',
+
+    }
+  },
+}
+
+const buttonTextStyle = {
+  fontSize: '14px',
+  textTransform: 'none',
+  color: 'secondary.light'
+}
 
 const OnClickAwayWrapper = ({formVisible, clickAwayHandler, children}) => {
   
@@ -78,10 +99,11 @@ const AddIssueButton = ({listId, projectId}) => {
   }
 
   return (
-    <div>
-      <IconButton color="secondary" onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
-            <AddRoundedIcon sx={{"&:hover":{color: '#3f3f3f'}}} /> 
-      </IconButton>
+    <Box>
+      <Button fullwidth sx= {buttonStyle} onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
+            <AddRoundedIcon />
+            <Typography className='buttonText' sx={buttonTextStyle}>Create issue</Typography>
+      </Button>
       <OnClickAwayWrapper formVisible={formVisible} clickAwayHandler={clickAwayHandler}>
         <IssueFormWrap style={{display: formVisible ? '' : 'none'}} >
           <form onSubmit={createIssueHandler}>
@@ -97,7 +119,7 @@ const AddIssueButton = ({listId, projectId}) => {
         </IssueFormWrap>
       </OnClickAwayWrapper>
 
-    </div>
+    </Box>
 
   )
 

@@ -13,10 +13,12 @@ import { useDispatch } from 'react-redux'
 import { deleteList } from '../../reducers/projectReducer'
 
 const buttonStyle = {
-
-  "&:hover":{
-    color: '#ff5436',
-    visibility: 'visible',
+  width: '8px',
+  height: '8px',
+  "&:hover": {
+    "& .deleteIcon": {
+      color: 'text.secondary'
+    }
   }
 }
 
@@ -53,7 +55,11 @@ const modalDeleteButtonStyle = {
   "&:hover":
     {color: '#ff5436', borderColor: '#ff5436'}, 
   fontWeight: '600'
-};
+}
+
+const iconStyle = {
+  color: 'secondary.light'
+}
 
 const DeleteIssueButton = ({list}) => {
   const dispatch = useDispatch()
@@ -66,7 +72,7 @@ return (
   <ModalButton
     buttonContents={
       <Box sx={buttonStyle}>
-        <DeleteIcon/>
+        <DeleteIcon className='deleteIcon' sx={iconStyle}/>
       </Box>
     }
     modalContents={

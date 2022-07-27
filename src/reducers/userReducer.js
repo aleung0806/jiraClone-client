@@ -3,7 +3,7 @@ import { current, createSlice } from '@reduxjs/toolkit'
 import userService from '../services/userService'
 
 const sampleUsers = {
-  users :  [
+  all :  [
     {
       name: 'Albert Leung',
       id: 'adsfad54fd'
@@ -25,11 +25,11 @@ const sampleUsers = {
 
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'users',
   initialState: sampleUsers,
   reducers: {
     setUsers: (state, action) => { 
-      return action.payload
+      return { ...current(state), all: action.payload}
     },
     setUser: (state, action) => {
       const newUser = action.payload

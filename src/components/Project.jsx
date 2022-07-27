@@ -86,7 +86,6 @@ function Project({project}) {
     <Box sx={projectStyle}>
     <Box sx={{ display: 'flex' }}>
       <HeaderStyle>projects / {project.title}</HeaderStyle>
-      <DeleteProjectButton project={project}/>
      </Box>
      <Box>
       <UserBarStyle>

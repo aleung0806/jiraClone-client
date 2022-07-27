@@ -25,7 +25,9 @@ const issueHeaderStyle = {
   'display': 'flex',
   'flexDirection': 'row',
   'justifyContent': 'space-between',
-  'alignItems': 'center'
+  'alignItems': 'center',
+  fontSize: '14px',
+  color: 'text.primary'
 }
 
 const issueFooterStyle = {
@@ -36,18 +38,20 @@ const issueFooterStyle = {
   'alignItems': 'center'
 }
 
-export const DragIssue = styled.div`
-  padding: 10px;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: white;
-  margin: 0 0 8px 0;
-  display: grid;
-  grid-gap: 20px;
-  flex-direction: column;
-  text-transform: none;
-  font-weight: normal;
-`
+const issueStyle = {
+  padding: '10px',
+  borderRadius: '4px',
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+  background: 'white',
+  margin: '0 0 8px 0',
+  display: 'grid',
+  gridGap: '20px',
+  flexDirection: 'column',
+  textTransform: 'none',
+  fontWeight: 'normal',
+
+}
+
 
 const Issue = ({ issue, index }) => {
 
@@ -69,7 +73,7 @@ const Issue = ({ issue, index }) => {
     <Draggable draggableId={`${issue.id}`} index={index} >
       {(provided, snapshot) => {
         return (
-          <DragIssue
+          <Box sx={issueStyle}
             ref={provided.innerRef}
             snapshot={snapshot}
             {...provided.draggableProps}
@@ -85,7 +89,7 @@ const Issue = ({ issue, index }) => {
               <Author>
               </Author>
             </Box>
-          </DragIssue>
+          </Box>
         );
       }}
     </Draggable>

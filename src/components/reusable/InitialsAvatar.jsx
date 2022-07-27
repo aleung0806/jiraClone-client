@@ -1,32 +1,26 @@
 import { useSelector } from 'react-redux'
-import { red, purple, teal } from '@mui/material/colors'
 import {
   Avatar,
   AvatarGroup
 } from '@mui/material'
 
+//green, orange, purple, yellow
+const colors = [ '#6300AA', '#FF9415','#00C380', '#00EAA5']
+const blue = '#2900CC'
 
 const InitialsAvatar = ({name}) => {
 
 
   function stringToColor(string) {
+
     let hash = 0;
-    let i;
-  
-    /* eslint-disable no-bitwise */
-    for (i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    for (let i = 0; i < string.length; i += 1) {
+      hash = string.charCodeAt(i) + hash - 7;
+
     }
-  
-    let color = '#';
-  
-    for (i = 0; i < 3; i += 1) {
-      const value = (hash >> (i * 8)) & 0xff;
-      color += `00${value.toString(16)}`.slice(-2);
-    }
-    /* eslint-enable no-bitwise */
-  
-    return color;
+    console.log(string)
+    console.log(hash % 4 - 1)
+    return colors[hash % 4 - 1]
   }
 
   const avatarStyles = (name) => {
@@ -34,8 +28,9 @@ const InitialsAvatar = ({name}) => {
     return {
       sx: {
         backgroundColor: stringToColor(name),
-        width: 30, 
-        height: 30 
+        height: '30px',
+        width: '30px',
+        fontSize: '15px',
       },
       children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     }

@@ -9,7 +9,7 @@ import InitialsAvatar from '../reusable/InitialsAvatar'
 
 const UserIcons = () => {
 
-  const users = useSelector(state => state.users)
+  const users = useSelector(state => state.users.all)
   return (
     <AvatarGroup max={4}>
       {users !== null && 
