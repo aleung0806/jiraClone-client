@@ -1,21 +1,11 @@
 import { useEffect } from 'react'
-import NavBar from './components/NavBar'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { initProjects } from './reducers/projectReducer'
+import { initUsers } from './reducers/userReducer'
 
-import { useDispatch, useSelector } from 'react-redux'
-import HomePage from './components/HomePage'
-import ProjectPage from './components/ProjectPage'
-import SideMenu from './components/SideMenu'
-
-import './App.css'
-
-import { 
-  Button, 
-  Box 
-} from '@mui/material'
-import { ConstructionOutlined, ViewHeadline } from '@mui/icons-material'
-
+import HomePage from './components/pages/HomePage'
+import ProjectPage from './components/pages/ProjectPage'
 
 import { 
   Routes, 
@@ -34,24 +24,21 @@ function App() {
   const dispatch = useDispatch()
   const projects = useSelector(state => state.projects)
   const match = useMatch('./projects/:id')
-  const loggedInUser = useSelector(state => state.user.loggedInUser)
+  //const loggedInUser = useSelector(state => state.user.loggedInUser)
 
   useEffect(() => {
     dispatch(initProjects())
   }, [])
 
+  useEffect(() => {
+    dispatch(initUsers())
+  }, [])
+
   return (
-    <Box >
-      <NavBar/>
-      <SideMenu/>
-      <Box sx={{ flexGrow: 1, p: 3 }}>
         <Routes>
-            <Route path="/" element={ <Login />} />
             <Route path="/" element={ <HomePage />} />
             <Route path="/projects/:id" element={ <ProjectPage />} />
         </Routes>
-      </Box>
-    </Box>
 
   )
 }

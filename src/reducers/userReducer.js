@@ -46,8 +46,21 @@ const userSlice = createSlice({
 export const { setUsers, setUser} = userSlice.actions
 
 export const initUsers = () => async (dispatch) => {
-  const projects = await userService.getAll()
-  dispatch(setProjects(users))
+  const users = [
+    {
+      name: 'Albert Leung',
+      id: 'adsfad54fd'
+    },
+    {
+      name: 'Kyler Pettitt',
+      id: 'hfap93fhiu'
+    },
+    {
+      name: 'John Doe',
+      id: '5a49d8fa'
+    }
+  ]
+  dispatch(setUsers(users))
 }
 
 export const createUser = (issue) => async (dispatch) => {

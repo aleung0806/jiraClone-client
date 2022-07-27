@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Navigate } from 'react-router'
-import Project from './Project'
+import Project from '../Project'
 
 const PageWrap = styled.div`
   margin: 10px;
