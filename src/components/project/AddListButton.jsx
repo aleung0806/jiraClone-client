@@ -93,14 +93,14 @@ const AddListButton = ({projectId}) => {
       <OnClickAwayWrapper formVisible={formVisible} clickAwayHandler={clickAwayHandler}>
         <ListFormWrap style={{display: formVisible ? '' : 'none'}} >
           <form onSubmit={createListHandler}>
-            <TextField
-              autoFocus   
-              fullWidth
-              id="newListField"
-              value={newList}
-              onChange={changeHandler}
-              variant="standard"
-            />
+          <TextField
+            autoFocus
+            fullWidth
+            required
+            id="newListField"
+            value={newList}
+            onChange={changeHandler}
+          />
             </form>
         </ListFormWrap>
       </OnClickAwayWrapper>

@@ -12,10 +12,8 @@ import { useTheme } from '@mui/material/styles';
 
 
 import AccountButton from './navBar/AccountButton'
-import ProjectsDropdown from './navBar/ProjectsDropdown'
-import PeopleDropdown from './navBar/PeopleDropdown'
+import ProjectDropdown from './navBar/ProjectDropdown'
 import SearchBar from './navBar/SearchBar'
-import ProjectDropdown from './reusable/ProjectDropdown'
 
 
 import styled from 'styled-components'
@@ -34,7 +32,7 @@ const NavBarStyles = styled.div`
 const navBarStyles = (theme) => {
   return {
     'zIndex': theme.zIndex.drawer + 1,
-    'backgroundColor': 'white',
+    'backgroundColor': 'white'
   }
  }
 
@@ -43,12 +41,6 @@ const NavBar = () => {
   return (
     <AppBar  position="fixed" sx={navBarStyles(theme)}>
       <Toolbar variant="dense">
-        <Grid>
-          <ProjectsDropdown />
-        </Grid>
-        <Grid>
-          <PeopleDropdown />
-        </Grid>
         <Grid>
           <ProjectDropdown/>
         </Grid>

@@ -19,8 +19,7 @@ const projectStyle = {
 
   height: 500,
   marginLeft: 7,
-  textTransform: 'uppercase',
-  fontWeight: 'bold',
+
   overflow: scroll,
 }
 
@@ -32,6 +31,8 @@ const UserBarStyle = styled.div`
 `
 
 const HeaderStyle = styled.div`
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
   color: gray;
   margin-bottom: 10px;
   margin-top: 10px;

@@ -85,14 +85,14 @@ const AddIssueButton = ({listId, projectId}) => {
       <OnClickAwayWrapper formVisible={formVisible} clickAwayHandler={clickAwayHandler}>
         <IssueFormWrap style={{display: formVisible ? '' : 'none'}} >
           <form onSubmit={createIssueHandler}>
-            <TextField 
-              autoFocus   
-              fullWidth
-              id="newIssueField"
-              value={newIssue}
-              onChange={changeHandler}
-              variant="standard" 
-            />
+          <TextField
+            autoFocus
+            fullWidth
+            required
+            id="newListField"
+            value={newIssue}
+            onChange={changeHandler}
+          />
             </form>
         </IssueFormWrap>
       </OnClickAwayWrapper>

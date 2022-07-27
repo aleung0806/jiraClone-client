@@ -1,15 +1,21 @@
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Droppable } from "react-beautiful-dnd"
-import ListOptionsButton from './list/ListOptionsButton'
+import DeleteListButton from './list/DeleteListButton'
 import AddIssueButton from './list/AddIssueButton'
 
 import styled from "styled-components"
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import { 
-  IconButton, 
-} from '@mui/material';
-
+import {
+  AppBar,
+  Toolbar,
+  Grid,
+  IconButton,
+  Typography,
+  Button,
+  Avatar,
+  Box
+} from '@mui/material'
+import { useTheme } from '@mui/material/styles';
 
 import Issue, { DragItem } from './Issue'
 
@@ -24,15 +30,18 @@ const OptionsButtonStyles = styled.div`
   margin-right: 0;
 `
 
-const DroppableStyles = styled.span`
-  display: inline-block;
-  width: 275px;
-  padding: 10px;
-  border-radius: 6px;
-  background: #d4d4d4;
-  vertical-align: top;
-  margin: 5px;
-`;
+const listStyle = {
+  display: 'inline-block',
+  width: '275px',
+  padding: '10px',
+  borderRadius: '3px',
+  verticalAlign: 'top',
+  margin: '5px',
+  borderWidth: 'thin',
+  backgroundColor: '#F4F5F7'
+}
+
+
 
 const List = ({list}) => {
 
@@ -40,11 +49,11 @@ const List = ({list}) => {
   const { id } = useParams()
 
   return (
-  <DroppableStyles>
+  <Box sx={listStyle}>
     <ListHeader>
       {list.title}
       <OptionsButtonStyles>
-        <ListOptionsButton list={list}/>
+        <DeleteListButton list={list}/>
       </OptionsButtonStyles>
     </ListHeader>
 
@@ -60,7 +69,7 @@ const List = ({list}) => {
       }}
     </Droppable>
     <AddIssueButton listId={list.id} projectId={id}/>
-  </DroppableStyles>
+  </Box>
   )
           };
 

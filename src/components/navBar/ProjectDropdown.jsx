@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import Dropdown from './Dropdown'
+import Dropdown from '../reusable/Dropdown'
 import {
   Button,
   Box,
@@ -11,8 +11,16 @@ import {
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import AddProjectButton from './AddProjectButton'
 
+const dropdownButtonStyle = {
+  'display': 'flex',
+  'justifyContent': 'center',
+  'alignItems': 'center',
+}
+
 const menuChildrenStyle = {
-  'color': 'black'
+  'color': 'black',
+  'fontWeight': 'normal',
+  'textTransform': 'none'
 }
 
 const ProjectDropdown = () => {
@@ -22,9 +30,9 @@ const ProjectDropdown = () => {
   const menuChildren = () => {
     const children = projects.map(project => {
       return (
-        <Button key={project.id}onClick={() =>{navigate(`../projects/${project.id}`)}} sx={menuChildrenStyle}>
+        <Box key={project.id}onClick={() =>{navigate(`../projects/${project.id}`)}} sx={menuChildrenStyle}>
           {project.title}
-        </Button>
+        </Box>
       )
     })
     children.push(<AddProjectButton/>)
@@ -33,8 +41,12 @@ const ProjectDropdown = () => {
 
   return (
       <Dropdown
-        buttonText='projects'
-        buttonIcon={<ArrowDropDownRoundedIcon/>}
+        buttonContents={
+            <Box sx={dropdownButtonStyle}>
+              projects
+              <ArrowDropDownRoundedIcon/>
+            </Box>
+        }
         menuChildren={menuChildren()}
       />
   )

@@ -7,16 +7,18 @@ import {
 import { useState } from 'react'
 
 
-const dropDownButtonStyle = {
-  'display': 'flex',
-  'justifyContent': 'center',
-  'alignItems': 'center'
-}
+
 
 const menuStyle={
+  'fontWeight': 'normal'
 }
 
-const Dropdown = ({buttonText, buttonIcon, menuChildren}) => {
+const menuItemStyle={
+  'fontWeight': 'normal'
+
+}
+
+const Dropdown = ({buttonContents, menuChildren}) => {
   const [anchor, setAnchor] = useState(null)
 
   const handleOpen = (e) => { setAnchor(e.currentTarget)}
@@ -24,13 +26,11 @@ const Dropdown = ({buttonText, buttonIcon, menuChildren}) => {
 
   return (
     <Box component="span">
-      <Button id="basic-button" onClick={handleOpen} sx={dropDownButtonStyle}>
-        {buttonText}
-        {buttonIcon}
-        
+      <Button id="basic-button" onClick={handleOpen} >
+        {buttonContents}
       </Button>
       <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} sx={menuStyle}>
-        {menuChildren.map((child, index) => <MenuItem key={index}>{child}</MenuItem>)}
+        {menuChildren.map((child, index) => <MenuItem sx={menuItemStyle} key={index} >{child}</MenuItem>)}
       </Menu>
     </Box>  
   )

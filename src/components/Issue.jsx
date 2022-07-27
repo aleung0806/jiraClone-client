@@ -1,11 +1,14 @@
 import { Draggable } from "react-beautiful-dnd";
 import styled  from "styled-components"
-import IssueOptionsButton from './issue/IssueOptionsButton'
+import IssueOptionsDropdown from './issue/IssueOptionsDropdown'
 import { useState } from 'react'
-import IssueModal from './issue/IssueModal'
 import BuildCircleIcon from '@mui/icons-material/BuildCircle'
 
 import { blue } from '@mui/material/colors'
+
+import {
+  Box
+} from '@mui/material'
 
 const Avatar = styled.img`
   height: 30px;
@@ -17,21 +20,21 @@ const Author = styled.div`
   display: flex;
   align-items: center;
 `
-const IssueHeader = styled.div`
-  font-weight: 500;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+const issueHeaderStyle = {
+  'width': '100%',
+  'display': 'flex',
+  'flexDirection': 'row',
+  'justifyContent': 'space-between',
+  'alignItems': 'center'
+}
 
-const IssueFooter = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
+const issueFooterStyle = {
+  'width': '100%',
+  'display': 'flex',
+  'flexDirection': 'row',
+  'justifyContent': 'space-between',
+  'alignItems': 'center'
+}
 
 export const DragIssue = styled.div`
   padding: 10px;
@@ -62,8 +65,7 @@ const Issue = ({ issue, index }) => {
   }
 
   return (
-    <div>
-    <div onClick={handleClick}>
+    <Box onClick={handleClick}>
     <Draggable draggableId={`${issue.id}`} index={index} >
       {(provided, snapshot) => {
         return (
@@ -73,23 +75,21 @@ const Issue = ({ issue, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <IssueHeader>
+            <Box sx={issueHeaderStyle}>
               {issue.title}
-              <IssueOptionsButton issue={issue}/>
-            </IssueHeader>
-            <IssueFooter>
+              <IssueOptionsDropdown issue={issue}/>
+            </Box>
+            <Box sx={issueFooterStyle}>
               <BuildCircleIcon style={{ color: blue[500] }}/>
               <span>{issue.content}</span>
               <Author>
               </Author>
-            </IssueFooter>
+            </Box>
           </DragIssue>
         );
       }}
     </Draggable>
-    </div>
-  <IssueModal open={openModal} setOpen={setOpenModal} issue={issue}/>
-  </div>
+    </Box>
   );
 };
 
