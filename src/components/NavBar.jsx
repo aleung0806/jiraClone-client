@@ -14,43 +14,55 @@ import { useTheme } from '@mui/material/styles';
 import AccountButton from './navBar/AccountButton'
 import ProjectDropdown from './navBar/ProjectDropdown'
 import SearchBar from './navBar/SearchBar'
+import AddIssueButton from './navBar/AddIssueButton'
+import SettingsButton from './navBar/SettingsButton'
 
 
-import styled from 'styled-components'
 
-const NavBarStyles = styled.div`
+const leftAlignStyle = {
+  display: 'flex',
+  alignItems: 'center'
 
-  width: 100%;
-  background-color: #3f3f3f;
-  display: flex;
-  flex-direction: row;
-  padding: 0px;
-  justify-content: space-between;
-  align-items: center;
-`
+}
 
-const navBarStyles = (theme) => {
+const rightAlignStyle = {
+  display: 'flex',
+  alignItems: 'center'
+}
+
+const toolBarStyle = {
+  justifyContent: 'space-between'
+}
+ 
+const appBarStyle = (theme) => {
   return {
-    'zIndex': theme.zIndex.drawer + 1,
-    'backgroundColor': 'white'
+    zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: 'primary.contrast',
+    height: '56px',
+    justifyContent: 'center',
+    shadow: ''
+
   }
  }
 
 const NavBar = () => {
   const theme = useTheme()
   return (
-    <AppBar  position="fixed" sx={navBarStyles(theme)}>
-      <Toolbar variant="dense">
-        <Grid>
-          <ProjectDropdown/>
-        </Grid>
-        <Grid >
-          <SearchBar />
-        </Grid>
-        <Grid>
-          <AccountButton/>
-        </Grid>
+    <AppBar  position="fixed" elevation={1} sx={appBarStyle(theme)}>
+      <Toolbar variant="dense" sx={toolBarStyle}>
+          <Box sx={leftAlignStyle}>
+            <ProjectDropdown/>
+            <AddIssueButton/>
+          </Box>
+          <Box sx={rightAlignStyle}>
+            <SearchBar />
+            <SettingsButton/>
+            <AccountButton/>
+          </Box>
+
+  
         </Toolbar>
+
     </AppBar>
 
   )

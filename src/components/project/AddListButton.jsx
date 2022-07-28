@@ -107,7 +107,6 @@ const AddListButton = ({projectId}) => {
           <form onSubmit={createListHandler}>
           <TextField
             autoFocus
-            fullWidth
             required
             id="newListField"
             value={newList}

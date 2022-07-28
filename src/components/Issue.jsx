@@ -3,8 +3,9 @@ import styled  from "styled-components"
 import IssueOptionsDropdown from './issue/IssueOptionsDropdown'
 import { useState } from 'react'
 import BuildCircleIcon from '@mui/icons-material/BuildCircle'
-
-import { blue } from '@mui/material/colors'
+import TypeIcon from './reusable/TypeIcon'
+import { Typography } from '@mui/material'
+import InitialsAvatar from './reusable/InitialsAvatar'
 
 import {
   Box
@@ -34,8 +35,8 @@ const issueFooterStyle = {
   'width': '100%',
   'display': 'flex',
   'flexDirection': 'row',
-  'justifyContent': 'space-between',
-  'alignItems': 'center'
+  'alignItems': 'center',
+  'justifyContent': 'space-between'
 }
 
 const issueStyle = {
@@ -49,6 +50,14 @@ const issueStyle = {
   flexDirection: 'column',
   textTransform: 'none',
   fontWeight: 'normal',
+
+}
+
+const typeTextStyle = {
+  color: 'text.secondary',
+  fontSize: '12px',
+  textTransform: 'uppercase',
+  fontWeight: 'bold'
 
 }
 
@@ -84,10 +93,13 @@ const Issue = ({ issue, index }) => {
               <IssueOptionsDropdown issue={issue}/>
             </Box>
             <Box sx={issueFooterStyle}>
-              <BuildCircleIcon style={{ color: blue[500] }}/>
-              <span>{issue.content}</span>
-              <Author>
-              </Author>
+              <Box component='span' sx={{display: 'flex'}}>
+                <TypeIcon type={issue.type}/>
+                <Typography sx={typeTextStyle}>{issue.type}</Typography>
+              </Box>
+              <Box component='span'>
+                <InitialsAvatar name='John Doe' sx={{height: '20px', width: '20px', fontSize: '8px'}}/>
+              </Box>
             </Box>
           </Box>
         );

@@ -13,14 +13,13 @@ import AddUserButton from './project/AddUserButton'
 import UserIcons from './project/UserIcons'
 
 import DeleteProjectButton from './project/DeleteProjectButton'
-import { Rowing } from "@mui/icons-material";
+import { Rowing } from "@mui/icons-material"
+
+import { Typography } from '@mui/material'
 
 const projectStyle = {
-
-  height: 500,
-  marginLeft: 7,
-
-  overflow: scroll,
+  marginTop: 9,
+  marginLeft: 9,
 }
 
 const UserBarStyle = styled.div`
@@ -33,11 +32,16 @@ const UserBarStyle = styled.div`
 const HeaderStyle = styled.div`
   textTransform: 'uppercase',
   fontWeight: 'bold',
-  color: gray;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-left: 6px;
+  color: gray,
+  margin-bottom: 10px,
+  margin-top: 10px,
+  margin-left: 6px,
 `
+
+const linkStyle = {
+  fontSize: '14px',
+  color: 'text.secondary'
+}
 
 const removeFromList = (list, index) => {
   let issuesCopy = [...list.issues]
@@ -85,7 +89,7 @@ function Project({project}) {
   return (
     <Box sx={projectStyle}>
     <Box sx={{ display: 'flex' }}>
-      <HeaderStyle>projects / {project.title}</HeaderStyle>
+      <Typography sx={linkStyle}>{`Projects\u00A0\u00A0/\u00A0\u00A0${project.title}`}</Typography>
      </Box>
      <Box>
       <UserBarStyle>

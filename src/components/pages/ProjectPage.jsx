@@ -9,6 +9,10 @@ import {
 } from '@mui/material'
 
 
+const pageStyle = {
+  display: 'flex'
+}
+
 const ProjectPage = () => {
   const { id } = useParams()
 
@@ -20,9 +24,9 @@ const ProjectPage = () => {
 
   const user = useSelector(state => state.users.loggedInUser)
   return (
-    <Box>
+    <Box sx={pageStyle}>
     {project !== null && user !== null && 
-      <Box>
+      <Box >
         <NavBar/>
         <SideMenu/>
         <Project project={project}/>

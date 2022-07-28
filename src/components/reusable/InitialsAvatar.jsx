@@ -1,36 +1,35 @@
 import { useSelector } from 'react-redux'
 import {
   Avatar,
-  AvatarGroup
+  useTheme,
 } from '@mui/material'
 
-//green, orange, purple, yellow
-const colors = [ '#6300AA', '#FF9415','#00C380', '#00EAA5']
-const blue = '#2900CC'
 
-const InitialsAvatar = ({name}) => {
+
+const InitialsAvatar = ({sx, name}) => {
+  const theme = useTheme()
 
 
   function stringToColor(string) {
 
-    let hash = 0;
-    for (let i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + hash - 7;
+    const hash = string.charCodeAt(5)
 
-    }
     console.log(string)
-    console.log(hash % 4 - 1)
-    return colors[hash % 4 - 1]
+    console.log('hash', hash % 5)
+    console.log(Object.values(theme.palette.colors))
+    console.log(Object.values(theme.palette.colors)[hash % 5])
+
+    
+    return Object.values(theme.palette.colors)[hash % 5]
   }
 
   const avatarStyles = (name) => {
     
     return {
       sx: {
+        ...sx,
         backgroundColor: stringToColor(name),
-        height: '30px',
-        width: '30px',
-        fontSize: '15px',
+        fontWeight: '600'
       },
       children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     }

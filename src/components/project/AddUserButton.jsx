@@ -3,28 +3,36 @@ import {
   Button,
   Menu,
   MenuItem,
-  Divider,
+  useTheme,
   IconButton,
 } from '@mui/material'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import styled from 'styled-components'
 import AddUserModal from './AddUserModal'
+import AtlasIcon from '../reusable/AtlasIcon'
+import {ReactComponent as InviteTeam} from '@atlaskit/icon/svgs/invite-team.svg'
 
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+const iconStyle = (theme) => {
+  return {
+    color: theme.palette.grays.medium
+  }
+}
 
-const MenuButtonStyles = styled.span`
-  
-`;
+const buttonStyle = (theme) => {
+  return {
+    color: theme.palette.grays.light
+  }
+}
 
-export default function AddUserButton() {
+
+const AddUserButton = () => {
   const navigate = useNavigate()
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
+  const theme = useTheme()
 
   const handleClick = (e) => {setOpenModal(true)}
 
@@ -37,10 +45,12 @@ export default function AddUserButton() {
 
   return (
     <div>
-        <IconButton color="secondary" onClick={handleClick}>
-          <PersonAddIcon/>
+        <IconButton onClick={handleClick} sx={buttonStyle(theme)}>
+          <AtlasIcon sx={iconStyle(theme)} Svg={InviteTeam}/>
         </IconButton>
         <AddUserModal open={openModal} setOpen={setOpenModal} />
     </div>
-  );
+  )
 }
+
+export default AddUserButton

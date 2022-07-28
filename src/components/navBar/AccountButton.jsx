@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {
+  IconButton,
   Button,
   Menu,
   MenuItem,
@@ -12,9 +13,13 @@ import { useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
 import InitialsAvatar from '../reusable/InitialsAvatar'
-const MenuButtonStyles = styled.span`
-  display: flex;
-`;
+
+const avatarStyles = {
+  height: '24px',
+  width: '24px',
+  fontSize: '10px',
+
+}
 
 export default function AccountDropdown() {
   const navigate = useNavigate()
@@ -32,9 +37,9 @@ export default function AccountDropdown() {
       {user !== null &&
           <Box>
 
-      <Button id="basic-button" onClick={handleClick} color="secondary">
-        <InitialsAvatar name={user.name}/>
-      </Button>
+      <IconButton onClick={handleClick} >
+        <InitialsAvatar sx={avatarStyles} name={user.name}/>
+      </IconButton>
       <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose}>
         <MenuItem  >account info...</MenuItem>
         <Divider/>

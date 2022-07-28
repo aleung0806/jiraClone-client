@@ -100,7 +100,7 @@ const AddIssueButton = ({listId, projectId}) => {
 
   return (
     <Box>
-      <Button fullwidth sx= {buttonStyle} onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
+      <Button sx= {buttonStyle} onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
             <AddRoundedIcon />
             <Typography className='buttonText' sx={buttonTextStyle}>Create issue</Typography>
       </Button>
@@ -109,7 +109,6 @@ const AddIssueButton = ({listId, projectId}) => {
           <form onSubmit={createIssueHandler}>
           <TextField
             autoFocus
-            fullWidth
             required
             id="newListField"
             value={newIssue}
