@@ -31,11 +31,10 @@ const ListFormWrap = styled.div`
 
 const buttonStyle = {
   display: 'inline-block',
-  width: '275px',
   padding: '5px',
   borderRadius: '6px',
   backgroundColor: 'secondary.light',
-  verticalAlign: 'top',
+  verticalAlign: 'center',
   margin: '5px'
 
 }

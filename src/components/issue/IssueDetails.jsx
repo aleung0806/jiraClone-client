@@ -116,7 +116,6 @@ const IssueDetails = ({issue, open, setOpen}) => {
 return (
   <Modal
     open={open}
-    onBackdropClick={() => setOpen(false)}
   >
       <Box sx={modalContentStyle}>
 

@@ -19,10 +19,10 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-import {
-  Button,
-  Avatar
-} from '@mui/material'
+import {ReactComponent as ChevronRight } from '@atlaskit/icon/svgs/chevron-right.svg'
+import {ReactComponent as ChevronLeft} from '@atlaskit/icon/svgs/chevron-left.svg'
+
+import AtlasIcon from './reusable/AtlasIcon'
 
 
 import { useSelector } from 'react-redux'
@@ -36,6 +36,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
+  border: 'none'
+
 });
 
 const closedMixin = (theme) => ({
@@ -44,20 +46,22 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(${theme.spacing(3)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(4)} + 1px)`,
   },
+  border: 'none'
+
+
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
-  marginTop: 60,
+  marginTop: 50,
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'top',
   justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
+  ...theme.mixins.toolbar
 }));
 
 
@@ -76,13 +80,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme),
     }),
+    
   }),
 );
 
 export default function MiniDrawer() {
   const projects = useSelector(state => state.projects)
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const theme = useTheme()
+  const [open, setOpen] = React.useState(false)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -107,29 +112,39 @@ const proj = {
   textAlign: 'center',
 
 }
+
+const iconStyle = (theme) => {
+  console.log(theme.zIndex)
+  return {
+    position: 'relative',
+    height: '24px',
+    width: '24px',
+    right: '10px',
+    border: '1px solid #DFE1E6', 
+    transform: 'translateX(10px)',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+  }
+}
   
 
   return (
    
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} sx={{}}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawer} sx={{marginLeft: 500}}>
-            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'top', alignItems: 'right', padding: 0, flexWrap: 'nowrap'}}>
+
+          <Box sx={{height: '45px', width: '12px', borderRight: '1px solid #DFE1E6'}}></Box>
+
+          <IconButton onClick={handleDrawer} sx={iconStyle(theme)}>
+            <AtlasIcon Svg={ open ? ChevronLeft : ChevronRight} />
           </IconButton>
+          <Box sx={{height: '1000px', width: '12px', borderRight: '1px solid #DFE1E6'}}></Box>
+
+          </Box>
+
+
         </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem>
-            <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: 22, fontWeight: 900, textAlign: 'center'}}>
-              <h3>PROJECTS</h3>
-            </ListItemText>
-          </ListItem>
-          {projects !== null && projects.map((project, index) => (
-            <ListItem sx= {{textAlign: 'center'}} key={project.id} >
-                <ListItemText primary={project.title.toUpperCase()} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItem>
-          ))}
-        </List>
+
 
       </Drawer>
   )

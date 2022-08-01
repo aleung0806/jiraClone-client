@@ -24,9 +24,9 @@ const ProjectPage = () => {
 
   const user = useSelector(state => state.users.loggedInUser)
   return (
-    <Box sx={pageStyle}>
+    <Box >
     {project !== null && user !== null && 
-      <Box >
+      <Box sx={pageStyle}>
         <NavBar/>
         <SideMenu/>
         <Project project={project}/>

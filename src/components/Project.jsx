@@ -14,12 +14,19 @@ import UserIcons from './project/UserIcons'
 
 import DeleteProjectButton from './project/DeleteProjectButton'
 import { Rowing } from "@mui/icons-material"
-
+import SearchBar from './project/SearchBar'
 import { Typography } from '@mui/material'
 
 const projectStyle = {
-  marginTop: 9,
-  marginLeft: 9,
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: '100vh',
+  width: '100vw',
+  paddingTop: 9,
+  paddingLeft: 9,
+  overflowX: 'scroll',
 }
 
 const UserBarStyle = styled.div`
@@ -27,6 +34,9 @@ const UserBarStyle = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
 `
 
 const HeaderStyle = styled.div`
@@ -87,20 +97,25 @@ function Project({project}) {
   }
 
   return (
-    <Box sx={projectStyle}>
+    <Box component='main' sx={{ flexGrow: 1, paddingLeft: 3, paddingTop: 10}}>
     <Box sx={{ display: 'flex' }}>
       <Typography sx={linkStyle}>{`Projects\u00A0\u00A0/\u00A0\u00A0${project.title}`}</Typography>
      </Box>
+     <Typography sx={{fontSize: '24px', fontWeight: 500, textTransform: 'none'}}>{`SUM Board`}</Typography>
+
      <Box>
       <UserBarStyle>
+        <SearchBar/>
         <UserIcons/>
         <AddUserButton/>
       </UserBarStyle>
      </Box>
-      <DragDropContext onDragEnd={onDragEnd}>
+     <Box sx={{display: 'flex', flexWrap: 'nowrap'}}>
+      <DragDropContext onDragEnd={onDragEnd} >
           {lists !== null && lists.map((list) => <List list={list} key={list.id}/>)}
       </DragDropContext>
       <AddListButton projectId={projectId}/>
+      </Box>
     </Box>
   );
 }

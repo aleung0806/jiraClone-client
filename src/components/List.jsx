@@ -41,8 +41,8 @@ const titleStyle = (theme) => {
 
 const listStyle = {
   display: 'inline-block',
-  width: '275px',
-  height: '80vh',
+  minWidth: '275px',
+  height: '75vh',
   padding: '10px',
   borderRadius: '3px',
   verticalAlign: 'top',

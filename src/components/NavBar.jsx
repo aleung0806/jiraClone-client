@@ -16,8 +16,9 @@ import ProjectDropdown from './navBar/ProjectDropdown'
 import SearchBar from './navBar/SearchBar'
 import AddIssueButton from './navBar/AddIssueButton'
 import SettingsButton from './navBar/SettingsButton'
-
-
+import logo from '../icons/jira.png'
+import {ReactComponent as AppSwitcher} from '@atlaskit/icon/svgs/app-switcher.svg'
+import AtlasIcon from './reusable/AtlasIcon'
 
 const leftAlignStyle = {
   display: 'flex',
@@ -40,7 +41,8 @@ const appBarStyle = (theme) => {
     backgroundColor: 'primary.contrast',
     height: '56px',
     justifyContent: 'center',
-    shadow: ''
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+
 
   }
  }
@@ -51,6 +53,16 @@ const NavBar = () => {
     <AppBar  position="fixed" elevation={1} sx={appBarStyle(theme)}>
       <Toolbar variant="dense" sx={toolBarStyle}>
           <Box sx={leftAlignStyle}>
+          <AtlasIcon Svg={AppSwitcher}/>
+          <Box
+                component="img"
+                sx={{
+                  height: '20px',
+                  width: 'auto',
+                  marginRight: '20px'
+                }}
+              src={logo}
+            />
             <ProjectDropdown/>
             <AddIssueButton/>
           </Box>
