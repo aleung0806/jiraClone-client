@@ -1,4 +1,5 @@
-import { createTheme } from '@mui/material'
+import { createTheme,
+  experimental_sx as sx, } from '@mui/material'
 
 const theme = createTheme({
 
@@ -38,6 +39,16 @@ const theme = createTheme({
     },
 
     typography: {
+      darkestBold14: {
+        color: '#7A869A',
+        fontSize: '14px',
+        fontWeight: '600'
+      },
+      faint: {
+        fontSize: '12px',
+        color: '#7A869A',
+
+      },
       fontFamily: [
         '-apple-system',
         'BlinkMacSystemFont',
@@ -51,7 +62,50 @@ const theme = createTheme({
         '"Segoe UI Symbol"',
       ].join(','),
     },
-  
+    components: {
+      MuiBox: {
+        variants: [
+          {
+            props: { variant: 'flexColumn' },
+            style: {
+              display: 'flex',
+              flexDirection: 'column'
+            }
+          },
+          {
+            props: { variant: 'flexRow' },
+            style: {
+              display: 'flex',
+              flexDirection: 'row'
+            }
+          }
+        ]
+      },
+      MuiInput: {
+        variants: [
+          {
+            props: { variant: 'regular' },
+            style: {
+              padding: '10px',
+              borderRadius: '2px',
+              border: `2px solid #FFFFFF`,
+              '&&:hover': {
+                backgroundColor: '#DFE1E6',
+              },
+              '&.Mui-focused': {
+                '&&:hover': {
+                  backgroundColor: '#FFFFFF',
+                },
+                backgroundColor: '#FFFFFF',
+                border: `2px solid #0052CC`
+              }
+
+            },
+          }
+
+        ],
+      }
+    }
   
 });
 

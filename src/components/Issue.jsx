@@ -1,4 +1,4 @@
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "react-beautiful-dnd"
 import styled  from "styled-components"
 import IssueOptionsDropdown from './issue/IssueOptionsDropdown'
 import { useState } from 'react'
@@ -6,6 +6,9 @@ import BuildCircleIcon from '@mui/icons-material/BuildCircle'
 import TypeIcon from './reusable/TypeIcon'
 import { Typography } from '@mui/material'
 import InitialsAvatar from './reusable/InitialsAvatar'
+import PriorityIcon from './reusable/PriorityIcon'
+
+import IssueDetails from './issue/IssueDetails'
 
 import {
   Box
@@ -53,22 +56,15 @@ const issueStyle = {
 
 }
 
-const typeTextStyle = {
-  color: 'text.secondary',
-  fontSize: '12px',
-  textTransform: 'uppercase',
-  fontWeight: 'bold'
-
-}
-
-
 const Issue = ({ issue, index }) => {
 
   const [openModal, setOpenModal] = useState(false)
+  const [openDetails, setOpenDetails] = useState(false)
 
   const handleClick = () => {
-    // setOpenModal(true)
-    // console.log('clicked')
+    setOpenDetails(true)
+    console.log('clicked', openDetails)
+    
   }
 
   const handler = (val) => {
@@ -93,18 +89,16 @@ const Issue = ({ issue, index }) => {
               <IssueOptionsDropdown issue={issue}/>
             </Box>
             <Box sx={issueFooterStyle}>
-              <Box component='span' sx={{display: 'flex'}}>
                 <TypeIcon type={issue.type}/>
-                <Typography sx={typeTextStyle}>{issue.type}</Typography>
-              </Box>
-              <Box component='span'>
-                <InitialsAvatar name='John Doe' sx={{height: '20px', width: '20px', fontSize: '8px'}}/>
-              </Box>
+                <Box sx={{display: 'flex', gap: 1}}>
+                  <InitialsAvatar name='John Doe' sx={{height: '20px', width: '20px', fontSize: '8px'}}/>
+                </Box>
             </Box>
           </Box>
         );
       }}
     </Draggable>
+    <IssueDetails issue={issue} open={openDetails} setOpen={setOpenDetails}/>
     </Box>
   );
 };
