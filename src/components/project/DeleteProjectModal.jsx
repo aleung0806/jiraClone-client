@@ -60,7 +60,7 @@ const DeleteProjectModal = ({open, setOpen, project}) => {
   }
 
   const handleClickDelete = () => {
-    dispatch(deleteList(project.id))
+    dispatch(deleteProject(project.id))
   }
 
   return (

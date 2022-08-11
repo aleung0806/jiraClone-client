@@ -102,7 +102,7 @@ function Project({project}) {
       <Typography sx={linkStyle}>{`Projects\u00A0\u00A0/\u00A0\u00A0${project.title}`}</Typography>
      </Box>
      <Typography sx={{fontSize: '24px', fontWeight: 500, textTransform: 'none'}}>{`SUM Board`}</Typography>
-
+      <DeleteProjectButton project={project}/>
      <Box>
       <UserBarStyle>
         <SearchBar/>

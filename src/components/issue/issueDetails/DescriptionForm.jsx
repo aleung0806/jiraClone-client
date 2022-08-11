@@ -10,6 +10,8 @@ import {
 
  import { useState } from 'react'
 
+import { updateIssue } from '../../../reducers/projectReducer'
+
 const inputStyle = {
   font: '12px',
   left: '-12px',
@@ -26,20 +28,30 @@ const DescriptionForm = ({issue}) => {
   const handleChange = (e) => {
     setDescription(e.target.value)
   }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const updatedIssue = {
+      ...issue,
+      description: description
+    }
+    console.log('handling', updatedIssue)
+
+    updateIssue(updatedIssue)
+
+  }
   return (
-    <Box sx={formStyle}>
+    <Box sx={formStyle} >
       <Typography variant='darkestBold14'>Description</Typography>
-      <FormControl>
+      <Box component='form' onSubmit={handleSubmit}>
       <Input
         variant='regular'
         sx={inputStyle}
-        value={description}
+        value={issue.description === null ? '' : issue.description}
         fullWidth
         disableUnderline
         onChange={handleChange}
-        placeholder='Add a description...'
       />
-    </FormControl>
+      </Box>
     </Box>
   )
 }

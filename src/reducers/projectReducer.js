@@ -77,6 +77,11 @@ export const deleteIssue = (id) => async (dispatch) => {
   dispatch(setProject(updatedProject))
 }
 
+export const updateIssue = (issue) => async (dispatch) => {
+  const updatedProject = await issueService.update(issue)
+  console.log(updatedProject)
+  dispatch(setProject(updatedProject))
+}
 
 export const deleteList = (id) => async (dispatch) => {
   const updatedProject = await listService.remove(id)
@@ -87,6 +92,11 @@ export const deleteList = (id) => async (dispatch) => {
 export const createList = (list) => async (dispatch) => {
   const updatedProject = await listService.create(list)
   console.log(updatedProject)
+  dispatch(setProject(updatedProject))
+}
+
+export const deleteProject = (id) => async (dispatch) => {
+  await projectService.remove(id)
   dispatch(setProject(updatedProject))
 }
 
