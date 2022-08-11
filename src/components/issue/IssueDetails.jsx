@@ -5,7 +5,7 @@ import {
   Input,
   Button,
   Box,
-  ButtonIcon,
+  IconButton,
   TextField,
   Modal,
  } from '@mui/material'
@@ -104,11 +104,10 @@ const titleInputStyle = {
 }
 
 
-const IssueDetails = ({issue, open, setOpen}) => {
+const IssueDetails = ({issue, open, handleClose}) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState(issue.title)
-
-  console.log(open)
+  console.log('open is', open)
   const handleDelete = () => {
     dispatch(deleteIssue(issue.id))
   }
@@ -116,6 +115,7 @@ const IssueDetails = ({issue, open, setOpen}) => {
 return (
   <Modal
     open={open}
+    onClose = {handleClose}
   >
       <Box sx={modalContentStyle}>
 
@@ -125,7 +125,9 @@ return (
             <Box sx={leftAlignStyle}>
               <TypeIcon type={issue.type}/>
             </Box>
-            <AtlasIcon Svg={Cross}></AtlasIcon>
+            <IconButton onClick={handleClose}>
+              <AtlasIcon Svg={Cross}></AtlasIcon>
+            </IconButton>
           </Box>
 
           <Box sx={{display: 'flex', flexDirection: 'column', gap: 2}}>

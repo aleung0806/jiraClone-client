@@ -14,16 +14,6 @@ import {
   Box
 } from '@mui/material'
 
-const Avatar = styled.img`
-  height: 30px;
-  width: 30px;
-  border: 3px solid white;
-  border-radius: 50%;
-`
-const Author = styled.div`
-  display: flex;
-  align-items: center;
-`
 const issueHeaderStyle = {
   'width': '100%',
   'display': 'flex',
@@ -58,24 +48,25 @@ const issueStyle = {
 
 const Issue = ({ issue, index }) => {
 
-  const [openModal, setOpenModal] = useState(false)
-  const [openDetails, setOpenDetails] = useState(false)
-
+  const [openDetail, setOpenDetail] = useState(false)
+  console.log('rerender')
   const handleClick = () => {
-    setOpenDetails(true)
-    console.log('clicked', openDetails)
-    
+    setOpenDetail(true)
   }
 
   const handler = (val) => {
     console.log('handling again', val)
     setOpenModal(val)
-    console.log('state is', openModal)
+  }
+
+  const handleClose = () => {
+    setOpenDetail(false)
   }
 
   return (
+    <Box >
     <Box onClick={handleClick}>
-    <Draggable draggableId={`${issue.id}`} index={index} >
+    <Draggable  draggableId={`${issue.id}`} index={index} >
       {(provided, snapshot) => {
         return (
           <Box sx={issueStyle}
@@ -95,10 +86,11 @@ const Issue = ({ issue, index }) => {
                 </Box>
             </Box>
           </Box>
-        );
+        )
       }}
     </Draggable>
-    <IssueDetails issue={issue} open={openDetails} setOpen={setOpenDetails}/>
+    </Box>
+    <IssueDetails issue={issue} open={openDetail} handleClose={handleClose}/>
     </Box>
   );
 };

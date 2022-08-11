@@ -6,7 +6,10 @@ import Dropdown from '../reusable/Dropdown'
 import {
   Button,
   Box,
-  Typography
+  Typography,
+  IconButton, 
+  Menu,
+  MenuItem
 } from '@mui/material'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import DeleteIssueButton from './DeleteIssueButton'
@@ -24,26 +27,44 @@ const menuChildrenStyle = {
   'fontWeight': 'normal',
   'textTransform': 'none'
 }
+const menuStyle={
+  'fontWeight': 'normal'
+}
+
+const menuItemStyle={
+  'fontWeight': 'normal'
+
+}
 
 const iconStyle = {
-  "&:hover":{color: '#ff5436'}
+  // "&:hover":{color: '#ff5436'}
 }
 
 const ProjectDropdown = ({issue}) => {
   const projects = useSelector(state => state.projects)
+  const [anchor, setAnchor] = useState(null)
 
+  const handleOpen = (e) => { setAnchor(e.currentTarget)}
+  const handleClose = () => { setAnchor(null) }
   return (
-      <Dropdown
-        buttonContents={
-            <Box sx={dropdownButtonStyle}>
-              <MoreHorizIcon sx={iconStyle}/>
-            </Box>
-        }
-        menuChildren={[
-          <Button>options</Button>,
-          <DeleteIssueButton issue={issue}/>
-        ]}
-      />
+    <Box>
+      <IconButton id="basic-button" onClick={handleOpen} >
+        <MoreHorizIcon sx={iconStyle}/>
+      </IconButton>
+      <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} sx={menuStyle}>
+        <MenuItem>
+          <Typography>Options</Typography>
+        </MenuItem>
+        <MenuItem>
+          <Typography>Copy Issue Link</Typography>
+        </MenuItem>
+        <MenuItem>
+          <Typography>Delete</Typography>
+        </MenuItem>
+      </Menu>
+
+    </Box>
+
   )
 }
 
