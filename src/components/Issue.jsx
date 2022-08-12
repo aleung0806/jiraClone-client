@@ -49,17 +49,19 @@ const issueStyle = {
 const Issue = ({ issue, index }) => {
 
   const [openDetail, setOpenDetail] = useState(false)
-  console.log('rerender')
-  const handleClick = () => {
-    setOpenDetail(true)
+  const handleClick = (e) => {
+
+      setOpenDetail(true)
+
   }
 
   const handler = (val) => {
-    console.log('handling again', val)
+    //console.log('handling again', val)
     setOpenModal(val)
   }
 
   const handleClose = () => {
+    
     setOpenDetail(false)
   }
 
@@ -90,7 +92,9 @@ const Issue = ({ issue, index }) => {
       }}
     </Draggable>
     </Box>
-    <IssueDetails issue={issue} open={openDetail} handleClose={handleClose}/>
+    <Box className='detailsButton' sx={{display:'flex', backgroundColor: 'red'}}>
+      <IssueDetails  issue={issue} open={openDetail} handleClose={handleClose}/>
+    </Box>
     </Box>
   );
 };

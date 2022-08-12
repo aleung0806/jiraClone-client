@@ -104,18 +104,24 @@ const titleInputStyle = {
 }
 
 
-const IssueDetails = ({issue, open, handleClose}) => {
+const IssueDetails = ({id, issue, open, handleClose}) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState(issue.title)
-  console.log('open is', open)
   const handleDelete = () => {
     dispatch(deleteIssue(issue.id))
   }
 
+  const handleClick = (e) => {
+
+    handleClose() 
+   
+  } 
+
 return (
   <Modal
     open={open}
-    onClose = {handleClose}
+    onClose = {handleClick}
+    
   >
       <Box sx={modalContentStyle}>
 

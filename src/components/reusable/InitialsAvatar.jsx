@@ -14,10 +14,10 @@ const InitialsAvatar = ({sx, name}) => {
 
     const hash = string.charCodeAt(5)
 
-    console.log(string)
-    console.log('hash', hash % 5)
-    console.log(Object.values(theme.palette.colors))
-    console.log(Object.values(theme.palette.colors)[hash % 5])
+    // console.log(string)
+    // console.log('hash', hash % 5)
+    // console.log(Object.values(theme.palette.colors))
+    // console.log(Object.values(theme.palette.colors)[hash % 5])
 
     
     return Object.values(theme.palette.colors)[hash % 5]

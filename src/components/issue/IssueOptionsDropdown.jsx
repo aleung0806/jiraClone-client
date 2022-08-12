@@ -44,14 +44,25 @@ const ProjectDropdown = ({issue}) => {
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null)
 
-  const handleOpen = (e) => { setAnchor(e.currentTarget)}
-  const handleClose = () => { setAnchor(null) }
+  const handleOpen = (e) => { 
+    e.stopPropagation()
+    setAnchor(e.currentTarget)
+  }
+  const handleClose = (e) => { 
+    console.log(e.target)
+    setAnchor(null) 
+  }
+
+  const handleClick = (e) => {
+    e.stopPropagation()
+
+  }
   return (
     <Box>
       <IconButton id="basic-button" onClick={handleOpen} >
         <MoreHorizIcon sx={iconStyle}/>
       </IconButton>
-      <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} sx={menuStyle}>
+      <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClick={handleClick} onClose={handleClose} sx={menuStyle}>
         <MenuItem>
           <Typography>Options</Typography>
         </MenuItem>

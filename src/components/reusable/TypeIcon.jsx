@@ -37,7 +37,7 @@ const textStyle = {
 }
 
 const TypeIcon = ({type, sx}) => {
-  console.log(type)
+  //console.log(type)
   const matchSvg = (type) => {
     return match[type]
   }

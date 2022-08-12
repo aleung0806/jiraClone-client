@@ -65,14 +65,13 @@ export const createProject = () => async (dispathc) => {
 
 }
 
-export const createIssue = (issue) => async (dispatch) => {
-  const updatedProject = await issueService.create(issue)
-  console.log(updatedProject)
+export const deleteProject = (id) => async (dispatch) => {
+  await projectService.remove(id)
   dispatch(setProject(updatedProject))
 }
 
-export const deleteIssue = (id) => async (dispatch) => {
-  const updatedProject = await issueService.remove(id)
+export const createIssue = (issue) => async (dispatch) => {
+  const updatedProject = await issueService.create(issue)
   console.log(updatedProject)
   dispatch(setProject(updatedProject))
 }
@@ -83,8 +82,8 @@ export const updateIssue = (issue) => async (dispatch) => {
   dispatch(setProject(updatedProject))
 }
 
-export const deleteList = (id) => async (dispatch) => {
-  const updatedProject = await listService.remove(id)
+export const deleteIssue = (id) => async (dispatch) => {
+  const updatedProject = await issueService.remove(id)
   console.log(updatedProject)
   dispatch(setProject(updatedProject))
 }
@@ -95,10 +94,15 @@ export const createList = (list) => async (dispatch) => {
   dispatch(setProject(updatedProject))
 }
 
-export const deleteProject = (id) => async (dispatch) => {
-  await projectService.remove(id)
+export const deleteList = (id) => async (dispatch) => {
+  const updatedProject = await listService.remove(id)
+  console.log(updatedProject)
   dispatch(setProject(updatedProject))
 }
+
+
+
+
 
 
 
