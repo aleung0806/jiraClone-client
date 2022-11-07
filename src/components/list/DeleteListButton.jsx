@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ModalButton from '../reusable/ModalButton'
 import { useDispatch } from 'react-redux'
-import { deleteList } from '../../reducers/projectReducer'
+import { deleteList } from '../../reducers/project'
 
 const buttonStyle = {
   width: '8px',

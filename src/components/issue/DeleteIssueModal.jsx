@@ -4,12 +4,13 @@ import {
   TextField,
   Button,
   Box,
-  Alert
+  Alert,
+  Modal
  } from '@mui/material'
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import ModalButton from '../reusable/ModalButton'
 import { useDispatch } from 'react-redux'
-import { deleteIssue } from '../../reducers/projectReducer'
+import { deleteIssue } from '../../reducers/project'
 
 const buttonStyle = {
 
@@ -54,21 +55,20 @@ const deleteButtonStyle = {
   fontWeight: '600'
 };
 
-const DeleteIssueButton = ({issue}) => {
+const DeleteIssueModal = ({issue, open, handleClose}) => {
   const dispatch = useDispatch()
 
   const handleDelete = () => {
     dispatch(deleteIssue(issue.id))
   }
 
+  const handleClick = (e) => {
+    e.stopPropagation()
+  }
+
+
 return (
-  <ModalButton
-    buttonContents={
-      <Box sx={buttonStyle}>
-        delete
-      </Box>
-    }
-    modalContents={
+  <Modal open={open} onClose={handleClose} onClick={handleClick}>
       <Box sx={modalContentStyle}>
         <Alert sx={alertStyle} severity='warning'>
           {`Are you sure you want to delete issue `}
@@ -76,15 +76,12 @@ return (
           ? All issues in the list will be deleted.
         </Alert>
           <Box sx={buttonBoxStyle}>
-            <Button variant="outlined">cancel</Button>
+            <Button onClick={handleClose} variant="outlined">cancel</Button>
             <Button sx={deleteButtonStyle} variant="outlined" onClick={handleDelete}>delete</Button>
           </Box>
       </Box>
-    }
-  >
-
-  </ModalButton >
+  </Modal>
 )
   }
 
-export default DeleteIssueButton
+export default DeleteIssueModal

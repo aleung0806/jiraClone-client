@@ -50,7 +50,6 @@ const Issue = ({ issue, index }) => {
 
   const [openDetail, setOpenDetail] = useState(false)
   const handleClick = (e) => {
-
       setOpenDetail(true)
 
   }

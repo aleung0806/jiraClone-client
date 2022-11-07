@@ -12,7 +12,7 @@ import { flexbox } from '@mui/system';
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
-import { deleteProject } from '../../reducers/projectReducer'
+import { deleteProject } from '../../reducers/project'
 
 const contentStyle = {
   position: 'absolute',

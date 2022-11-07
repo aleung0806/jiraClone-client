@@ -19,6 +19,7 @@ import SettingsButton from './navBar/SettingsButton'
 import logo from '../icons/jira.png'
 import {ReactComponent as AppSwitcher} from '@atlaskit/icon/svgs/app-switcher.svg'
 import AtlasIcon from './reusable/AtlasIcon'
+import { useSelector } from 'react-redux';
 
 const leftAlignStyle = {
   display: 'flex',
@@ -48,6 +49,7 @@ const appBarStyle = (theme) => {
  }
 
 const NavBar = () => {
+  const projects = useSelector(state => state.projects)
   const theme = useTheme()
   return (
     <AppBar  position="fixed" elevation={1} sx={appBarStyle(theme)}>
@@ -63,7 +65,7 @@ const NavBar = () => {
                 }}
               src={logo}
             />
-            <ProjectDropdown/>
+            {/* {projects !== null && <ProjectDropdown/> } */}
             <AddIssueButton/>
           </Box>
           <Box sx={rightAlignStyle}>

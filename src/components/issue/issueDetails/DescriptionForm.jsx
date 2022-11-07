@@ -10,7 +10,7 @@ import {
 
  import { useState } from 'react'
 
-import { updateIssue } from '../../../reducers/projectReducer'
+import { updateIssue } from '../../../reducers/project'
 
 const inputStyle = {
   font: '12px',

@@ -12,7 +12,7 @@ import {
   MenuItem
 } from '@mui/material'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import DeleteIssueButton from './DeleteIssueButton'
+import DeleteIssueModal from './DeleteIssueModal'
 
 const dropdownButtonStyle = {
   'display': 'flex',
@@ -43,6 +43,8 @@ const iconStyle = {
 const ProjectDropdown = ({issue}) => {
   const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null)
+  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+
 
   const handleOpen = (e) => { 
     e.stopPropagation()
@@ -57,6 +59,12 @@ const ProjectDropdown = ({issue}) => {
     e.stopPropagation()
 
   }
+
+  const handleDeleteClick = (e) => {
+    setOpenDeleteModal(true) 
+    setAnchor(null) 
+
+  }
   return (
     <Box>
       <IconButton id="basic-button" onClick={handleOpen} >
@@ -69,13 +77,14 @@ const ProjectDropdown = ({issue}) => {
         <MenuItem>
           <Typography>Copy Issue Link</Typography>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleDeleteClick}>
           <Typography>Delete</Typography>
         </MenuItem>
       </Menu>
 
-    </Box>
+      <DeleteIssueModal issue={issue} open={openDeleteModal} handleClose={() => setOpenDeleteModal(false)}/>
 
+    </Box>
   )
 }
 

@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { initProjects } from './reducers/projectReducer'
-import { initUsers } from './reducers/userReducer'
+import { initProjects } from './reducers/project'
 
 import HomePage from './components/pages/HomePage'
-import ProjectPage from './components/pages/ProjectPage'
+import LoginPage from './components/pages/LoginPage'
+
 
 import { 
   Routes, 
@@ -15,6 +15,7 @@ import {
  } from 'react-router-dom'
 
 import styled from 'styled-components'
+import { CookiesProvider } from 'react-cookie';
 
 const AppStyle = styled.div`
  height: 100vh;
@@ -22,25 +23,16 @@ const AppStyle = styled.div`
 `
 function App() {
   const dispatch = useDispatch()
-  const projects = useSelector(state => state.projects)
-  const match = useMatch('./projects/:id')
-  //const loggedInUser = useSelector(state => state.user.loggedInUser)
-
-  useEffect(() => {
-    dispatch(initProjects())
-  }, [])
-
-  useEffect(() => {
-    dispatch(initUsers())
-  }, [])
-
+  const navigate = useNavigate()
   
-
   return (
+    <CookiesProvider>
         <Routes>
             <Route path="/" element={ <HomePage />} />
-            <Route path="/projects/:id" element={ <ProjectPage />} />
+            <Route path="/login" element={ <LoginPage />} />
+            <Route path="/project/:id" element={ <HomePage />} />
         </Routes>
+    </CookiesProvider>
 
   )
 }

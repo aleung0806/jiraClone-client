@@ -14,7 +14,7 @@ import ModalButton from '../reusable/ModalButton'
 import TypeIcon from '../reusable/TypeIcon'
 
 import { useDispatch } from 'react-redux'
-import { deleteIssue } from '../../reducers/projectReducer'
+import { deleteIssue } from '../../reducers/project'
 import AtlasIcon from '../reusable/AtlasIcon'
 import {ReactComponent as Cross} from '@atlaskit/icon/svgs/cross.svg'
 import { useState } from 'react'
@@ -107,14 +107,13 @@ const titleInputStyle = {
 const IssueDetails = ({id, issue, open, handleClose}) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState(issue.title)
+  const [deleteModal, setDeleteModal] = useState(false)
   const handleDelete = () => {
     dispatch(deleteIssue(issue.id))
   }
 
   const handleClick = (e) => {
-
     handleClose() 
-   
   } 
 
 return (

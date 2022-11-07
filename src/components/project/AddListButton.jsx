@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/base'
-import { createList, setLists } from '../../reducers/projectReducer'
+import { createList, setLists } from '../../reducers/project'
 import uniqid from 'uniqid'
 
 import { 
@@ -71,12 +71,10 @@ const AddListButton = ({projectId}) => {
     console.log('creating list...')
     if (newList !== ''){
       const list = {
-        title: newList
-      }
-      dispatch(createList({
-        list,
+        title: newList,
         projectId
-      }))
+      }
+      dispatch(createList(list))
     }
     setFormVisible(false)
     setNewList('')

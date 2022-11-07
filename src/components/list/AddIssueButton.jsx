@@ -12,7 +12,7 @@ import {
  } from '@mui/material'
 import {  ClickAwayListener } from '@mui/base'
 
-import { createIssue } from '../../reducers/projectReducer'
+import { createIssue } from '../../reducers/project'
 
 const IssueFormWrap = styled.div`
   padding: 10px;

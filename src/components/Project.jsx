@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import List from "./List";
 import { useDispatch, useSelector } from 'react-redux'
-import { setLists } from '../reducers/projectReducer'
+import { moveIssue } from '../reducers/project'
+
 import { useParams } from 'react-router-dom'
 import { IconButton, Grid, Box } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
@@ -53,48 +54,21 @@ const linkStyle = {
   color: 'text.secondary'
 }
 
-const removeFromList = (list, index) => {
-  let issuesCopy = [...list.issues]
-  const removed = issuesCopy[index]
-  issuesCopy.splice(index, 1)
-  return [removed, {...list, issues: issuesCopy}]
-}
 
-const addToList = (list, index, element) => {
-  let issuesCopy =[...list.issues]
-  issuesCopy.splice(index, 0, element)
-  return {...list, issues: issuesCopy}
-}
-
-function Project({project}) {
-
-  const lists = project.lists
-  const projectId = project.id
-
-
+function Project({projectId}) {
   const dispatch = useDispatch()
 
+  const project = useSelector(state => state.projects.find(project => project.id == projectId))
+  const lists = project.lists
+
+
   const onDragEnd = (result) => {
-    if (!result.destination) {
-      return;
-    }
-
-    let listsCopy = [...lists]
-    const sourceListId = result.source.droppableId
-    const destinationListId =  result.destination.droppableId
-    const sourceIndex = result.source.index
-    const destinationIndex = result.destination.index
-
-    const sourceList = listsCopy.find(list => list.id === sourceListId)
-    const [removedIssue, newSourceList] = removeFromList(sourceList, sourceIndex)
-    listsCopy = listsCopy.map(list => list.id === sourceListId ? newSourceList : list)
-
-    const destinationList = listsCopy.find(list => list.id === destinationListId)
-    const newDestinationList = addToList(destinationList, destinationIndex, removedIssue)
-    listsCopy = listsCopy.map(list => list.id === destinationListId ? newDestinationList : list)
-
-    dispatch(setLists({lists: listsCopy, projectId: projectId}))
+    dispatch(moveIssue(result, project))
   }
+
+  useEffect(()=> {
+    console.log(project)
+  }, [project])
 
   return (
     <Box component='main' sx={{ flexGrow: 1, paddingLeft: 3, paddingTop: 10}}>
@@ -102,11 +76,11 @@ function Project({project}) {
       <Typography sx={linkStyle}>{`Projects\u00A0\u00A0/\u00A0\u00A0${project.title}`}</Typography>
      </Box>
      <Typography sx={{fontSize: '24px', fontWeight: 500, textTransform: 'none'}}>{`SUM Board`}</Typography>
-      <DeleteProjectButton project={project}/>
+     {/* <DeleteProjectButton project={project}/> */}
      <Box>
       <UserBarStyle>
         <SearchBar/>
-        <UserIcons/>
+        {/* <UserIcons/> */}
         <AddUserButton/>
       </UserBarStyle>
      </Box>

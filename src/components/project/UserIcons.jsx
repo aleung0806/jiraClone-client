@@ -9,8 +9,7 @@ import InitialsAvatar from '../reusable/InitialsAvatar'
 const avatarStyles = {
   height: 30,
   width: 30,
-  fontSize: '12px',
-
+  fontSize: '12px'
 }
 
 const UserIcons = () => {
