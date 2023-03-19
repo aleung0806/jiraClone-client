@@ -6,73 +6,89 @@ import NavBar from '../NavBar'
 import SideMenu from '../SideMenu'
 import { Navigate } from 'react-router'
 
-import { login, logout } from '../../reducers/auth'
-import { fetchProjects } from '../../reducers/project'
-
+import { login, logout, register, fetchUser } from '../../reducers/auth'
+import { fetchAllProjects } from '../../reducers/allProjects'
+import { useState } from 'react'
+import VerifySession from './VerifySession'
 import { 
+  Input,
   Box,
   Button,
-  Typography
+  Typography,
+  OutlinedInput
 } from '@mui/material'
 
+import LoginForm from '../login/LoginForm'
+
+const pageStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '25px',
+  height: '100vh',
+  alignItems: 'center'
+}
+
+const contentStyle = {
+  height: '100%',
+  display: 'flex', 
+  flexDirection: 'column',
+  justifyContent: 'center'
+}
 
 
+
+const headerStyle = {
+  flexGrow: 1,
+  display: 'flex', 
+  flexDirection: 'row',
+  alignItems: 'center'
+}
+
+const footerStyle = {
+  flexGrow: 1,
+  display: 'flex', 
+  flexDirection: 'row',
+}
+
+
+const bodyStyle = {
+  display: 'flex',
+  flexDirection: 'column'
+}
 
 const LoginPage = () => {
+  const [email, setEmail] = useState('turkey@cat.com')
+  const [password, setPassword] = useState('123password')
 
   const dispatch = useDispatch()
-  const auth = useSelector(state => state.auth)
-  const projects = useSelector(state => state.projects)
-  const navigate = useNavigate()
+
+  const handleChange = () => {
+
+  }
+
 
   const loginHandler = async () => {
-    if (!auth.isLoggedIn){
-      console.log('loginHandler start')
-      await dispatch(login('y@monkey.com', '123password'))
-      navigate('/')
-      console.log('loginHandler end')
-    }
+    await dispatch(login(email, password))
   }
   
-  const fetchProjects = async () => {
-    if (auth.isLoggedIn){
-      console.log(`projectFetcher start ${auth.user.id}`)
-      await dispatch(initProjects(auth.user.id))
-      console.log(`projectFetcher end ${projects}`)
-    }
+  const registerHandler = async () => {
+    await dispatch(register({firstName: 'Monkey', lastName: 'Tinaza', email: 'turkey@cat.com', password: '123password'}))
   }
-
-  const logoutHandler = async () => {
-    dispatch(logout())
-  }
-
-  useEffect(() => {
-    if (!auth.isLoggedIn){
-    }
-  }, [])
-
-  useEffect(() => {
-    if (projects !== null){
-      navigate(`/projects/${projects[0].id}`)
-    }
-  }, [projects])
-
-
 
   return (
-        <Box >
-          <Box>
-            <Button onClick={loginHandler}>
-              Login
-            </Button>
-            <Button onClick={logoutHandler}>
-              Logout
-            </Button>
-            <Typography>{`loggedIn: ${auth.isLoggedIn}`}</Typography>
-
+    <VerifySession>
+          <Box sx={pageStyle}>
+            <Box sx={contentStyle}>
+              <Box sx={headerStyle}>
+              </Box>
+              <Box sx={bodyStyle}>
+                <LoginForm/>
+              </Box>
+              <Box sx={footerStyle}/>
+            </Box>
           </Box>
-        </Box> 
-      )
+    </VerifySession>      
+  )
   
   
 }

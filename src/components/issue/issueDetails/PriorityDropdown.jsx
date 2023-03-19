@@ -1,71 +1,75 @@
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateIssue } from '../../../reducers/project'
 
 import {
   Box,
   Typography,
   Menu,
-  MenuItem,
+  MenuItem, 
+  Button
 } from '@mui/material'
- 
- import PriorityIcon from '../../reusable/PriorityIcon'
-const dropdownButtonStyle = {
 
+import PriorityIcon from '../../reusable/PriorityIcon'
+
+const bodyStyle = {
+  display: 'flex',
+  flexDirection: 'column'
 }
 
-const menuChildrenStyle = {
-  'color': 'black',
-  'fontWeight': 'normal',
-  'textTransform': 'none'
-}
-const menuStyle={
-
-  'margin': 0,
-  'padding': 0
+const buttonStyle = {
+  display: 'flex', 
+  gap: 1, 
+  justifyContent: 'space-between'
 }
 
-const menuItemStyle={
-  'fontWeight': 'normal'
-
+const buttonTextStyle = {
+  fontSize: '12px', 
+  textTransform: 'none'
 }
 
-const iconStyle = {
-  // "&:hover":{color: '#ff5436'}
+const menuStyle = {}
+
+const menuItemStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  fontWeight: 'normal',
+  gap: 1
 }
 
-const priorities = ['lowest', 'low', 'medium', 'high' , 'highest'].reverse()
 
-const PriorityDropdown = ({issue}) => {
-  const projects = useSelector(state => state.projects)
+const selections = ['lowest', 'low', 'medium', 'high', 'highest'].reverse()
+
+const PriorityDropdown = ({ issue }) => {
   const [anchor, setAnchor] = useState(null)
+  const dispatch = useDispatch()
 
-  const handleOpen = (e) => { setAnchor(e.currentTarget)}
+  const handleOpen = (e) => { setAnchor(e.currentTarget) }
   const handleClose = () => { setAnchor(null) }
 
-  const handleSelect = () => {
-
+  const handleSelect = (selection) => {
+    document.activeElement.blur()
+    dispatch(updateIssue({ ...issue, priority: selection }))
   }
   return (
     <Box>
-      <Box sx={{display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'left'}} >
+      <Box sx={bodyStyle} >
         <Typography variant='darkestBold14'>Priority</Typography>
-        <Box sx={{display: 'flex', gap: 1}} onClick={handleOpen}>
-                <PriorityIcon priority={issue.priority} />
-                <Typography sx={{fontSize: '12px'}}>{issue.priority}</Typography>
-        </Box >
+        <Button sx={buttonStyle} onClick={handleOpen}>
+          <Typography sx={buttonTextStyle}>{issue.priority}</Typography>
+          <PriorityIcon priority={issue.priority} />
+        </Button >
       </Box>
-      <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} sx={menuStyle}>
-        {priorities
-          .map(priority => {
-          return (
-            <MenuItem key={priority}>
-              <Box sx={{display: 'flex', gap: 1}} onClick={handleSelect}>
-                <PriorityIcon priority={priority} />
-                <Typography sx={{fontSize: '12px'}}>{priority}</Typography>
-              </Box >
-            </MenuItem>
-          )
+      <Menu sx={menuStyle} id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose} PaperProps={{ elevation: 1 }}>
+        {selections
+          .map(selection => {
+            return (
+              <MenuItem key={selection} sx={menuItemStyle} onClick={() => handleSelect(selection)}>
+                  <Typography sx={buttonTextStyle}>{selection}</Typography>
+                  <PriorityIcon priority={selection} />
+              </MenuItem>
+            )
           })}
       </Menu>
 

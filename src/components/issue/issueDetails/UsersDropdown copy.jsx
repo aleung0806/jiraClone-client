@@ -48,10 +48,9 @@ const avatarStyle = {
   height: '20px', width: '20px', fontSize: '8px'
 }
 
-const UsersDropdown = () => {
-  const users = useSelector(state => state.users.all)
+const UsersDropdown = ({issue}) => {
+  const users = useSelector(state => state.project.users)
   console.log('users are', users)
-  const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null)
 
   const handleOpen = (e) => { setAnchor(e.currentTarget)}
@@ -64,7 +63,7 @@ const UsersDropdown = () => {
   return (
     <Box variant='flexRow' sx={boxStyle}>
       <Box sx={{display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'left'}}>
-        <Typography variant='darkestBold14'>Reporter</Typography>
+        <Typography variant='darkestBold14'>Creator</Typography>
         <Box sx={{display: 'flex', gap: 1, alignItems: 'center'}}>
           <InitialsAvatar sx={avatarStyle} name={'First Last'}/> 
           <Typography sx={{fontSize: '12px', textTransform: 'none'}}>{'First Last'}</Typography>

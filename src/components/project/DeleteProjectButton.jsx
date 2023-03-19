@@ -1,41 +1,50 @@
 import { useState } from 'react'
-import {
-  Button,
-  Menu,
-  MenuItem,
-  Divider,
-  IconButton
-} from '@mui/material'
-
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { 
+  Typography,
+  IconButton,
+  Box
+ } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
 
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import styled from 'styled-components'
-import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteProject } from '../../reducers/project'
+import DeleteModal from '../reusable/DeleteModal'
 
-import DeleteProjectModal from './DeleteProjectModal'
-const MenuButtonStyles = styled.span`
-  
-`;
-
-export default function DeleteProjectButton({project}) {
+const DeleteProjectButton = ({project}) => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const projects = useSelector(state => state.projects)
-  const [openModal, setOpenModal] = useState(false)
+  const projects = useSelector(state => state.allProjects)
+  const [open, setOpen] = useState(false)
 
-  const handleClick = (e) => {
-    setOpenModal(true)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+  const handleDelete = () => {
+    dispatch(deleteProject(project.id))
+    navigate(`/project/${projects[0].id}`)
   }
-  console.log('project', project)
-  const handleClose = () => {}
+
+  const Message = () => {
+    return (
+      <Typography sx={{display: 'flex', flexDirection: 'column'}} align={'center'}>
+        Delete&nbsp;<strong>{project.title}</strong>&nbsp;with all its lists and tasks?
+      </Typography>
+    )
+  }
 
   return (
-    <div>
-        <IconButton sx={{backgroundColor: 'red', marginTop: '50px'}}color="secondary" onClick={handleClick}>
-          <DeleteIcon sx={{color: 'yellow'}}/>
-        </IconButton>
-        <DeleteProjectModal open={openModal} setOpen={setOpenModal} project={project}/>
-    </div>
-  );
+    <Box>
+      <IconButton sx={{borderRadius: 1}} onClick={handleOpen}>
+        <DeleteIcon fontSize={'small'}/>
+      </IconButton>
+      <DeleteModal
+        open={open}
+        handleClose={handleClose}
+        Message={Message}
+        handleDelete={handleDelete}
+        />
+    </Box>
+  )
 }
+
+export default DeleteProjectButton

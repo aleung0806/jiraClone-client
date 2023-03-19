@@ -1,57 +1,30 @@
 import { 
   Typography,
-  FormControl,
-  Input,
-  Button,
   Box,
-  ButtonIcon,
-  TextField
  } from '@mui/material'
 
- import { useState } from 'react'
-
+import { useDispatch } from 'react-redux'
 import { updateIssue } from '../../../reducers/project'
+import ControlledForm from '../../reusable/ControlledForm'
 
 const inputStyle = {
   font: '12px',
-  left: '-12px',
-
 }
 
-const formStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-
-}
 const DescriptionForm = ({issue}) => {
-  const [description, setDescription] = useState(issue.description)
-  const handleChange = (e) => {
-    setDescription(e.target.value)
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const updatedIssue = {
-      ...issue,
-      description: description
-    }
-    console.log('handling', updatedIssue)
+  const dispatch = useDispatch()
 
-    updateIssue(updatedIssue)
+  const submit = (input) => { dispatch(updateIssue({ ...issue, description: input })) }
 
-  }
   return (
-    <Box sx={formStyle} >
+    <Box>
       <Typography variant='darkestBold14'>Description</Typography>
-      <Box component='form' onSubmit={handleSubmit}>
-      <Input
-        variant='regular'
-        sx={inputStyle}
-        value={issue.description === null ? '' : issue.description}
-        fullWidth
-        disableUnderline
-        onChange={handleChange}
+      <ControlledForm 
+        submit={submit} 
+        defaultInput = {issue.description === null ? '' : issue.description}
+        formStyle = {{}}
+        inputStyle = {inputStyle}
       />
-      </Box>
     </Box>
   )
 }

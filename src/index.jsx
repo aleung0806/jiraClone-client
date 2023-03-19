@@ -7,19 +7,19 @@ import store from './store'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
-
-
-
+import { CookiesProvider } from 'react-cookie'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <Router>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+    <CookiesProvider>
+    <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
-        <App />
-      </ThemeProvider>
+      <App />
+    </ThemeProvider>
+    </CookiesProvider>
     </Provider>
   </Router>
 

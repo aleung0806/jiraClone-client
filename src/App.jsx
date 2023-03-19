@@ -1,38 +1,68 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-
-import { initProjects } from './reducers/project'
-
-import HomePage from './components/pages/HomePage'
-import LoginPage from './components/pages/LoginPage'
-
-
+import { useDispatch } from 'react-redux'
 import { 
   Routes, 
   Route,
-  useMatch,
   useNavigate,
  } from 'react-router-dom'
 
-import styled from 'styled-components'
-import { CookiesProvider } from 'react-cookie';
+ import { 
+  Typography,
+  IconButton,
+  Box, 
+  ThemeProvider
+} from '@mui/material'
 
-const AppStyle = styled.div`
- height: 100vh;
- background-color: #E6E6E6;
-`
+ import { Navigate } from 'react-router-dom'
+ import { useState, useEffect } from 'react'
+ import { useSelector } from 'react-redux'
+
+import ProjectPage from './components/pages/ProjectPage'
+import LoginPage from './components/pages/LoginPage'
+import RegisterPage from './components/pages/RegisterPage'
+
+import TroubleShoot from './components/pages/TroubleShoot'
+import NotFoundPage from './components/pages/NotFoundPage'
+
+
+import { fetchUser } from './reducers/auth'
+import { fetchAllProjects } from './reducers/allProjects'
+
+
+
 function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  
+  const auth = useSelector(state => state.auth)
+
+  const user = useSelector(state => state.auth.user)
+  const verified = useSelector(state => state.auth.verified)
+  const projects = useSelector(state => state.allProjects)
+
+  const handleCallbackResponse = (response) => {
+    console.log("JWT ID Token: ")
+  }
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "789131590285-qd83qch1rioq37oevas6au4cpl5r78gs.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "outline", size: "large"}
+    )
+  }, [])
+
   return (
-    <CookiesProvider>
-        <Routes>
-            <Route path="/" element={ <HomePage />} />
-            <Route path="/login" element={ <LoginPage />} />
-            <Route path="/project/:id" element={ <HomePage />} />
-        </Routes>
-    </CookiesProvider>
+      <Routes>
+        <Route path="/" element={<LoginPage/> } />
+        <Route path="/login" element={<LoginPage/> } />
+        <Route path="/register" element={<RegisterPage/> } />
+
+        <Route path="/project/:id" element={ <ProjectPage />} />
+        <Route path="/troubleShoot" element={ <TroubleShoot />} />
+      </Routes>
 
   )
 }

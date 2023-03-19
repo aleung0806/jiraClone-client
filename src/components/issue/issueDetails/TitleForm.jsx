@@ -1,47 +1,31 @@
 import { 
-  Typography,
-  FormControl,
-  Input,
-  Button,
   Box,
-  ButtonIcon,
-  TextField,
-  useTheme,
-  OutlinedInput
-} from '@mui/material'
+ } from '@mui/material'
 
-import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateIssue } from '../../../reducers/project'
+import ControlledForm from '../../reusable/ControlledForm'
 
-
-const inputStyle = (theme) => {
-  return {
-    left: '-12px',
-    fontSize: '24px',
-    fontWeight: '500',
-    border: 'secondary.main',
-    padding: 0,
-    paddingLeft: '10px',
-  }
+const inputStyle = {
+  fontSize: '24px',
+  fontWeight: '500',
+  border: 'secondary.main',
 }
 
 const TitleForm = ({issue}) => {
-  const [title, setTitle] = useState(issue.title)
-  const theme = useTheme()
-  const handleChange = (e) => {
-    setTitle(e.target.value)
-  }
+  const dispatch = useDispatch()
 
+  const submit = (input) => { dispatch(updateIssue({ ...issue, title: input })) }
+  
   return (
-    <FormControl>
-      <Input
-        variant='regular'
-        sx={inputStyle(theme)}
-        value={title}
-        disableUnderline
-        fullWidth
-        onChange={handleChange}
+    <Box>
+      <ControlledForm 
+        submit={submit} 
+        defaultInput = {issue.title}
+        formStyle = {{}}
+        inputStyle = {inputStyle}
       />
-    </FormControl>
+    </Box>
   )
 }
 

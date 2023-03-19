@@ -19,7 +19,6 @@ const MenuButtonStyles = styled.span`
 
 export default function PeopleDropdown() {
   const navigate = useNavigate()
-  const projects = useSelector(state => state.projects)
   const [anchor, setAnchor] = useState(null);
   const [openModal, setOpenModal] = useState(false)
 

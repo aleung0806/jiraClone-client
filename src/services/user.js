@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const baseUrl = 'user'
 
-const get = async (id) => {
-  const response = await axios.get(`${baseUrl}/${id}`)
+const get = async () => {
+  const response = await axios.get(`/${baseUrl}`)
   return response.data
 }
 

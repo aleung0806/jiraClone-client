@@ -63,48 +63,99 @@ const theme = createTheme({
       ].join(','),
     },
     components: {
-      MuiBox: {
+      MuiInput: {
+        defaultProps: {
+          fullWidth: true,
+          disableUnderline: true,
+          inputProps: {
+            sx: {
+              padding: 0.5
+            }
+          }
+        },
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            borderRadius: '2px',
+            border: `2px solid #FFFFFF`,
+            '&&:hover': {
+              backgroundColor: '#EBECF0',
+            },
+            '&.Mui-focused': {
+              '&&:hover': {
+                backgroundColor: '#FFFFFF',
+                border: `2px solid #4C9AFF`
+              },
+              backgroundColor: '#FFFFFF',
+              border: `2px solid #DFE1E6`
+            }
+          }
+        },
         variants: [
           {
-            props: { variant: 'flexColumn' },
+            props: { 
+              variant: 'regular',
+            },
             style: {
-              display: 'flex',
-              flexDirection: 'column'
+
             }
           },
           {
-            props: { variant: 'flexRow' },
-            style: {
-              display: 'flex',
-              flexDirection: 'row'
-            }
-          }
-        ]
-      },
-      MuiInput: {
-        variants: [
-          {
-            props: { variant: 'regular' },
-            style: {
-              padding: '10px',
-              borderRadius: '2px',
-              border: `2px solid #FFFFFF`,
-              '&&:hover': {
-                backgroundColor: '#DFE1E6',
-              },
-              '&.Mui-focused': {
-                '&&:hover': {
-                  backgroundColor: '#FFFFFF',
-                },
-                backgroundColor: '#FFFFFF',
-                border: `2px solid #0052CC`
-              }
+            props: { 
+              variant: 'outlined',
 
             },
+            style: {
+              border: `2px solid #DFE1E6`,
+            },
           }
-
         ],
-      }
+      },
+      MuiIconButton: {
+        defaultProps: {
+
+        },
+        styleOverrides: {
+
+        },
+        variants: [
+          {
+            props: { 
+              variant: 'square',
+            },
+            style: {
+                borderRadius: 1,
+            }
+          }
+        ],
+      },
+      MuiModal: {
+        defaultProps: {
+
+        },
+        styleOverrides: {
+
+        },
+        variants: [
+          {
+            props: { 
+              variant: 'regular',
+            },
+            style: {
+
+            }
+          },
+          {
+            props: { 
+              variant: 'outlined',
+
+            },
+            style: {
+              border: `2px solid #DFE1E6`,
+            },
+          }
+        ],
+      },
     }
   
 });

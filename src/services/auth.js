@@ -2,13 +2,11 @@ import axios from 'axios'
 
 const login = async (email, password) => {
   const response = await axios.post('/auth/login', {email, password})
-  console.log('login response', response)
   return response.data
 }
 
-const verify = async (sessionId) => {
+const verify = async () => {
   const response = await axios.post('/auth/verify')
-  console.log('response', response)
   return response.data
 }
 
@@ -22,8 +20,8 @@ const logout = async () => {
 }
 
 
-const register = async (fields) => {
-  const response = await axios.post('/auth/register', {fields})
+const register = async (credentials) => {
+  const response = await axios.post('/auth/register', credentials)
   return response.data
 }
 

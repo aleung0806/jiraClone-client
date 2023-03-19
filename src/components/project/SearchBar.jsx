@@ -6,7 +6,7 @@ import {
 
  import AtlasIcon from '../reusable/AtlasIcon'
  import {ReactComponent as Search} from '@atlaskit/icon/svgs/search.svg'
-
+import { useState } from 'react'
 
 const textFieldStyle = {
   height: '40px',
@@ -22,10 +22,10 @@ const iconStyle = {
   margin: 0,
 }
 
-const SearchBar = () => {
+const SearchBar = ({project}) => {
 
-  const searchHandler = () => {
-  }
+  const [input, setInput] = useState(project.title)
+
 
   const changeHandler = () => {
   }

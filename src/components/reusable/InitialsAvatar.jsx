@@ -1,37 +1,27 @@
-import { useSelector } from 'react-redux'
 import {
   Avatar,
   useTheme,
 } from '@mui/material'
+import { findByLabelText } from '@testing-library/react'
 
-
-
-const InitialsAvatar = ({sx, name}) => {
+const InitialsAvatar = ({sx, user}) => {
   const theme = useTheme()
 
-
   function stringToColor(string) {
-
-    const hash = string.charCodeAt(5)
-
-    // console.log(string)
-    // console.log('hash', hash % 5)
-    // console.log(Object.values(theme.palette.colors))
-    // console.log(Object.values(theme.palette.colors)[hash % 5])
-
-    
+    const hash = string.charCodeAt(1)    
     return Object.values(theme.palette.colors)[hash % 5]
   }
 
-  const avatarStyles = (name) => {
-    
+  const avatarStyles = () => {
+    const first = user.firstName
+    const last = user.lastName
     return {
       sx: {
         ...sx,
-        backgroundColor: stringToColor(name),
+        backgroundColor: stringToColor(first),
         fontWeight: '600'
       },
-      children: `${name[0]}`,
+      children: `${first.charAt(0)}${last.charAt(0)}`,
     }
   }
 

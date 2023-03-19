@@ -1,7 +1,7 @@
 import axios from 'axios'
 axios.defaults.withCredentials = true
 
-const baseUrl = 'project'
+const baseUrl = '/project'
 
 const create = async (element) => {
   const response = await axios.post(baseUrl, element)

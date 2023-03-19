@@ -12,80 +12,57 @@ import {
   MenuItem
 } from '@mui/material'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import DeleteIssueModal from './DeleteIssueModal'
+import DeleteIssueButton from './DeleteIssueButton'
 
-const dropdownButtonStyle = {
-  'display': 'flex',
-  'justifyContent': 'center',
-  'alignItems': 'center',
-  'margin': 0,
-  'padding': 0
-}
-
-const menuChildrenStyle = {
-  'color': 'black',
-  'fontWeight': 'normal',
-  'textTransform': 'none'
-}
 const menuStyle={
-  'fontWeight': 'normal'
-}
-
-const menuItemStyle={
-  'fontWeight': 'normal'
-
+  borderRadius: 1,
 }
 
 const iconStyle = {
   // "&:hover":{color: '#ff5436'}
 }
 
-const ProjectDropdown = ({issue}) => {
-  const projects = useSelector(state => state.projects)
-  const [anchor, setAnchor] = useState(null)
-  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+const buttonStyle = {
+  height: '30px',
+  width: '30px',
+  borderRadius: 1,
 
+}
+
+const IssueOptionsDropdown = ({issue}) => {
+  const [anchor, setAnchor] = useState(null)
 
   const handleOpen = (e) => { 
     e.stopPropagation()
     setAnchor(e.currentTarget)
   }
   const handleClose = (e) => { 
-    console.log(e.target)
+    e.stopPropagation()
     setAnchor(null) 
   }
 
   const handleClick = (e) => {
     e.stopPropagation()
-
   }
 
-  const handleDeleteClick = (e) => {
-    setOpenDeleteModal(true) 
-    setAnchor(null) 
-
-  }
   return (
     <Box>
-      <IconButton id="basic-button" onClick={handleOpen} >
+      <IconButton sx={buttonStyle} onClick={handleOpen} >
         <MoreHorizIcon sx={iconStyle}/>
       </IconButton>
-      <Menu id="basic-menu" anchorEl={anchor} open={Boolean(anchor)} onClick={handleClick} onClose={handleClose} sx={menuStyle}>
-        <MenuItem>
-          <Typography>Options</Typography>
-        </MenuItem>
-        <MenuItem>
-          <Typography>Copy Issue Link</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleDeleteClick}>
-          <Typography>Delete</Typography>
-        </MenuItem>
+      <Menu 
+        anchorEl={anchor} 
+        open={Boolean(anchor)} 
+        onClick={handleClick} 
+        onClose={handleClose} 
+        PaperProps={{
+          elevation: 3,
+        }}
+      >
+        <DeleteIssueButton issue={issue} closeMenu={handleClose}/>
       </Menu>
-
-      <DeleteIssueModal issue={issue} open={openDeleteModal} handleClose={() => setOpenDeleteModal(false)}/>
-
     </Box>
   )
 }
 
-export default ProjectDropdown
+export default IssueOptionsDropdown

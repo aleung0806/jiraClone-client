@@ -1,120 +1,32 @@
-import { useState, useEffect } from 'react';
-import styled from "styled-components";
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { ClickAwayListener } from '@mui/base'
-import { createList, setLists } from '../../reducers/project'
-import uniqid from 'uniqid'
+import { useDispatch } from 'react-redux'
+import AddRoundedIcon from '@mui/icons-material/AddRounded'
 
-import { 
-  IconButton, 
-  TextField,
-  Box
- } from '@mui/material'
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-
-const AddButtonStyle = styled.span`
-  display: inline-block;
-  width: 275px;
-  padding: 5px;
-  border-radius: 6px;
-  background: #d4d4d4;
-  vertical-align: top;
-  margin: 5px; 
-  
-`;
-
-const ListFormWrap = styled.div`
- vertical-align: bottom;
-
-`;
+import ClickToAdd from '../reusable/ClickToAdd'
+import { createList } from '../../reducers/project'
 
 const buttonStyle = {
   display: 'inline-block',
-  padding: '5px',
-  borderRadius: '6px',
   backgroundColor: 'secondary.light',
-  verticalAlign: 'center',
-  margin: '5px'
+  width: '50px',
+  height: '50px',
+  borderRadius: 1,
 
 }
 
-const OnClickAwayWrapper = ({formVisible, clickAwayHandler, children}) => {  
-  if (formVisible){
-    return (
-      <ClickAwayListener onClickAway={clickAwayHandler} >
-        {children}
-      </ClickAwayListener>
-    )
-  } else {
-    return 
-      {children}
-  }
-}
-
-
-
-const AddListButton = ({projectId}) => {
+const AddListButton = ({project}) => {
   const dispatch = useDispatch()
 
-  const [newList, setNewList] = useState('')
-  const [formVisible, setFormVisible] = useState(false)
-
-  const addButtonHandler = () => {
-    setFormVisible(true)
+  const submit = (input) => {
+    dispatch(createList({ title: input, projectId: project.id }))
   }
-
-  const createListHandler = (e) => {
-    if (e){
-      e.preventDefault()
-    }
-    console.log('creating list...')
-    if (newList !== ''){
-      const list = {
-        title: newList,
-        projectId
-      }
-      dispatch(createList(list))
-    }
-    setFormVisible(false)
-    setNewList('')
-
-  }
-
-  const changeHandler = (e) => {
-    setNewList(e.target.value)
-  }
-
-  const clickAwayHandler = () => {
-    if (newList !== ''){
-      createListHandler()
-    }
-    setFormVisible(false)
-  }
-
+  const ButtonIcon = () => < AddRoundedIcon fontSize="large" />
 
   return (
-    <Box component='span'>
-      <IconButton sx={buttonStyle} onClick={addButtonHandler} style={{display: formVisible ? 'none' : ''}}>
-        <AddRoundedIcon fontSize="large" />
-      </IconButton>
-
-      <OnClickAwayWrapper formVisible={formVisible} clickAwayHandler={clickAwayHandler}>
-        <ListFormWrap style={{display: formVisible ? '' : 'none'}} >
-          <form onSubmit={createListHandler}>
-          <TextField
-            autoFocus
-            required
-            id="newListField"
-            value={newList}
-            onChange={changeHandler}
-          />
-            </form>
-        </ListFormWrap>
-      </OnClickAwayWrapper>
-    </Box>
-
-
+    <ClickToAdd 
+      submit={submit} 
+      buttonStyle={buttonStyle} 
+      ButtonIcon={ButtonIcon}
+    />
   )
 }
 

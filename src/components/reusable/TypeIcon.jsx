@@ -12,7 +12,7 @@ const match =
   task : <Task/>,
   improvement : <Improvement/>,
   epic: <Epic/>,
-  "new feature": <NewFeature/>
+  'new feature': <NewFeature/>
 }
 
 const boxStyle = {

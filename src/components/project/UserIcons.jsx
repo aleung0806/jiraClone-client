@@ -12,14 +12,14 @@ const avatarStyles = {
   fontSize: '12px'
 }
 
-const UserIcons = () => {
-  const users = useSelector(state => state.users.all)
+const UserIcons = ({project}) => {
+  const users = project.users
   return (
     <AvatarGroup max={4}>
       {users !== null && 
         users.map((user) => {
           return (
-            <InitialsAvatar key={user.id} sx={avatarStyles} name={user.name} /> 
+            <InitialsAvatar key={user.id} sx={avatarStyles} user={user} /> 
           )
         })
       }

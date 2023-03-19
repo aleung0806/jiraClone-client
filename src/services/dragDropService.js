@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 
 const removeFromList = (list, index) => {
   let issuesCopy = [...list.issues]
@@ -13,25 +15,24 @@ const addToList = (list, index, element) => {
 }
 
 
-const processDragDrop = (result, lists) => {
-  if (!result.destination) {
-    return;
-  }
+const processDragDrop = (result, project) => {
+  let lists = _.cloneDeep(project.lists)
 
-  let listsCopy = [...lists]
-  const sourceListId = result.source.droppableId
-  const destinationListId =  result.destination.droppableId
-  const sourceIndex = result.source.index
-  const destinationIndex = result.destination.index
+  const issueId = parseInt(result.draggableId)
+  const sourceListId = parseInt(result.source.droppableId)
+  const sourceIndex = parseInt(result.source.index)
+  const destinationListId =  parseInt(result.destination.droppableId)
+  const destinationIndex = parseInt(result.destination.index)
 
-  const sourceList = listsCopy.find(list => list.id === sourceListId)
-  const [removedIssue, newSourceList] = removeFromList(sourceList, sourceIndex)
-  listsCopy = listsCopy.map(list => list.id === sourceListId ? newSourceList : list)
 
-  const destinationList = listsCopy.find(list => list.id === destinationListId)
-  const newDestinationList = addToList(destinationList, destinationIndex, removedIssue)
-  listsCopy = listsCopy.map(list => list.id === destinationListId ? newDestinationList : list)
-  return listsCopy
+  lists.find(list => list.id === sourceListId)
+    .issueOrder.splice(sourceIndex, 1)
+  
+  lists.find(list => list.id === destinationListId)
+    .issueOrder.splice(destinationIndex, 0, issueId)
+
+  console.log('2', lists)
+  
 }
 
 export default processDragDrop
