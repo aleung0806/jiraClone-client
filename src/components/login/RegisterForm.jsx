@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 import validator from 'email-validator'
 
-import atlassianLogo from '../../icons/atlassian-logo.svg'
 import googleLogo from '../../icons/google-logo.svg'
 
 
@@ -81,11 +80,7 @@ const LoginForm = () => {
               
   return (
     <Box sx={{ width: '400px', boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: "32px 40px"}}>
-        <Box 
-          component="img"
-          height="40px"
-          src={atlassianLogo}
-        />
+
         <Typography sx={{fontSize: 16, fontWeight: 600, color: 'rgb(23, 43, 77)', paddingTop: '24px', textAlign: 'center'}}>Sign up to continue</Typography>
         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
           <Input
@@ -144,9 +139,13 @@ const LoginForm = () => {
           Sign up
         </Button>
 
-      <Button onClick={switchHandler}>
-        Already have an account? Log in
-      </Button>
+        <Typography 
+          sx={{fontSize: 14, fontWeight: 'normal', color: "#0052cc", paddingTop: '24px', textAlign: 'center', marginBottom: "16px"}}
+          onClick={() => {
+            navigate('/register')
+          }}>
+          Already have an account? Log in.
+        </Typography>
     </Box>
   )
 

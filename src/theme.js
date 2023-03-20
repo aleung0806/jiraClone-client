@@ -36,6 +36,10 @@ const theme = createTheme({
         light: '#DFE1E6',
         lighter: '#F4F5F7'
       },
+
+      error: {
+        main: "#d32f2f"
+      }
     },
 
     typography: {
@@ -63,40 +67,88 @@ const theme = createTheme({
       ].join(','),
     },
     components: {
+      MuiTextField: {
+        defaultProps: {
+          variant: 'standard'
+        }
+      },
       MuiInput: {
         defaultProps: {
           fullWidth: true,
           disableUnderline: true,
-          inputProps: {
-            sx: {
-              padding: 0.5
-            }
-          }
         },
         styleOverrides: {
+          input: {
+            padding: "8px 6px"
+
+          },
           root: {
-            textTransform: 'none',
-            borderRadius: '2px',
             border: `2px solid #FFFFFF`,
             '&&:hover': {
               backgroundColor: '#EBECF0',
             },
             '&.Mui-focused': {
+              border: `2px solid #4C9AFF`,
+              backgroundColor: '#FFFFFF',
+
               '&&:hover': {
                 backgroundColor: '#FFFFFF',
-                border: `2px solid #4C9AFF`
               },
-              backgroundColor: '#FFFFFF',
-              border: `2px solid #DFE1E6`
+            },
+            '&.Mui-error': {
+              border: `2px solid #d32f2f`,
+
             }
-          }
+
+          },
         },
         variants: [
           {
             props: { 
-              variant: 'regular',
+              variant: 'login',
             },
             style: {
+              padding: 0,
+              border: `2px solid #DFE1E6`,
+              borderRadius: "3px",
+              width: "320px", 
+              fontSize: 14, 
+              
+              marginTop: "8px",
+
+            }
+          },
+          {
+            props: { 
+              variant: 'outlined',
+
+            },
+            style: {
+            },
+          }
+        ],
+      },
+      MuiButton: {
+        defaultProps: {
+
+        },
+        variants: [
+          {
+            props: { 
+              variant: 'login',
+            },
+            style: {
+              width: "320px",
+              borderRadius: "3px",
+              backgroundColor: '#0052CC', 
+              color: '#FFFFFF', 
+              fontSize: '14px', 
+              textTransform: 'none', 
+              height: '40px', 
+              padding: 0,
+              '&&:hover': {
+                backgroundColor: '#0065FF',
+              },
 
             }
           },

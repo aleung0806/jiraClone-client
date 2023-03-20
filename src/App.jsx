@@ -38,21 +38,7 @@ function App() {
   const verified = useSelector(state => state.auth.verified)
   const projects = useSelector(state => state.allProjects)
 
-  const handleCallbackResponse = (response) => {
-    console.log("JWT ID Token: ")
-  }
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: "789131590285-qd83qch1rioq37oevas6au4cpl5r78gs.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    })
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      {theme: "outline", size: "large"}
-    )
-  }, [])
 
   return (
       <Routes>

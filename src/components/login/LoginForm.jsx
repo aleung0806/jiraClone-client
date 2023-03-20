@@ -5,35 +5,25 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import validator from 'email-validator'
 
-import atlassianLogo from '../../icons/atlassian-logo.svg'
-import googleLogo from '../../icons/google-logo.svg'
+import jiraLogo from '../../icons/jira-logo.svg'
+import atlassianLogoGray from '../../icons/atlassian-logo-gray.svg'
+import { ReactComponent as EditFilledIcon } from '@atlaskit/icon/svgs/edit-filled.svg'
+import { ReactComponent as WatchIcon } from '@atlaskit/icon/svgs/watch.svg'
+import { ReactComponent as WatchIconFilled } from '@atlaskit/icon/svgs/watch-filled.svg'
 
+import AtlasIcon from '../reusable/AtlasIcon'
 
 import { 
+  TextField,
   Input,
   Box,
   Button,
   Typography,
-  Link
+  Link,
+  InputAdornment,
+  IconButton
 } from '@mui/material'
 
-
-const loginFormStyle = (showLoginForm) => {
-  return {
-    display: showLoginForm ? 'flex' : 'none',
-    flexDirection: 'column',
-    flexGrow: 4,
-  }
-}
-
-const registerFormStyle = (showLoginForm) => {
-  return {
-    display: showLoginForm ? 'none' : 'flex',
-    flexDirection: 'column',
-    flexGrow: 4,
-    gap: 1
-  }
-}
 
 
 const LoginForm = () => {
@@ -42,13 +32,9 @@ const LoginForm = () => {
   const [ emailError, setEmailError ] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [firstName, setFirstName] = useState('Turkey')
-  const [lastName, setLastName] = useState('Tinaza')
-  const theme = useTheme()
+  const [showPassword, setShowPassword] = useState(false)
 
   const navigate = useNavigate()
-
-
   const dispatch = useDispatch()
 
 
@@ -64,30 +50,16 @@ const LoginForm = () => {
     })
 
     google.accounts.id.renderButton(
-      document.getElementById("loginForm"),
-      {theme: "outline", size: "large"}
+      document.getElementById("googleForm"),
+      {theme: "outline", size: "large", text: "", width: "320px"}
     )
 
     google.accounts.id.prompt()
   }, [])
 
-  const handleChange = () => {
-
-  }
-
-
   const loginHandler = async () => {
     await dispatch(login(email, password))
   }
-
-  const registerHandler = async () => {
-    await dispatch(register({firstName, lastName, email, password}))
-  }
-  
-  const switchHandler = async () => {
-    setShowLoginForm(!showLoginForm)
-  }
-
 
   const checkEmail = () => {
     if (validator.validate(email)){
@@ -107,36 +79,55 @@ const LoginForm = () => {
         <Box 
           component="img"
           height="40px"
-          src={atlassianLogo}
+          src={jiraLogo}
         />
         <Typography sx={{fontSize: 16, fontWeight: 600, color: 'rgb(23, 43, 77)', paddingTop: '24px', textAlign: 'center'}}>Log in to continue</Typography>
         <Box  sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
-          <Input
-            sx={{borderColor: emailError ? "#AE2A19" : "", width: "320px", fontSize: 14, padding: "8px 6px", marginTop: "8px"}}
-            inputProps={{sx: {padding: 0, color: emailEntered ? 'rgb(94, 108, 132)' : ""}}}
+          <TextField
+            sx={{borderColor: emailError ? "#AE2A19" : ""}}
+            inputProps={{ sx: {color: emailEntered ? 'rgb(94, 108, 132)' : ""}}}
+            InputProps={{
+              variant: "login",
+              endAdornment: emailEntered ? <EditFilledIcon style={{color: "rgb(66, 82, 110)", height: '24px', width: '24px', marginRight: "5px"}}/> : null
+                
+            }}
             placeholder='Enter your email'
-            variant='outlined'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-
+            error={emailError}
+            helperText={emailError ? "Enter an email address" : ""}
+            onClick={()=>{setEmailEntered(false)}}
           />
-          <Typography sx={{fontSize: 10, fontWeight: "normal", color: "#AE2A19", textAlign: 'left', display: emailError ? 'flex' : 'none'}}>Enter an email address</Typography>
           <Button 
-            sx={{display: emailEntered ? 'none': 'flex', width: "320px", backgroundColor: 'secondary.main', color: 'secondary.light', fontSize: '14px', textTransform: 'none', height: '40px', borderRadius: '3px', padding: 0}} 
+            disableRipple
+            variant="login"
+            sx={{display: emailEntered ? 'none': 'flex' }} 
             onClick={checkEmail} 
-            >
+          >
             Continue
           </Button>
-          <Input
+          <TextField
+            InputProps={{
+              autoFocus: true,
+              variant: "login",
+              endAdornment: showPassword ? 
+                <WatchIcon 
+                  style={{color: "rgb(66, 82, 110)", height: '24px', width: '24px', marginRight: "5px"}}
+                  onClick={() => setShowPassword(false)}
+                /> : 
+                <WatchIconFilled style={{color: "rgb(66, 82, 110)", height: '24px', width: '24px', marginRight: "5px"}} onClick={ () => setShowPassword(true)}
+                />
+            }}
             sx={{display: emailEntered ? 'flex': 'none'}}
-            placeholder='password'
-            variant='outlined'
+            placeholder='Enter password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+            type={showPassword ? "password" : "text"}
 
+          />
           <Button 
-            sx={{display: emailEntered ? 'flex': 'none', width: "320px", backgroundColor: 'secondary.main', color: 'secondary.light', fontSize: '14px', textTransform: 'none', height: '40px', borderRadius: '3px', padding: 0}} 
+            variant="login"
+            sx={{display: emailEntered ? 'flex': 'none'}} 
             onClick={loginHandler}
             >
            Log in
@@ -148,29 +139,34 @@ const LoginForm = () => {
           </Button>
         </Box>
         <Typography sx={{fontSize: 14, fontWeight: 600, color: 'rgb(94, 108, 132)', paddingTop: '24px', textAlign: 'center', marginBottom: "16px"}}>
-          Or continue with:
+          Or continue with Google:
         </Typography>
-        <Box
-         id="loginForm"
-        />
-        {/* <Button
-          sx= {{width: "320px", textTransform: 'none', border: "1px solid rgb(193, 199, 208)", color: '#42526E', fontWeight: "bold"}}
-        >
-          <Box 
-            component="img"
-            width="24px"
-            sx={{marginRight: "6px"}}
-            src={googleLogo}
-          />
-          Google
-        </Button> */}
-      <Button
+      
+        <Box id="googleForm"/>
+
+      <Typography 
+        sx={{fontSize: 14, fontWeight: 'normal', color: "#0052cc", paddingTop: '24px', textAlign: 'center', marginBottom: "16px"}}
         onClick={() => {
           navigate('/register')
         }}>
-        Create an account
-        
-      </Button>
+          Create an account
+        </Typography>
+
+        <Box sx={{width: "320px", borderTop: "1px solid rgb(193, 199, 208)", paddingTop: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Box 
+            component="img"
+            height="24px"
+            src={atlassianLogoGray}
+          />
+          <Box sx={{display: "flex", flexDirection: "row", paddingTop: "8px"}}>
+            <Typography sx={{color: "rgb(23, 43, 77)", fontSize: "11px", }}>
+              Jira clone made by 
+            </Typography>
+            <Typography sx={{color: "rgb(0, 82, 204)", fontSize: "11px", paddingLeft: "4px"}}>
+              aleung0806@github.com
+            </Typography>
+          </Box>
+        </Box>
     </Box>
   )
 

@@ -5,7 +5,7 @@ import Project from '../Project'
 import NavBar from '../NavBar'
 import SideMenu from '../SideMenu'
 import { Navigate } from 'react-router'
-import RegisterForm from '../login/RegisterForm'
+import RegisterSent from '../login/RegisterSent'
 import { login, logout, register, fetchUser } from '../../reducers/auth'
 import { fetchAllProjects } from '../../reducers/allProjects'
 import { useState } from 'react'
@@ -56,7 +56,7 @@ const bodyStyle = {
   flexDirection: 'column'
 }
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState('turkey@cat.com')
   const [password, setPassword] = useState('123password')
 
@@ -82,7 +82,7 @@ const LoginPage = () => {
               <Box sx={headerStyle}>
               </Box>
               <Box sx={bodyStyle}>
-                <RegisterForm/>
+                <RegisterSent/>
               </Box>
               <Box sx={footerStyle}/>
             </Box>
@@ -93,4 +93,4 @@ const LoginPage = () => {
   
 }
 
-export default LoginPage
+export default RegisterPage
