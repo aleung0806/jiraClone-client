@@ -38,11 +38,23 @@ const theme = createTheme({
       },
 
       error: {
-        main: "#d32f2f"
+        main: "#AE2A19"
       }
     },
 
     typography: {
+      h1: {
+        fontSize: 16, 
+        fontWeight: 600, 
+        color: 'rgb(23, 43, 77)', 
+        textAlign: 'center'
+      },
+      p1: {
+        fontSize: 14, 
+        fontWeight: "normal", 
+        color: 'rgb(94, 108, 132)', 
+        textAlign: 'left'
+      },
       darkestBold14: {
         color: '#7A869A',
         fontSize: '14px',
@@ -79,8 +91,8 @@ const theme = createTheme({
         },
         styleOverrides: {
           input: {
-            padding: "8px 6px"
-
+            padding: "8px 6px",
+            color: 'rgb(9, 30, 66)'
           },
           root: {
             border: `2px solid #FFFFFF`,
@@ -90,7 +102,6 @@ const theme = createTheme({
             '&.Mui-focused': {
               border: `2px solid #4C9AFF`,
               backgroundColor: '#FFFFFF',
-
               '&&:hover': {
                 backgroundColor: '#FFFFFF',
               },
@@ -108,29 +119,47 @@ const theme = createTheme({
               variant: 'login',
             },
             style: {
-              padding: 0,
               border: `2px solid #DFE1E6`,
+              padding: 0,
               borderRadius: "3px",
               width: "320px", 
               fontSize: 14, 
-              
               marginTop: "8px",
+              '&.filled': {
+                borderColor: '#FFFFFF',
+                "& input": {
+                  fontSize: '16px',
+                  color: 'rgb(94, 108, 132)'
+                },
 
+              }
             }
-          },
-          {
-            props: { 
-              variant: 'outlined',
-
-            },
-            style: {
-            },
           }
         ],
       },
+      MuiLink: {
+        variants: [
+          {
+            props: {
+              variant: 'body'
+            },
+            style: {
+              fontSize: 14, 
+              fontWeight: 'normal', 
+              color: "#0052cc",
+              textDecoration: 'none',
+              '&&:hover': {
+                textDecoration: 'underline',
+              },
+              
+            
+            }
+          }
+        ]
+      },
       MuiButton: {
         defaultProps: {
-
+          disableRipple: true
         },
         variants: [
           {
@@ -150,8 +179,10 @@ const theme = createTheme({
                 backgroundColor: '#0065FF',
               },
 
+
             }
           },
+
           {
             props: { 
               variant: 'outlined',

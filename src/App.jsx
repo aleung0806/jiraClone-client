@@ -19,7 +19,7 @@ import {
 import ProjectPage from './components/pages/ProjectPage'
 import LoginPage from './components/pages/LoginPage'
 import RegisterPage from './components/pages/RegisterPage'
-
+import RegisterConfirmation from './components/login/RegisterConfirmation'
 import TroubleShoot from './components/pages/TroubleShoot'
 import NotFoundPage from './components/pages/NotFoundPage'
 
@@ -41,15 +41,18 @@ function App() {
 
 
   return (
+    <Box>
       <Routes>
         <Route path="/" element={<LoginPage/> } />
-        <Route path="/login" element={<LoginPage/> } />
-        <Route path="/register" element={<RegisterPage/> } />
+        <Route path="login" element={<LoginPage/> } />
+        <Route path="register" element={<RegisterPage/> } >
+          <Route path='sent' element={<RegisterConfirmation/>} />
+        </Route>
 
         <Route path="/project/:id" element={ <ProjectPage />} />
         <Route path="/troubleShoot" element={ <TroubleShoot />} />
       </Routes>
-
+    </Box>
   )
 }
 

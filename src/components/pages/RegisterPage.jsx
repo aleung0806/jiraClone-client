@@ -1,96 +1,30 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import Project from '../Project'
-import NavBar from '../NavBar'
-import SideMenu from '../SideMenu'
-import { Navigate } from 'react-router'
-import RegisterSent from '../login/RegisterSent'
-import { login, logout, register, fetchUser } from '../../reducers/auth'
-import { fetchAllProjects } from '../../reducers/allProjects'
-import { useState } from 'react'
 import VerifySession from './VerifySession'
 import { 
-  Input,
   Box,
-  Button,
-  Typography,
-  OutlinedInput
 } from '@mui/material'
 
-import LoginForm from '../login/LoginForm'
+import RegisterForm from '../login/RegisterForm'
+import RegisterConfirmation from '../login/RegisterConfirmation'
+
 
 const pageStyle = {
   display: 'flex',
   flexDirection: 'column',
-  padding: '25px',
   height: '100vh',
-  alignItems: 'center'
-}
-
-const contentStyle = {
-  height: '100%',
-  display: 'flex', 
-  flexDirection: 'column',
+  alignItems: 'center',
   justifyContent: 'center'
 }
 
 
-
-const headerStyle = {
-  flexGrow: 1,
-  display: 'flex', 
-  flexDirection: 'row',
-  alignItems: 'center'
-}
-
-const footerStyle = {
-  flexGrow: 1,
-  display: 'flex', 
-  flexDirection: 'row',
-}
-
-
-const bodyStyle = {
-  display: 'flex',
-  flexDirection: 'column'
-}
-
 const RegisterPage = () => {
-  const [email, setEmail] = useState('turkey@cat.com')
-  const [password, setPassword] = useState('123password')
-
-  const dispatch = useDispatch()
-
-  const handleChange = () => {
-
-  }
-
-
-  const loginHandler = async () => {
-    await dispatch(login(email, password))
-  }
-  
-  const registerHandler = async () => {
-    await dispatch(register({firstName: 'Monkey', lastName: 'Tinaza', email: 'turkey@cat.com', password: '123password'}))
-  }
 
   return (
     <VerifySession>
-          <Box sx={pageStyle}>
-            <Box sx={contentStyle}>
-              <Box sx={headerStyle}>
-              </Box>
-              <Box sx={bodyStyle}>
-                <RegisterSent/>
-              </Box>
-              <Box sx={footerStyle}/>
-            </Box>
-          </Box>
+      <Box sx={pageStyle}>
+        <RegisterForm/>
+      </Box>
     </VerifySession>      
   )
-  
-  
 }
 
 export default RegisterPage

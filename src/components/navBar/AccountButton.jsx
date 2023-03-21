@@ -36,7 +36,9 @@ const AccountButton = ()  => {
   const user = useSelector(state => state.auth.user)
   const [open, setOpen] = useState(false)
   const logoutHandler = () => {
+
     dispatch(logout())
+    navigate('/login')
   }
 
   const [anchor, setAnchor] = useState(null);
