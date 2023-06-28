@@ -1,1 +1,1 @@
-jira clone frontend
+mui + react + redux jira clone
